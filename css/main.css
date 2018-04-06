@@ -1686,6 +1686,11 @@ pre .javascript .function {
     display: none !important;
   }
 }
+.sidebar-photo {
+  height: 180px;
+  width: 320px;
+  color: #f00;
+}
 .sidebar-inner {
   position: relative;
   padding: 20px 10px;
@@ -1822,7 +1827,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #cd06ff;
+  background: #c92d62;
 }
 .links-of-blogroll {
   font-size: 13px;

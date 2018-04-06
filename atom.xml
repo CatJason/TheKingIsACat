@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-04-05T15:58:25.430Z</updated>
+  <updated>2018-04-06T15:09:51.374Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Avatar Bug in Theme Next</title>
+    <link href="http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next-1/"/>
+    <id>http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next-1/</id>
+    <published>2018-04-06T15:09:51.000Z</published>
+    <updated>2018-04-06T15:09:51.374Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Avatar Bug in Theme Next</title>
+    <link href="http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next/"/>
+    <id>http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next/</id>
+    <published>2018-04-06T15:09:40.000Z</published>
+    <updated>2018-04-06T17:24:54.008Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;When I add a head portrait to my blog (edit the theme configuration file, modify the field “Avatar”),but it does work.&lt;br&gt;Then I search
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>

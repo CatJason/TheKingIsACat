@@ -1688,7 +1688,7 @@ pre .javascript .function {
 }
 .sidebar-photo {
   height: 180px;
-  width: 320px;
+  width: 300px;
 }
 .sidebar-inner {
   position: relative;
@@ -1826,7 +1826,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffda57;
+  background: #b18f67;
 }
 .links-of-blogroll {
   font-size: 13px;

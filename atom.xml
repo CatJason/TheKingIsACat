@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-04-07T12:30:26.560Z</updated>
+  <updated>2018-04-15T09:56:01.837Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2018/04/07/hello-world/"/>
-    <id>http://yoursite.com/2018/04/07/hello-world/</id>
-    <published>2018-04-07T12:30:26.560Z</published>
-    <updated>2018-04-07T12:30:26.560Z</updated>
+    <link href="http://yoursite.com/2018/04/15/hello-world/"/>
+    <id>http://yoursite.com/2018/04/15/hello-world/</id>
+    <published>2018-04-15T09:56:01.837Z</published>
+    <updated>2018-04-15T09:56:01.837Z</updated>
     
     <summary type="html">
     
@@ -43,7 +43,7 @@
     <link href="http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next/"/>
     <id>http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next/</id>
     <published>2018-04-06T15:09:40.000Z</published>
-    <updated>2018-04-07T13:34:34.785Z</updated>
+    <updated>2018-04-15T09:49:25.987Z</updated>
     
     <summary type="html">
     

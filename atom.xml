@@ -39,15 +39,25 @@
   </entry>
   
   <entry>
-    <title>My New Post</title>
+    <title>hexo博客图片问题</title>
     <link href="http://yoursite.com/2018/04/15/My-New-Post/"/>
     <id>http://yoursite.com/2018/04/15/My-New-Post/</id>
     <published>2018-04-15T09:59:45.000Z</published>
-    <updated>2018-04-15T10:40:28.511Z</updated>
+    <updated>2018-04-15T11:16:51.626Z</updated>
     
     <summary type="html">
     
+      
+      
+        
+        
+          &lt;h3 id=&quot;1&quot;&gt;&lt;a href=&quot;#1&quot; class=&quot;headerlink&quot; title=&quot;1&quot;&gt;&lt;/a&gt;1&lt;/h3&gt;&lt;p&gt;首先确认_config.yml 中有 &lt;code&gt;post_asset_folder:true&lt;/code&gt;。&lt;br&gt;Hexo
+        
+      
+    
     </summary>
+    
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
     
     
   </entry>
@@ -57,7 +67,7 @@
     <link href="http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next/"/>
     <id>http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next/</id>
     <published>2018-04-06T15:09:40.000Z</published>
-    <updated>2018-04-15T09:49:25.987Z</updated>
+    <updated>2018-04-15T11:01:32.275Z</updated>
     
     <summary type="html">
     

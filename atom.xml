@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-04-21T01:49:39.341Z</updated>
+  <updated>2018-04-21T03:03:29.046Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2018/04/21/pictures/"/>
     <id>http://yoursite.com/2018/04/21/pictures/</id>
     <published>2018-04-21T01:45:09.000Z</published>
-    <updated>2018-04-21T01:49:39.341Z</updated>
+    <updated>2018-04-21T03:03:29.046Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;p&gt;&lt;img src=&quot;pictures/test.jpg&quot;
+          &lt;p&gt;&lt;img src=&quot;images/test.jpg&quot;
         
       
     

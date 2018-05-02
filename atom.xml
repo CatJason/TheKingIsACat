@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-02T14:49:26.708Z</updated>
+  <updated>2018-05-02T14:50:32.219Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Python 3.x和2.x的区别</title>
+    <title>Python</title>
     <link href="http://yoursite.com/2018/05/02/python23/"/>
     <id>http://yoursite.com/2018/05/02/python23/</id>
     <published>2018-05-02T13:00:45.000Z</published>
-    <updated>2018-05-02T14:49:26.708Z</updated>
+    <updated>2018-05-02T14:50:32.219Z</updated>
     
     <summary type="html">
     

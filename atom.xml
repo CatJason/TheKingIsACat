@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-02T14:52:04.630Z</updated>
+  <updated>2018-05-03T13:03:27.937Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>landern启动失败</title>
+    <link href="http://yoursite.com/2018/05/03/landern/"/>
+    <id>http://yoursite.com/2018/05/03/landern/</id>
+    <published>2018-05-03T12:58:34.000Z</published>
+    <updated>2018-05-03T13:03:27.937Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Linux – Lantern 无法启动&lt;/p&gt;
+&lt;p&gt;安装了Lantern之后，不能启动起来，一闪而过，命令行里启动，包如下错误：&lt;br&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Python</title>

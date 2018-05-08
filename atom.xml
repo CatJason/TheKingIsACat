@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-03T13:03:27.937Z</updated>
+  <updated>2018-05-08T01:06:42.848Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python23.1</title>
+    <link href="http://yoursite.com/2018/05/08/python23-1/"/>
+    <id>http://yoursite.com/2018/05/08/python23-1/</id>
+    <published>2018-05-08T08:15:28.000Z</published>
+    <updated>2018-05-08T01:06:42.848Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;容器&lt;strong&gt;__&lt;/strong&gt;序列&lt;br&gt;        &lt;strong&gt;__&lt;/strong&gt;*list:[]&lt;br&gt;           |&lt;strong&gt;_&lt;/strong&gt;tuple:()&lt;br&gt;   
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>landern启动失败</title>
@@ -40,11 +62,11 @@
   </entry>
   
   <entry>
-    <title>Python</title>
+    <title>Python和C语言之间的区别</title>
     <link href="http://yoursite.com/2018/05/02/python23/"/>
     <id>http://yoursite.com/2018/05/02/python23/</id>
     <published>2018-05-02T13:00:45.000Z</published>
-    <updated>2018-05-03T13:46:35.986Z</updated>
+    <updated>2018-05-08T08:13:31.613Z</updated>
     
     <summary type="html">
     

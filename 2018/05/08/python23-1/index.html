@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="容器  映射:dict:{} 序列  *list:[]tuple:()    tuple不可更改 Python中常用的序列结构有列表/元组/字符串/字典/集合以及range等对象也支持类似的操作列表/元组/字符串支持双向索引,即具有负索引列表是Python中内置有序可变序列,列表的所有元素放在一堆括号[]中,并使用,号隔开 列表的常用方法   方法 说明     lst.append(x) 将元">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-08T13:03:38.762Z">
+<meta property="og:updated_time" content="2018-05-08T13:10:02.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python23.1">
 <meta name="twitter:description" content="容器  映射:dict:{} 序列  *list:[]tuple:()    tuple不可更改 Python中常用的序列结构有列表/元组/字符串/字典/集合以及range等对象也支持类似的操作列表/元组/字符串支持双向索引,即具有负索引列表是Python中内置有序可变序列,列表的所有元素放在一堆括号[]中,并使用,号隔开 列表的常用方法   方法 说明     lst.append(x) 将元">
@@ -433,13 +433,11 @@
 <li>强制类型转换函数:list()函数/tuple()函数/dict()函数</li>
 <li>当不再使用时,使用del命令删除这个列表,如果列表对象所指向的值不再有其他对象指向,Python将同时删除该值</li>
 <li>可以使用”+”运算符添加到列表中,<strong>不建议使用,慢!</strong></li>
-<li><p>使用列表对象的append()方法,原地修改列表,是真正意义上的在列表的尾部添加元素,速度较快,<strong>所谓原地,是指不改变列表的首地址</strong></p>
-</li>
-<li><p>比较</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">result = []</span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">    result = result + [i]</span><br><span class="line">print(len(result),<span class="string">','</span>,time.time()-start)</span><br><span class="line"></span><br><span class="line">result = []</span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">    result.append(i)</span><br><span class="line">print(len(result), <span class="string">','</span>, time.time() - start)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>python采用的是基于值的内存管理模式，<strong>如果为不同变量赋值为相同值，这个值在内存中只有一份，多个变量指向同一块内存地址</strong></p>
-</li>
+<li>使用列表对象的append()方法,原地修改列表,是真正意义上的在列表的尾部添加元素,速度较快,<strong>所谓原地,是指不改变列表的首地址</strong></li>
+</ul>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">result = []</span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">    result = result + [i]</span><br><span class="line">print(len(result),<span class="string">','</span>,time.time()-start)</span><br><span class="line"></span><br><span class="line">result = []</span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">    result.append(i)</span><br><span class="line">print(len(result), <span class="string">','</span>, time.time() - start)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>python采用的是基于值的内存管理模式，<strong>如果为不同变量赋值为相同值，这个值在内存中只有一份，多个变量指向同一块内存地址</strong></li>
 <li>列表中包含的是元素值的引用,而不是直接包含的元素值.如果是直接修改序列变量的值,则与Python普通变量的情况是一样的</li>
 <li><p>如果是通过下标来修改序列中元素的值或通过可变序列对象自身提供的方法来增加和删除元素时,序列对象在内存中的起始地址是不变的,仅仅是被改变值的元素地址发生变化,也就是所谓的”<strong>原地操作</strong>“</p>
 </li>
@@ -447,10 +445,8 @@
 </li>
 <li><p>查看引用间拓扑关系<br>import objgraph<br>objgraph.show_refs([z].filename=’ref_topo.png’)<br>可用<code>gvedit.exe</code>查看</p>
 </li>
-<li><p>值内存管理的深入学习</p>
-</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>]</span><br><span class="line">c = a==b</span><br></pre></td></tr></table></figure>
+<h3 id="值内存管理的深入学习"><a href="#值内存管理的深入学习" class="headerlink" title="值内存管理的深入学习"></a>值内存管理的深入学习</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>]</span><br><span class="line">c = a==b</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id(a)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id(b)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"%x"</span>,id(a))</span><br></pre></td></tr></table></figure>
@@ -684,7 +680,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#列表的常用方法"><span class="nav-number">1.</span> <span class="nav-text">列表的常用方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#列表的常用方法"><span class="nav-number">1.</span> <span class="nav-text">列表的常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比较"><span class="nav-number">2.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#值内存管理的深入学习"><span class="nav-number">3.</span> <span class="nav-text">值内存管理的深入学习</span></a></li></ol></div>
             
 
           </div>

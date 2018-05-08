@@ -486,7 +486,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  525
+                  946
                 </span>
               
 
@@ -502,7 +502,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  4
                 </span>
               
             </div>
@@ -528,14 +528,43 @@
             <p>容器<strong>__</strong>序列<br>        <strong>__</strong>*list:[]<br>           |<strong>_</strong>tuple:()<br>    |<strong>_</strong>映射:dict:{}</p>
 <p>tuple不可更改</p>
 <p>Python中常用的序列结构有列表/元组/字符串/字典/集合以及range等对象也支持类似的操作<br>列表/元组/字符串支持双向索引,即具有负索引<br>列表是Python中内置有序可变序列,列表的所有元素放在一堆括号<code>[]</code>中,并使用<code>,</code>号隔开</p>
-<h3 id="列表的常用方法"><a href="#列表的常用方法" class="headerlink" title="列表的常用方法"></a>列表的常用方法</h3><h2 id="方法-说明"><a href="#方法-说明" class="headerlink" title="方法 | 说明"></a>方法 | 说明</h2><p>lst.append(x) | 将元素添加至列表lst尾部<br>lst.extend(L) | 将L中所有元素添加至列表lst尾部<br>lst.insert(index,x) | 在列表lst指定位置index处添加元素x,该位置后面的所有元素后移一个位置<br>lst.remove(x) | 在列表lst中删除首次出现的指定元素,该元素之后的所有元素前移一个位置<br>lst.pop([index]) | 删除并返回lst中下标为index(默认为-1)的元素<br>lst.clear() | 删除列表lst中所有元素,但保留列表对象<br>lst.index() | 返回列表lst中第一个值为x的元素的下标,若不存在值为x的元素则抛出异常<br>lst.count(x) | 返回制定元素x在列表lst中的出现次数<br>lst.reverse() | 对列表lst所有元素进行逆序<br>lst.sort(key=None,reverse=False) | 对列表lst中的元素进行排序,key用来指定排序一句,reverse决定升序(Flase)还是降序(True)<br>lst.copy() | 返回列表lst的浅复制<em>(1)</em></p>
-<p><em>(1)<br>浅复制就是引用,复制的是指针<br>深复制是复制的值</em></p>
+<h3 id="列表的常用方法"><a href="#列表的常用方法" class="headerlink" title="列表的常用方法"></a>列表的常用方法</h3><h2 id="方法-说明"><a href="#方法-说明" class="headerlink" title="方法 | 说明"></a>方法 | 说明</h2><p>lst.append(x) | 将元素添加至列表lst尾部<br>lst.extend(L) | 将L中所有元素添加至列表lst尾部<br>lst.insert(index,x) | 在列表lst指定位置index处添加元素x,该位置后面的所有元素后移一个位置<br>lst.remove(x) | 在列表lst中删除首次出现的指定元素,该元素之后的所有元素前移一个位置<br>lst.pop([index]) | 删除并返回lst中下标为index(默认为-1)的元素<br>lst.clear() | 删除列表lst中所有元素,但保留列表对象<br>lst.index() | 返回列表lst中第一个值为x的元素的下标,若不存在值为x的元素则抛出异常<br>lst.count(x) | 返回制定元素x在列表lst中的出现次数<br>lst.reverse() | 对列表lst所有元素进行逆序<br>lst.sort(key=None,reverse=False) | 对列表lst中的元素进行排序,key用来指定排序一句,reverse决定升序(Flase)还是降序(True)<br>lst.copy() | 返回列表lst的浅复制<strong>(1)</strong></p>
+<p><strong>(1)<br>浅复制就是引用,复制的是指针<br>深复制是复制的值</strong></p>
 <ul>
 <li>创建空表尚未分配空间,查询不到id</li>
 <li>强制类型转换函数:list()函数/tuple()函数/dict()函数</li>
 <li>当不再使用时,使用del命令删除这个列表,如果列表对象所指向的值不再有其他对象指向,Python将同时删除该值</li>
 <li>可以使用”+”运算符添加到列表中,<strong>不建议使用,慢!</strong></li>
-<li>使用列表对象的append()方法,原地修改列表,是真正意义上的在列表的尾部添加元素,速度较快</li>
+<li><p>使用列表对象的append()方法,原地修改列表,是真正意义上的在列表的尾部添加元素,速度较快,<strong>所谓原地,是指不改变列表的首地址</strong></p>
+</li>
+<li><p>比较</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">result = []</span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">    result = result + [i]</span><br><span class="line">print(len(result),<span class="string">','</span>,time.time()-start)</span><br><span class="line"></span><br><span class="line">result = []</span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">    result.append(i)</span><br><span class="line">print(len(result), <span class="string">','</span>, time.time() - start)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>python采用的是基于值的内存管理模式，<strong>如果为不同变量赋值为相同值，这个值在内存中只有一份，多个变量指向同一块内存地址</strong></p>
+</li>
+<li>列表中包含的是元素值的引用,而不是直接包含的元素值.如果是直接修改序列变量的值,则与Python普通变量的情况是一样的</li>
+<li><p>如果是通过下标来修改序列中元素的值或通过可变序列对象自身提供的方法来增加和删除元素时,序列对象在内存中的起始地址是不变的,仅仅是被改变值的元素地址发生变化,也就是所谓的”<strong>原地操作</strong>“</p>
+</li>
+<li><p>查看引用次数<br>from sys import getrefcount<br>print(getrefcount(a))</p>
+</li>
+<li><p>查看引用间拓扑关系<br>import objgraph<br>objgraph.show_refs([z].filename=’ref_topo.png’)<br>可用<code>gvedit.exe</code>查看</p>
+</li>
+<li><p>值内存管理的深入学习</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>]</span><br><span class="line">c = a==b</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id(a)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id(b)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"%x"</span>,id(a))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"%x"</span>,% id(a))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"%x"</span>,% id(a))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(hex(id(a)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(hex(id(a[<span class="number">0</span>])))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(hex(id(b[<span class="number">0</span>])))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(hex(id(a[<span class="number">2</span>])))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(hex(id(b[<span class="number">2</span>])))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用insert()函数向序列指定位置添加元素<br>-使用乘法来扩展列表对象,将列表与整数相乘,生成一个新列表,新列表是原列表中元素的重复</li>
 </ul>
 
           
@@ -1923,7 +1952,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">2.7k</span>
+    <span title="Site words total count">3.1k</span>
   
 </div>
 

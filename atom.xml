@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-08T13:14:09.517Z</updated>
+  <updated>2018-05-15T01:15:03.391Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,89 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>python23.3.1</title>
+    <link href="http://yoursite.com/2018/05/15/python23-3-1/"/>
+    <id>http://yoursite.com/2018/05/15/python23-3-1/</id>
+    <published>2018-05-15T01:11:45.000Z</published>
+    <updated>2018-05-15T01:15:03.391Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;字典是无序可变序列&lt;br&gt;定义字典时,每个元素的键和值用冒号分隔,元素之间用逗号分割,所有元素放在一对大括号”{}”中&lt;/p&gt;
+
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>python23.2.3.2</title>
+    <link href="http://yoursite.com/2018/05/15/python23-2-3-2/"/>
+    <id>http://yoursite.com/2018/05/15/python23-2-3-2/</id>
+    <published>2018-05-15T00:15:38.000Z</published>
+    <updated>2018-05-15T00:15:38.032Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>python23.2</title>
+    <link href="http://yoursite.com/2018/05/11/python23-2-3/"/>
+    <id>http://yoursite.com/2018/05/11/python23-2-3/</id>
+    <published>2018-05-11T07:13:50.000Z</published>
+    <updated>2018-05-15T17:53:40.107Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;字符串&quot;&gt;&lt;a href=&quot;#字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串&quot;&gt;&lt;/a&gt;字符串&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;1.#coding =
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>python23.2</title>
+    <link href="http://yoursite.com/2018/05/11/python23-2/"/>
+    <id>http://yoursite.com/2018/05/11/python23-2/</id>
+    <published>2018-05-11T07:13:50.000Z</published>
+    <updated>2018-05-11T08:33:24.960Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;字符串&quot;&gt;&lt;a href=&quot;#字符串&quot; class=&quot;headerlink&quot; title=&quot;字符串&quot;&gt;&lt;/a&gt;字符串&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;1.#coding =
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>python23.1</title>

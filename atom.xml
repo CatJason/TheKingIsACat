@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-15T01:15:03.391Z</updated>
+  <updated>2018-05-15T18:05:41.852Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2018/05/15/python23-3-1/"/>
     <id>http://yoursite.com/2018/05/15/python23-3-1/</id>
     <published>2018-05-15T01:11:45.000Z</published>
-    <updated>2018-05-15T01:15:03.391Z</updated>
+    <updated>2018-05-15T18:05:41.852Z</updated>
     
     <summary type="html">
     
@@ -36,6 +36,10 @@
     
     </summary>
     
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+    
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -44,12 +48,27 @@
     <link href="http://yoursite.com/2018/05/15/python23-2-3-2/"/>
     <id>http://yoursite.com/2018/05/15/python23-2-3-2/</id>
     <published>2018-05-15T00:15:38.000Z</published>
-    <updated>2018-05-15T00:15:38.032Z</updated>
+    <updated>2018-05-15T18:05:35.308Z</updated>
     
     <summary type="html">
     
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;split()和rsplit()方法允许指定最大分割次数&lt;/li&gt;
+&lt;li&gt;调用split()方法并且不传递任何参数时,将使用任何空白字符作为分隔符,把连续多个空白字符看做一个:明确传递参数指定split()使用的分隔符时,情况略有不同&lt;/li&gt;
+&lt;li&gt;字符串
+        
+      
+    
     </summary>
     
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+    
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -58,7 +77,7 @@
     <link href="http://yoursite.com/2018/05/11/python23-2-3/"/>
     <id>http://yoursite.com/2018/05/11/python23-2-3/</id>
     <published>2018-05-11T07:13:50.000Z</published>
-    <updated>2018-05-15T17:57:24.982Z</updated>
+    <updated>2018-05-15T18:05:48.996Z</updated>
     
     <summary type="html">
     
@@ -73,6 +92,10 @@
     
     </summary>
     
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+    
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -104,7 +127,7 @@
     <link href="http://yoursite.com/2018/05/08/python23-1/"/>
     <id>http://yoursite.com/2018/05/08/python23-1/</id>
     <published>2018-05-08T08:15:28.000Z</published>
-    <updated>2018-05-08T13:14:09.517Z</updated>
+    <updated>2018-05-15T18:05:54.984Z</updated>
     
     <summary type="html">
     
@@ -118,6 +141,10 @@
     
     </summary>
     
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+    
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   
@@ -149,7 +176,7 @@
     <link href="http://yoursite.com/2018/05/02/python23/"/>
     <id>http://yoursite.com/2018/05/02/python23/</id>
     <published>2018-05-02T13:00:45.000Z</published>
-    <updated>2018-05-08T08:13:31.613Z</updated>
+    <updated>2018-05-15T18:06:00.040Z</updated>
     
     <summary type="html">
     
@@ -163,6 +190,10 @@
     
     </summary>
     
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+    
+    
+      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
     
   </entry>
   

@@ -873,7 +873,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1,774
+                  1,823
                 </span>
               
 
@@ -1059,7 +1059,24 @@
 <ul>
 <li>字符串连接join()</li>
 <li>不推荐使用+运算符连接字符串，优先使用join()方法</li>
-<li>timeit模块还支持下面代码演示的用法，从运行结果可以看出，当需要对大量数据进行类型转换时，内置函数map()可以提供非常高的效率</li>
+<li>timeit模块还支持下面代码演示的用法，从运行结果可以看出，当需要对大量数据进行类型转换时，内置函数map()可以提供非常高的效率<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> timeit</span><br><span class="line">timeit.timeit(<span class="string">'"-".join(str(n) for n in range(100))'</span>, number=<span class="number">10000</span>)  <span class="comment">#运行10000次</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>0.3063435900577929</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timeit.timeit(<span class="string">'"-".join([str(n) for n in range(100)])'</span>, number=<span class="number">10000</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>0.27191914957273866</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timeit.timeit(<span class="string">'"-".join(map(str, range(100)))'</span>, number=<span class="number">10000</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>0.21119518171659024</p>
+</blockquote>
+<hr>
+<ul>
 <li>lower()、upper()、capitalize()、title()、swapcase()</li>
 <li>查找替换replace()，类似于“查找与替换”功能</li>
 <li>测试用户输入中是否有敏感词，如果有的话就把敏感词替换为3个星号***<br>-字符串对象的maketrans()方法用来生成字符映射表，而translate()方法用来根据映射表中定义的对应关系转换字符串并替换其中的字符，使用这两个方法的组合可以同时处理多个不同的字符，replace()方法则无法满足这一要求</li>

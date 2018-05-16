@@ -100,7 +100,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/images/pictures/2/1.png">
 <meta property="og:image" content="http://yoursite.com/images/pictures/2/2.png">
-<meta property="og:updated_time" content="2018-05-16T13:34:51.477Z">
+<meta property="og:updated_time" content="2018-05-16T13:40:39.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python23.2">
 <meta name="twitter:description" content="字符串 1.#coding = utf-8 2.#coding:utf-8 3.#--coding:utf-8 --  Python 3.x完全支持中文字符，默认使用UTF8编码格式，无论是一个数字、英文字母，还是一个汉字，都按一个字符对待和处理 12s = &apos;中国山东烟台&apos;len(s)  6    12s =&apos;中国山东烟台ABCDE&apos;#中文与英文字符同样对待，都算一个字符len(s)  11">
@@ -350,7 +350,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2,169
+                  2,225
                 </span>
               
 
@@ -667,9 +667,32 @@
 </blockquote>
 <hr>
 <ul>
-<li>内置函数eval()</li>
-<li>eval()函数是非常危险的</li>
-<li>成员判断，关键字in</li>
+<li>内置函数eval()<br>  <strong>eval()函数是非常危险的</strong></li>
+</ul>
+<ul>
+<li>成员判断，关键字in<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"a"</span> <span class="keyword">in</span> <span class="string">"abcde"</span>     <span class="comment">#测试一个字符中是否存在于另一个字符串中</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>True</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'ab'</span> <span class="keyword">in</span> <span class="string">'abcde'</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>True</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'ac'</span> <span class="keyword">in</span> <span class="string">'abcde'</span>    <span class="comment">#关键字in左边的字符串作为一个整体对待</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>False</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"j"</span> <span class="keyword">in</span> <span class="string">"abcde"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>False</p>
+</blockquote>
+<hr>
+<ul>
 <li>Python字符串支持与整数的乘法运算，表示序列重复，也就是字符串内容的重复</li>
 <li>s.startswith(t)、s.endswith(t)，判断字符串是否以指定字符串开始或结束</li>
 <li>center()、ljust()、rjust()，返回指定宽度的新字符串，原字符串居中、左对齐或右对齐出现在新字符串中，如果指定宽度大于字符串长度，则使用指定的字符（默认为空格）进行填充</li>
@@ -977,7 +1000,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">5.5k</span>
+    <span title="Site words total count">5.6k</span>
   
 </div>
 

@@ -100,7 +100,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/images/pictures/2/1.png">
 <meta property="og:image" content="http://yoursite.com/images/pictures/2/2.png">
-<meta property="og:updated_time" content="2018-05-16T13:46:50.026Z">
+<meta property="og:updated_time" content="2018-05-16T13:49:38.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python23.2">
 <meta name="twitter:description" content="字符串 1.#coding = utf-8 2.#coding:utf-8 3.#--coding:utf-8 --  Python 3.x完全支持中文字符，默认使用UTF8编码格式，无论是一个数字、英文字母，还是一个汉字，都按一个字符对待和处理 12s = &apos;中国山东烟台&apos;len(s)  6    12s =&apos;中国山东烟台ABCDE&apos;#中文与英文字符同样对待，都算一个字符len(s)  11">
@@ -534,64 +534,65 @@
 <ul>
 <li>字符串连接join()</li>
 <li>不推荐使用+运算符连接字符串，优先使用join()方法</li>
-<li>timeit模块还支持下面代码演示的用法，从运行结果可以看出，当需要对大量数据进行类型转换时，内置函数map()可以提供非常高的效率<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> timeit</span><br><span class="line">timeit.timeit(<span class="string">'"-".join(str(n) for n in range(100))'</span>, number=<span class="number">10000</span>)  <span class="comment">#运行10000次</span></span><br></pre></td></tr></table></figure>
-</li>
 </ul>
+<ul>
+<li><p>timeit模块还支持下面代码演示的用法，从运行结果可以看出，当需要对大量数据进行类型转换时，内置函数map()可以提供非常高的效率</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> timeit</span><br><span class="line">timeit.timeit(<span class="string">'"-".join(str(n) for n in range(100))'</span>, number=<span class="number">10000</span>)  <span class="comment">#运行10000次</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>0.3063435900577929</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timeit.timeit(<span class="string">'"-".join([str(n) for n in range(100)])'</span>, number=<span class="number">10000</span>)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timeit.timeit(<span class="string">'"-".join([str(n) for n in range(100)])'</span>, number=<span class="number">10000</span>)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>0.27191914957273866</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timeit.timeit(<span class="string">'"-".join(map(str, range(100)))'</span>, number=<span class="number">10000</span>)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timeit.timeit(<span class="string">'"-".join(map(str, range(100)))'</span>, number=<span class="number">10000</span>)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>0.21119518171659024</p>
 </blockquote>
 <hr>
-<ul>
-<li>lower()、upper()、capitalize()、title()、swapcase()<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;```python s = <span class="string">"What is Your Name?"</span></span><br><span class="line">&gt;&gt;&gt;```python s.lower()                   <span class="comment">#返回小写字符串</span></span><br></pre></td></tr></table></figure>
 </li>
-</ul>
+<li><p>lower()、upper()、capitalize()、title()、swapcase()</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;```python s = <span class="string">"What is Your Name?"</span></span><br><span class="line">&gt;&gt;&gt;```python s.lower()                   <span class="comment">#返回小写字符串</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘what is your name?’</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.upper()                   <span class="comment">#返回大写字符串</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.upper()                   <span class="comment">#返回大写字符串</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘WHAT IS YOUR NAME?’</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.capitalize()              <span class="comment">#字符串首字符大写</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.capitalize()              <span class="comment">#字符串首字符大写</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘What is your name?’</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.title()                   <span class="comment">#每个单词的首字母大写</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.title()                   <span class="comment">#每个单词的首字母大写</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘What Is Your Name?’</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.swapcase()                <span class="comment">#大小写互换</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.swapcase()                <span class="comment">#大小写互换</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘wHAT IS yOUR nAME?’</p>
 </blockquote>
 <hr>
-<ul>
-<li>查找替换replace()，类似于“查找与替换”功能<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">"中国，中国"</span></span><br><span class="line">s</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
+<li><p>查找替换replace()，类似于“查找与替换”功能</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">"中国，中国"</span></span><br><span class="line">s</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>中国，中国</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s2=s.replace(<span class="string">"中国"</span>, <span class="string">"中华人民共和国"</span>)</span><br><span class="line">s2</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s2=s.replace(<span class="string">"中国"</span>, <span class="string">"中华人民共和国"</span>)</span><br><span class="line">s2</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>中华人民共和国，中华人民共和国</p>
 </blockquote>
 <hr>
+</li>
+</ul>
 <ul>
 <li>测试用户输入中是否有敏感词，如果有的话就把敏感词替换为3个星号***<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">words = (<span class="string">'测试'</span>, <span class="string">'非法'</span>, <span class="string">'暴力'</span>, <span class="string">'话'</span>)</span><br><span class="line">text = <span class="string">'这句话里含有非法内容'</span></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">	<span class="keyword">if</span> word <span class="keyword">in</span> text:</span><br><span class="line">		text = text.replace(word, <span class="string">'***'</span>)		</span><br><span class="line">text</span><br></pre></td></tr></table></figure>
 </li>
@@ -640,7 +641,7 @@
 <p>‘aaaassddf’</p>
 </blockquote>
 <hr>
-  <figure class="highlight python"><figcaption><span>"aaaassddfaaa".lstrip("a")            #删除字符串左端指定字符</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">	</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddfaaa"</span>.lstrip(<span class="string">"a"</span>)            <span class="comment">#删除字符串左端指定字符</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘ssddfaaa’</p>
 </blockquote>

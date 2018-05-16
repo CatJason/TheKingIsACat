@@ -873,7 +873,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2,225
+                  2,221
                 </span>
               
 
@@ -1139,85 +1139,92 @@
 <p>‘Sbwkrq lv d juhdwh surjudpplqj odqjxdjh. L olnh lw!’</p>
 </blockquote>
 <ul>
-<li>strip()、rstrip()、lstrip()<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">" abc  "</span></span><br><span class="line">s2 = s.strip()                        <span class="comment">#删除空白字符</span></span><br><span class="line">s2</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+<li><p>strip()、rstrip()、lstrip()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">" abc  "</span></span><br><span class="line">s2 = s.strip()                        <span class="comment">#删除空白字符</span></span><br><span class="line">s2</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>“abc”</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'\n\nhello world   \n\n'</span>.strip()      <span class="comment">#删除空白字符</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'\n\nhello world   \n\n'</span>.strip()      <span class="comment">#删除空白字符</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘hello world’</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddf"</span>.strip(<span class="string">"a"</span>)                <span class="comment">#删除指定字符</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddf"</span>.strip(<span class="string">"a"</span>)                <span class="comment">#删除指定字符</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>“ssddf”</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddf"</span>.strip(<span class="string">"af"</span>)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddf"</span>.strip(<span class="string">"af"</span>)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>“ssdd”</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddfaaa"</span>.rstrip(<span class="string">"a"</span>)            <span class="comment">#删除字符串右端指定字符</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddfaaa"</span>.rstrip(<span class="string">"a"</span>)            <span class="comment">#删除字符串右端指定字符</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘aaaassddf’</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><figcaption><span>"aaaassddfaaa".lstrip("a")            #删除字符串左端指定字符</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">&gt; <span class="string">'ssddfaaa'</span></span><br><span class="line">---</span><br><span class="line">- 这三个函数的参数指定的字符串并不作为一个整体对待，而是在原字符串的两侧、右侧、左侧删除参数字符串中包含的所有字符，一层一层地从外往里扒</span><br><span class="line">```python</span><br><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'af'</span>)  <span class="comment">#字母f不在字符串两侧，所以不删除</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><figcaption><span>"aaaassddfaaa".lstrip("a")            #删除字符串左端指定字符</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">	</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘ssddfaaa’</p>
+</blockquote>
+<hr>
+</li>
+<li><p>这三个函数的参数指定的字符串并不作为一个整体对待，而是在原字符串的两侧、右侧、左侧删除参数字符串中包含的所有字符，一层一层地从外往里扒</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'af'</span>)  <span class="comment">#字母f不在字符串两侧，所以不删除</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘bbccddeeeffg’</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gaf'</span>)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gaf'</span>)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘bbccddeee’</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gaef'</span>)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gaef'</span>)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘bbccdd’</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gbaef'</span>)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gbaef'</span>)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘ccdd’</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gbaefcd'</span>)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gbaefcd'</span>)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘’</p>
 </blockquote>
 <hr>
+</li>
+</ul>
 <ul>
 <li>内置函数eval()<br>  <strong>eval()函数是非常危险的</strong></li>
 </ul>
 <ul>
-<li>成员判断，关键字in<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"a"</span> <span class="keyword">in</span> <span class="string">"abcde"</span>     <span class="comment">#测试一个字符中是否存在于另一个字符串中</span></span><br></pre></td></tr></table></figure>
+<li><p>成员判断，关键字in</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"a"</span> <span class="keyword">in</span> <span class="string">"abcde"</span>     <span class="comment">#测试一个字符中是否存在于另一个字符串中</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>True</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'ab'</span> <span class="keyword">in</span> <span class="string">'abcde'</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>True</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'ac'</span> <span class="keyword">in</span> <span class="string">'abcde'</span>    <span class="comment">#关键字in左边的字符串作为一个整体对待</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>False</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"j"</span> <span class="keyword">in</span> <span class="string">"abcde"</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>False</p>
+</blockquote>
+<hr>
 </li>
-</ul>
-<blockquote>
-<p>True</p>
-</blockquote>
-<hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'ab'</span> <span class="keyword">in</span> <span class="string">'abcde'</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>True</p>
-</blockquote>
-<hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'ac'</span> <span class="keyword">in</span> <span class="string">'abcde'</span>    <span class="comment">#关键字in左边的字符串作为一个整体对待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>False</p>
-</blockquote>
-<hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"j"</span> <span class="keyword">in</span> <span class="string">"abcde"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>False</p>
-</blockquote>
-<hr>
-<ul>
 <li>Python字符串支持与整数的乘法运算，表示序列重复，也就是字符串内容的重复</li>
 <li>s.startswith(t)、s.endswith(t)，判断字符串是否以指定字符串开始或结束</li>
 <li>center()、ljust()、rjust()，返回指定宽度的新字符串，原字符串居中、左对齐或右对齐出现在新字符串中，如果指定宽度大于字符串长度，则使用指定的字符（默认为空格）进行填充</li>

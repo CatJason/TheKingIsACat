@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-15T18:12:20.950Z</updated>
+  <updated>2018-05-16T14:05:26.194Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,62 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>python23.3.1</title>
-    <link href="http://yoursite.com/2018/05/15/python23-3-1/"/>
-    <id>http://yoursite.com/2018/05/15/python23-3-1/</id>
-    <published>2018-05-15T01:11:45.000Z</published>
-    <updated>2018-05-15T18:12:20.950Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;p&gt;字典是无序可变序列&lt;br&gt;定义字典时,每个元素的键和值用冒号分隔,元素之间用逗号分割,所有元素放在一对大括号”{}”中&lt;/p&gt;
-
-        
-      
-    
-    </summary>
-    
-      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
-    
-    
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python23.2.3.2</title>
-    <link href="http://yoursite.com/2018/05/15/python23-2-3-2/"/>
-    <id>http://yoursite.com/2018/05/15/python23-2-3-2/</id>
-    <published>2018-05-15T00:15:38.000Z</published>
-    <updated>2018-05-15T18:12:12.986Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;ul&gt;
-&lt;li&gt;split()和rsplit()方法允许指定最大分割次数&lt;/li&gt;
-&lt;li&gt;调用split()方法并且不传递任何参数时,将使用任何空白字符作为分隔符,把连续多个空白字符看做一个:明确传递参数指定split()使用的分隔符时,情况略有不同&lt;/li&gt;
-&lt;li&gt;字符串
-        
-      
-    
-    </summary>
-    
-      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
-    
-    
-      <category term="Note" scheme="http://yoursite.com/tags/Note/"/>
-    
-  </entry>
   
   <entry>
     <title>python23.2</title>

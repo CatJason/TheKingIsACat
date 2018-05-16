@@ -1337,38 +1337,38 @@
 <p>54</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = zlib.compress(x)                <span class="comment">#信息重复度越高，压缩比越大</span></span><br><span class="line">len(y)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = zlib.compress(x)                <span class="comment">#信息重复度越高，压缩比越大</span></span><br><span class="line">len(y)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>30</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = zlib.decompress(y)</span><br><span class="line">len(z)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = zlib.decompress(y)</span><br><span class="line">len(z)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>54</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z.decode()</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z.decode()</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>‘Python系列图书Python系列图书Python系列图书’</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="string">'董付国'</span>] * <span class="number">8</span></span><br><span class="line">y = str(x).encode()</span><br><span class="line">len(y)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="string">'董付国'</span>] * <span class="number">8</span></span><br><span class="line">y = str(x).encode()</span><br><span class="line">len(y)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>104</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = zlib.compress(y)                <span class="comment">#只能对字节串进行压缩</span></span><br><span class="line">len(z)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = zlib.compress(y)                <span class="comment">#只能对字节串进行压缩</span></span><br><span class="line">len(z)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>26</p>
 </blockquote>
 <hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zlib.decompress(z).decode()</span><br></pre></td></tr></table></figure>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zlib.decompress(z).decode()</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>“[‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’]”</p>
 </blockquote>
 <hr>
+</li>
+</ul>
 <ul>
 <li>Python标准库string中定义数字字符、标点符号、英文字母、大写字母、小写字母等常量</li>
 <li>随机密码生成原理</li>

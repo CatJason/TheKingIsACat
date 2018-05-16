@@ -1032,17 +1032,29 @@
 <blockquote>
 <p>(‘apple’, ‘,’, ‘peach,banana,pear’)</p>
 </blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.rpartition(<span class="string">','</span>)                 <span class="comment">#从右侧使用逗号进行切分</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>(‘apple,peach,banana’, ‘,’, ‘pear’)</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.rpartition(<span class="string">'banana'</span>)            <span class="comment">#使用字符串作为分隔符</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>(‘apple,peach,’, ‘banana’, ‘,pear’)</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abababab'</span>.partition(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>(‘’, ‘a’, ‘bababab’)</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abababab'</span>.rpartition(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>(‘ababab’, ‘a’, ‘b’)</p>
+</blockquote>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.rpartition(<span class="string">','</span>)                 <span class="comment">#从右侧使用逗号进行切分</span></span><br></pre></td></tr></table></figure>
-<pre><code>&gt; (&apos;apple,peach,banana&apos;, &apos;,&apos;, &apos;pear&apos;)
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.rpartition(<span class="string">'banana'</span>)            <span class="comment">#使用字符串作为分隔符</span></span><br></pre></td></tr></table></figure>
-<pre><code>&gt; (&apos;apple,peach,&apos;, &apos;banana&apos;, &apos;,pear&apos;)
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abababab'</span>.partition(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>&gt; (&apos;&apos;, &apos;a&apos;, &apos;bababab&apos;)
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abababab'</span>.rpartition(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
-<pre><code>&gt; (&apos;ababab&apos;, &apos;a&apos;, &apos;b&apos;)
-</code></pre><ul>
+<ul>
 <li>字符串连接join()</li>
 <li>不推荐使用+运算符连接字符串，优先使用join()方法</li>
 <li>timeit模块还支持下面代码演示的用法，从运行结果可以看出，当需要对大量数据进行类型转换时，内置函数map()可以提供非常高的效率</li>

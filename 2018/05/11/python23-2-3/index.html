@@ -100,7 +100,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/images/pictures/2/1.png">
 <meta property="og:image" content="http://yoursite.com/images/pictures/2/2.png">
-<meta property="og:updated_time" content="2018-05-16T13:50:23.079Z">
+<meta property="og:updated_time" content="2018-05-16T14:03:03.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python23.2">
 <meta name="twitter:description" content="字符串 1.#coding = utf-8 2.#coding:utf-8 3.#--coding:utf-8 --  Python 3.x完全支持中文字符，默认使用UTF8编码格式，无论是一个数字、英文字母，还是一个汉字，都按一个字符对待和处理 12s = &apos;中国山东烟台&apos;len(s)  6    12s =&apos;中国山东烟台ABCDE&apos;#中文与英文字符同样对待，都算一个字符len(s)  11">
@@ -350,7 +350,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2,219
+                  2,628
                 </span>
               
 
@@ -366,7 +366,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  9
+                  11
                 </span>
               
             </div>
@@ -704,13 +704,147 @@
 </ul>
 <ul>
 <li>Python字符串支持与整数的乘法运算，表示序列重复，也就是字符串内容的重复</li>
-<li>s.startswith(t)、s.endswith(t)，判断字符串是否以指定字符串开始或结束</li>
-<li>center()、ljust()、rjust()，返回指定宽度的新字符串，原字符串居中、左对齐或右对齐出现在新字符串中，如果指定宽度大于字符串长度，则使用指定的字符（默认为空格）进行填充</li>
-<li>zfill()返回指定宽度的字符串，在左侧以字符0进行填充</li>
+</ul>
+<ul>
+<li><p>s.startswith(t)、s.endswith(t)，判断字符串是否以指定字符串开始或结束</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">'Beautiful is better than ugly.'</span></span><br><span class="line">s.startswith(<span class="string">'Be'</span>)             <span class="comment">#检测整个字符串</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>True</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.startswith(<span class="string">'Be'</span>, <span class="number">5</span>)         <span class="comment">#指定检测范围起始位置</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>False</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.startswith(<span class="string">'Be'</span>, <span class="number">0</span>, <span class="number">5</span>)     <span class="comment">#指定检测范围起始和结束位置</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>True</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">[filename <span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(<span class="string">r'c:\\'</span>) <span class="keyword">if</span> filename.endswith((<span class="string">'.bmp'</span>,<span class="string">'.jpg'</span>,<span class="string">'.gif'</span>))]</span><br></pre></td></tr></table></figure>
+<hr>
+</li>
+<li><p>center()、ljust()、rjust()，返回指定宽度的新字符串，原字符串居中、左对齐或右对齐出现在新字符串中，如果指定宽度大于字符串长度，则使用指定的字符（默认为空格）进行填充</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Hello world!'</span>.center(<span class="number">20</span>)        <span class="comment">#居中对齐，以空格进行填充</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘    Hello world!    ‘</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Hello world!'</span>.center(<span class="number">20</span>, <span class="string">'='</span>)   <span class="comment">#居中对齐，以字符=进行填充</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘====Hello world!====’</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Hello world!'</span>.ljust(<span class="number">20</span>, <span class="string">'='</span>)    <span class="comment">#左对齐</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘Hello world!========’</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Hello world!'</span>.rjust(<span class="number">20</span>, <span class="string">'='</span>)    <span class="comment">#右对齐</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘========Hello world!’</p>
+</blockquote>
+<hr>
+</li>
+<li><p>zfill()返回指定宽度的字符串，在左侧以字符0进行填充</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abc'</span>.zfill(<span class="number">5</span>)        <span class="comment">#在左侧填充数字字符0</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘00abc’</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abc'</span>.zfill(<span class="number">2</span>)        <span class="comment">#指定宽度小于字符串长度时，返回字符串本身</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘abc’</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'uio'</span>.zfill(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘00000000000000000uio’</p>
+</blockquote>
+<hr>
+</li>
+</ul>
+<ul>
 <li>isalnum()、isalpha()、isdigit()、isdecimal()、isnumeric()、isspace()、isupper()、islower()，用来测试字符串是否为数字或字母、是否为字母、是否为数字字符、是否为空白字符、是否为大写字母以及是否为小写字母</li>
-<li>除了字符串对象提供的方法以外，很多Python内置函数也可以对字符串进行操作</li>
+</ul>
+<ul>
+<li><p>除了字符串对象提供的方法以外，很多Python内置函数也可以对字符串进行操作</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="string">'Hello world.'</span></span><br><span class="line">len(x)                    <span class="comment">#字符串长度</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>12</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max(x)                    <span class="comment">#最大字符</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘w’</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min(x)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘ ‘</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(zip(x,x))            <span class="comment">#zip()也可以作用于字符串</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>[(‘H’, ‘H’), (‘e’, ‘e’), (‘l’, ‘l’), (‘l’, ‘l’), (‘o’, ‘o’), (‘ ‘, ‘ ‘), (‘w’, ‘w’), (‘o’, ‘o’), (‘r’, ‘r’), (‘l’, ‘l’), (‘d’, ‘d’), (‘.’, ‘.’)]</p>
+</blockquote>
+<hr>
+</li>
+</ul>
+<ul>
 <li>切片也适用于字符串，但仅限于读取其中的元素，不支持字符串修改</li>
-<li>Pytho标准库zlib中提供的compress()和decompress()函数可以用于数据的压缩和解压缩，在压缩字符串之前需要先编码为字节串</li>
+</ul>
+<ul>
+<li><p>Pytho标准库zlib中提供的compress()和decompress()函数可以用于数据的压缩和解压缩，在压缩字符串之前需要先编码为字节串</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line">x = <span class="string">'Python程序设计系列图书，董付国编著，清华大学出版社'</span>.encode()</span><br><span class="line">len(x)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>72</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = zlib.compress(x)</span><br><span class="line">len(y)                           <span class="comment">#对于重复度比较小的信息，压缩比小</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>83</p>
+</blockquote>
+<hr>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = (<span class="string">'Python系列图书'</span>*<span class="number">3</span>).encode()</span><br><span class="line">len(x)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>54</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = zlib.compress(x)                <span class="comment">#信息重复度越高，压缩比越大</span></span><br><span class="line">len(y)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>30</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = zlib.decompress(y)</span><br><span class="line">len(z)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>54</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z.decode()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘Python系列图书Python系列图书Python系列图书’</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="string">'董付国'</span>] * <span class="number">8</span></span><br><span class="line">y = str(x).encode()</span><br><span class="line">len(y)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>104</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = zlib.compress(y)                <span class="comment">#只能对字节串进行压缩</span></span><br><span class="line">len(z)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>26</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zlib.decompress(z).decode()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>“[‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’]”</p>
+</blockquote>
+<hr>
+<ul>
 <li>Python标准库string中定义数字字符、标点符号、英文字母、大写字母、小写字母等常量</li>
 <li>随机密码生成原理</li>
 <li>在Python中，字符串属于不可变对象，不支持原地修改，如果需要修改其中的值，只能重新创建一个新的字符串对象。然而，如果确实需要一个支持原地修改的unicode数据对象，可以使用io.StringIO对象或array模块</li>
@@ -1010,7 +1144,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">5.6k</span>
+    <span title="Site words total count">6.0k</span>
   
 </div>
 

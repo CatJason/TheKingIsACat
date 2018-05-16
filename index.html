@@ -873,7 +873,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1,901
+                  2,044
                 </span>
               
 
@@ -889,7 +889,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  7
+                  8
                 </span>
               
             </div>
@@ -1105,11 +1105,36 @@
 </blockquote>
 <hr>
 <ul>
-<li>查找替换replace()，类似于“查找与替换”功能</li>
-<li>测试用户输入中是否有敏感词，如果有的话就把敏感词替换为3个星号***<br>-字符串对象的maketrans()方法用来生成字符映射表，而translate()方法用来根据映射表中定义的对应关系转换字符串并替换其中的字符，使用这两个方法的组合可以同时处理多个不同的字符，replace()方法则无法满足这一要求</li>
-<li>凯撒加密</li>
+<li>查找替换replace()，类似于“查找与替换”功能<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">"中国，中国"</span></span><br><span class="line">s</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kaisa</span><span class="params">(s, k)</span>:</span></span><br><span class="line">	lower = string.ascii_lowercase          <span class="comment">#小写字母</span></span><br><span class="line">	upper = string.ascii_uppercase          <span class="comment">#大写字母</span></span><br><span class="line">	before = string.ascii_letters</span><br><span class="line">	after = lower[k:] + lower[:k] + upper[k:] + upper[:k]</span><br><span class="line">	table = <span class="string">''</span>.maketrans(before, after)     <span class="comment">#创建映射表</span></span><br><span class="line">	<span class="keyword">return</span> s.translate(table)</span><br><span class="line"></span><br><span class="line">s = <span class="string">"Python is a greate programming language. I like it!"</span></span><br><span class="line">kaisa(s, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>中国，中国</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s2=s.replace(<span class="string">"中国"</span>, <span class="string">"中华人民共和国"</span>)</span><br><span class="line">s2</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>中华人民共和国，中华人民共和国</p>
+</blockquote>
+<hr>
+<ul>
+<li>测试用户输入中是否有敏感词，如果有的话就把敏感词替换为3个星号***<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">words = (<span class="string">'测试'</span>, <span class="string">'非法'</span>, <span class="string">'暴力'</span>, <span class="string">'话'</span>)</span><br><span class="line">text = <span class="string">'这句话里含有非法内容'</span></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">	<span class="keyword">if</span> word <span class="keyword">in</span> text:</span><br><span class="line">		text = text.replace(word, <span class="string">'***'</span>)		</span><br><span class="line">text</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>‘这句<strong><em>里含有</em></strong>内容’</p>
+</blockquote>
+<ul>
+<li>字符串对象的maketrans()方法用来生成字符映射表，而translate()方法用来根据映射表中定义的对应关系转换字符串并替换其中的字符，使用这两个方法的组合可以同时处理多个不同的字符，replace()方法则无法满足这一要求<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建映射表，将字符"abcdef123"一一对应地转换为"uvwxyz@#$"</span></span><br><span class="line">table = <span class="string">''</span>.maketrans(<span class="string">'abcdef123'</span>, <span class="string">'uvwxyz@#$'</span>)</span><br><span class="line">s = <span class="string">"Python is a greate programming language. I like it!"</span></span><br><span class="line"><span class="comment">#按映射表进行替换</span></span><br><span class="line">s.translate(table)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>‘Python is u gryuty progrumming lunguugy. I liky it!’</p>
+</blockquote>
+<ul>
+<li>凯撒加密<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kaisa</span><span class="params">(s, k)</span>:</span></span><br><span class="line">	lower = string.ascii_lowercase          <span class="comment">#小写字母</span></span><br><span class="line">	upper = string.ascii_uppercase          <span class="comment">#大写字母</span></span><br><span class="line">	before = string.ascii_letters</span><br><span class="line">	after = lower[k:] + lower[:k] + upper[k:] + upper[:k]</span><br><span class="line">	table = <span class="string">''</span>.maketrans(before, after)     <span class="comment">#创建映射表</span></span><br><span class="line">	<span class="keyword">return</span> s.translate(table)</span><br><span class="line"></span><br><span class="line">s = <span class="string">"Python is a greate programming language. I like it!"</span></span><br><span class="line">kaisa(s, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <blockquote>
 <p>‘Sbwkrq lv d juhdwh surjudpplqj odqjxdjh. L olnh lw!’</p>
 </blockquote>
@@ -2458,7 +2483,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">5.3k</span>
+    <span title="Site words total count">5.4k</span>
   
 </div>
 

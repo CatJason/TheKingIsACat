@@ -873,7 +873,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2,044
+                  2,169
                 </span>
               
 
@@ -889,7 +889,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  8
+                  9
                 </span>
               
             </div>
@@ -1077,7 +1077,7 @@
 </blockquote>
 <hr>
 <ul>
-<li>lower()、upper()、capitalize()、title()、swapcase()<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = <span class="string">"What is Your Name?"</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.lower()                   <span class="comment">#返回小写字符串</span></span><br></pre></td></tr></table></figure>
+<li>lower()、upper()、capitalize()、title()、swapcase()<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;```python s = <span class="string">"What is Your Name?"</span></span><br><span class="line">&gt;&gt;&gt;```python s.lower()                   <span class="comment">#返回小写字符串</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <blockquote>
@@ -1139,8 +1139,59 @@
 <p>‘Sbwkrq lv d juhdwh surjudpplqj odqjxdjh. L olnh lw!’</p>
 </blockquote>
 <ul>
-<li>strip()、rstrip()、lstrip()</li>
-<li>这三个函数的参数指定的字符串并不作为一个整体对待，而是在原字符串的两侧、右侧、左侧删除参数字符串中包含的所有字符，一层一层地从外往里扒</li>
+<li>strip()、rstrip()、lstrip()<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">" abc  "</span></span><br><span class="line">s2 = s.strip()                        <span class="comment">#删除空白字符</span></span><br><span class="line">s2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>“abc”</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'\n\nhello world   \n\n'</span>.strip()      <span class="comment">#删除空白字符</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘hello world’</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddf"</span>.strip(<span class="string">"a"</span>)                <span class="comment">#删除指定字符</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>“ssddf”</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddf"</span>.strip(<span class="string">"af"</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>“ssdd”</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddfaaa"</span>.rstrip(<span class="string">"a"</span>)            <span class="comment">#删除字符串右端指定字符</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘aaaassddf’</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><figcaption><span>"aaaassddfaaa".lstrip("a")            #删除字符串左端指定字符</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">&gt; <span class="string">'ssddfaaa'</span></span><br><span class="line">---</span><br><span class="line">- 这三个函数的参数指定的字符串并不作为一个整体对待，而是在原字符串的两侧、右侧、左侧删除参数字符串中包含的所有字符，一层一层地从外往里扒</span><br><span class="line">```python</span><br><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'af'</span>)  <span class="comment">#字母f不在字符串两侧，所以不删除</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘bbccddeeeffg’</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gaf'</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘bbccddeee’</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gaef'</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘bbccdd’</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gbaef'</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘ccdd’</p>
+</blockquote>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gbaefcd'</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>‘’</p>
+</blockquote>
+<hr>
+<ul>
 <li>内置函数eval()</li>
 <li>eval()函数是非常危险的</li>
 <li>成员判断，关键字in</li>
@@ -2483,7 +2534,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">5.4k</span>
+    <span title="Site words total count">5.5k</span>
   
 </div>
 

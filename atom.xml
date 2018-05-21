@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-21T07:18:52.004Z</updated>
+  <updated>2018-05-21T07:27:07.868Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>n abc</title>
+    <title></title>
     <link href="http://yoursite.com/2018/05/21/n-abc/"/>
     <id>http://yoursite.com/2018/05/21/n-abc/</id>
     <published>2018-05-21T07:04:13.000Z</published>
-    <updated>2018-05-21T07:18:52.004Z</updated>
+    <updated>2018-05-21T07:27:07.868Z</updated>
     
     <summary type="html">
     
@@ -36,8 +36,10 @@
     
     </summary>
     
+      <category term="Algorithm Practice" scheme="http://yoursite.com/categories/Algorithm-Practice/"/>
     
-      <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
+    
+      <category term="Recursive" scheme="http://yoursite.com/tags/Recursive/"/>
     
   </entry>
   

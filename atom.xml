@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-16T14:05:26.194Z</updated>
+  <updated>2018-05-21T07:17:17.636Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>n abc</title>
+    <link href="http://yoursite.com/2018/05/21/n-abc/"/>
+    <id>http://yoursite.com/2018/05/21/n-abc/</id>
+    <published>2018-05-21T07:04:13.000Z</published>
+    <updated>2018-05-21T07:17:17.636Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题:&quot;&gt;&lt;/a&gt;问题:&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;输出所有由a,b,c组成的长度为n的字符串，并输出个数
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;样例输入&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="algorithm" scheme="http://yoursite.com/tags/algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>python23.2</title>

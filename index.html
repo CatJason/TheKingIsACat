@@ -423,229 +423,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/查找与排序/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jason Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome to My Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/02/查找与排序/" itemprop="url">查找与排序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-02T11:34:48+08:00">
-                2020-03-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  374
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="查找与排序的关系"><a href="#查找与排序的关系" class="headerlink" title="查找与排序的关系"></a>查找与排序的关系</h2><p>排序的过程</p>
-<ol>
-<li>选择元素/位置</li>
-<li>根据元素<strong>查找</strong>位置/根据位置<strong>查找</strong>元素</li>
-<li>排序</li>
-</ol>
-<p><strong>所以查找是排序的前提，不同的查找方式导致了不同的排序方式</strong></p>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p>根据元素查找位置</p>
-<ul>
-<li><h6 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a><strong>顺序查找</strong></h6></li>
-<li><h6 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a><strong>折半查找</strong></h6></li>
-<li><h6 id="分块查找"><a href="#分块查找" class="headerlink" title="分块查找"></a><strong>分块查找</strong></h6></li>
-</ul>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h4 id="根据元素查找位置"><a href="#根据元素查找位置" class="headerlink" title="根据元素查找位置"></a>根据元素查找位置</h4><ul>
-<li><h5 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h5><ul>
-<li><h6 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a><strong>直接插入排序</strong></h6><p>顺序查找</p>
-</li>
-<li><h6 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a><strong>折半插入排序</strong></h6><p>折半查找</p>
-</li>
-<li><h6 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a><strong>希尔排序</strong></h6><p>分块查找</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="根据位置查找元素"><a href="#根据位置查找元素" class="headerlink" title="根据位置查找元素"></a>根据位置查找元素</h4><ul>
-<li><h5 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h5><ul>
-<li><h6 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a><strong>冒泡排序</strong></h6><p>选择无序表表尾的位置</p>
-</li>
-<li><h6 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a><strong>快速排序</strong></h6><p>分治思想，一趟排序递归选择多个位置，递归排序</p>
-</li>
-</ul>
-</li>
-<li><h5 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h5><ul>
-<li><h6 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a><strong>简单选择排序</strong></h6><p>选择线性表中无序表表尾位置</p>
-</li>
-<li><h6 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a><strong>堆排序</strong></h6><p>选择树形结构的根或其子树的根结点</p>
-</li>
-</ul>
-<p>堆排序之所以容易出错，是因为它是上述唯一的<strong>已排序的有序部分会在排序过程中再次变为无序</strong>的排序算法，这也是堆排序的数据结构是树这种递归结构却不能使用分治递归排序的原因。</p>
-</li>
-</ul>
-<h4 id="两种特殊的排序算法"><a href="#两种特殊的排序算法" class="headerlink" title="两种特殊的排序算法"></a>两种特殊的排序算法</h4><ul>
-<li><h6 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a><strong>归并排序</strong></h6><p>子表之间是无序的（分治思想中，子表之间是有序的）。</p>
-</li>
-<li><h6 id="基排序"><a href="#基排序" class="headerlink" title="基排序"></a><strong>基排序</strong></h6><p>已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/21/n-abc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -778,931 +555,6 @@
 <p>aa ab ac ba bb bc ca cb cc 9</p>
 </blockquote>
 <h2 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="keyword">int</span> flag=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">productor</span><span class="params">(<span class="keyword">char</span>* p,<span class="keyword">char</span>* t)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(flag==<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        flag=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        p+=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(p&gt;=t+n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s "</span>,t);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        *p=<span class="string">'a'</span>;</span><br><span class="line">        productor(p,t);</span><br><span class="line">        *p=<span class="string">'b'</span>;</span><br><span class="line">        productor(p,t);</span><br><span class="line">        *p=<span class="string">'c'</span>;</span><br><span class="line">        productor(p,t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    m=<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    m = <span class="built_in">pow</span>(<span class="number">3</span>,n);</span><br><span class="line">    <span class="keyword">char</span>* p = (<span class="keyword">char</span>*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">char</span>)*n);</span><br><span class="line">    <span class="keyword">char</span>* t = p;</span><br><span class="line">    productor(p,t);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>,m);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/python23-2-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jason Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome to My Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/11/python23-2-3/" itemprop="url">python23.2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-11T15:13:50+08:00">
-                2018-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  2,628
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ul>
-<li>1.#coding = utf-8</li>
-<li>2.#coding:utf-8</li>
-<li><p>3.#-<em>-coding:utf-8 -</em>-</p>
-</li>
-<li><p>Python 3.x完全支持中文字符，默认使用UTF8编码格式，无论是一个数字、英文字母，还是一个汉字，都按一个字符对待和处理</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">'中国山东烟台'</span></span><br><span class="line">len(s)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>6</p>
-</blockquote>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s =<span class="string">'中国山东烟台ABCDE'</span><span class="comment">#中文与英文字符同样对待，都算一个字符</span></span><br><span class="line">len(s)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>11</p>
-</blockquote>
-</li>
-<li><p>在Python中，字符串属于不可变序列类型，除了支持序列通用方法（包括分片操作）以外，还支持特有的字符串操作方法</p>
-</li>
-</ul>
-<p><img src="/images/pictures/2/1.png" alt="success"></p>
-<ul>
-<li>Python字符串驻留机制：对于短字符串，将其赋值给多个不同的对象时，内存中只有一个副本，多个对象共享该副本。长字符串不遵守驻留机制</li>
-</ul>
-<h2 id="字符串格式化"><a href="#字符串格式化" class="headerlink" title="字符串格式化"></a>字符串格式化</h2><p><img src="/images/pictures/2/2.png" alt="success"></p>
-<table>
-<thead>
-<tr>
-<th>格式字符</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>%s</td>
-<td>字符串 (采用str()的显示)</td>
-</tr>
-<tr>
-<td>%r</td>
-<td>字符串 (采用repr()的显示)</td>
-</tr>
-<tr>
-<td>%c</td>
-<td>单个字符</td>
-</tr>
-<tr>
-<td>%b</td>
-<td>二进制整数</td>
-</tr>
-<tr>
-<td>%d</td>
-<td>十进制整数</td>
-</tr>
-<tr>
-<td>%i</td>
-<td>十进制整数</td>
-</tr>
-<tr>
-<td>%o</td>
-<td>八进制整数</td>
-</tr>
-<tr>
-<td>%x</td>
-<td>十六进制整数</td>
-</tr>
-<tr>
-<td>%e</td>
-<td>指数 (基底写为e)</td>
-</tr>
-<tr>
-<td>%E</td>
-<td>指数 (基底写为E)</td>
-</tr>
-<tr>
-<td>%f、%F、%F</td>
-<td>浮点数</td>
-</tr>
-<tr>
-<td>%g</td>
-<td>指数(e)或浮点数 (根据显示长度)</td>
-</tr>
-<tr>
-<td>%G</td>
-<td>指数(E)或浮点数 (根据显示长度)</td>
-</tr>
-<tr>
-<td>%%</td>
-<td>字符”%””%”</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>使用format方法进行格式化</li>
-<li>从Python 3.6.x开始支持一种新的字符串格式化方式，官方叫做Formatted String Literals，其含义与字符串对象的format()方法类似，但形式更加简洁</li>
-</ul>
-<h2 id="字符串的常用方法"><a href="#字符串的常用方法" class="headerlink" title="字符串的常用方法"></a>字符串的常用方法</h2><ul>
-<li>find( )、rfind()、index()、rindex()、count()<blockquote>
-<ul>
-<li>find()和rfind方法分别用来查找一个字符串在另一个字符串指定范围（默认是整个字符串）中首次和最后一次出现的位置，如果不存在则返回-1</li>
-<li>index()和rindex()方法用来返回一个字符串在另一个字符串指定范围中首次和最后一次出现的位置，如果不存在则抛出异常</li>
-<li>count()方法用来返回一个字符串在另一个字符串中出现的次数</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li>split()、rsplit()、partition()、rpartition()<blockquote>
-<ul>
-<li>split()和rsplit()方法分别用来以指定字符为分隔符，将字符串左端和右端开始将其分割成多个字符串，并返回包含分割结果的列表</li>
-<li>partition()和rpartition()用来以指定字符串为分隔符将原字符串分割为3部分，即分隔符前的字符串、分隔符字符串、分隔符后的字符串，如果指定的分隔符不在原字符串中，则返回原字符串和两个空字符串</li>
-</ul>
-</blockquote>
-</li>
-<li>对于split()和rsplit()方法，如果不指定分隔符，则字符串中的任何空白符号（包括空格、换行符、制表符等等）都将被认为是分隔符，返回包含最终分割结果的列表</li>
-<li>split()和rsplit()方法还允许指定最大分割次数</li>
-<li>调用split()方法并且不传递任何参数时，将使用任何空白字符作为分隔符，把连续多个空白字符看作一个；明确传递参数指定split()使用的分隔符时，情况略有不同</li>
-</ul>
-<ul>
-<li><p>partition()和rpartition()方法以指定字符串为分隔符将原字符串分隔为3部分，即分隔符之前的字符串、分隔符字符串和分隔符之后的字符串</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">"apple,peach,banana,pear"</span></span><br><span class="line">s.partition(<span class="string">','</span>)                  <span class="comment">#从左侧使用逗号进行切分</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>(‘apple’, ‘,’, ‘peach,banana,pear’)</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.rpartition(<span class="string">','</span>)                 <span class="comment">#从右侧使用逗号进行切分</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>(‘apple,peach,banana’, ‘,’, ‘pear’)</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.rpartition(<span class="string">'banana'</span>)            <span class="comment">#使用字符串作为分隔符</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>(‘apple,peach,’, ‘banana’, ‘,pear’)</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abababab'</span>.partition(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>(‘’, ‘a’, ‘bababab’)</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abababab'</span>.rpartition(<span class="string">'a'</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>(‘ababab’, ‘a’, ‘b’)</p>
-</blockquote>
-<hr>
-</li>
-</ul>
-<ul>
-<li>字符串连接join()</li>
-<li>不推荐使用+运算符连接字符串，优先使用join()方法</li>
-</ul>
-<ul>
-<li><p>timeit模块还支持下面代码演示的用法，从运行结果可以看出，当需要对大量数据进行类型转换时，内置函数map()可以提供非常高的效率</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> timeit</span><br><span class="line">timeit.timeit(<span class="string">'"-".join(str(n) for n in range(100))'</span>, number=<span class="number">10000</span>)  <span class="comment">#运行10000次</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>0.3063435900577929</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timeit.timeit(<span class="string">'"-".join([str(n) for n in range(100)])'</span>, number=<span class="number">10000</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>0.27191914957273866</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timeit.timeit(<span class="string">'"-".join(map(str, range(100)))'</span>, number=<span class="number">10000</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>0.21119518171659024</p>
-</blockquote>
-<hr>
-</li>
-<li><p>lower()、upper()、capitalize()、title()、swapcase()</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">"What is Your Name?"</span></span><br><span class="line">s.lower()                   <span class="comment">#返回小写字符串</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘what is your name?’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.upper()                   <span class="comment">#返回大写字符串</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘WHAT IS YOUR NAME?’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.capitalize()              <span class="comment">#字符串首字符大写</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘What is your name?’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.title()                   <span class="comment">#每个单词的首字母大写</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘What Is Your Name?’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.swapcase()                <span class="comment">#大小写互换</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘wHAT IS yOUR nAME?’</p>
-</blockquote>
-<hr>
-</li>
-<li><p>查找替换replace()，类似于“查找与替换”功能</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s=<span class="string">"中国，中国"</span></span><br><span class="line">s</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>中国，中国</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s2=s.replace(<span class="string">"中国"</span>, <span class="string">"中华人民共和国"</span>)</span><br><span class="line">s2</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>中华人民共和国，中华人民共和国</p>
-</blockquote>
-<hr>
-</li>
-</ul>
-<ul>
-<li>测试用户输入中是否有敏感词，如果有的话就把敏感词替换为3个星号***<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">words = (<span class="string">'测试'</span>, <span class="string">'非法'</span>, <span class="string">'暴力'</span>, <span class="string">'话'</span>)</span><br><span class="line">text = <span class="string">'这句话里含有非法内容'</span></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">	<span class="keyword">if</span> word <span class="keyword">in</span> text:</span><br><span class="line">		text = text.replace(word, <span class="string">'***'</span>)		</span><br><span class="line">text</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p>‘这句<strong><em>里含有</em></strong>内容’</p>
-</blockquote>
-<ul>
-<li>字符串对象的maketrans()方法用来生成字符映射表，而translate()方法用来根据映射表中定义的对应关系转换字符串并替换其中的字符，使用这两个方法的组合可以同时处理多个不同的字符，replace()方法则无法满足这一要求<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建映射表，将字符"abcdef123"一一对应地转换为"uvwxyz@#$"</span></span><br><span class="line">table = <span class="string">''</span>.maketrans(<span class="string">'abcdef123'</span>, <span class="string">'uvwxyz@#$'</span>)</span><br><span class="line">s = <span class="string">"Python is a greate programming language. I like it!"</span></span><br><span class="line"><span class="comment">#按映射表进行替换</span></span><br><span class="line">s.translate(table)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p>‘Python is u gryuty progrumming lunguugy. I liky it!’</p>
-</blockquote>
-<ul>
-<li>凯撒加密<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kaisa</span><span class="params">(s, k)</span>:</span></span><br><span class="line">	lower = string.ascii_lowercase          <span class="comment">#小写字母</span></span><br><span class="line">	upper = string.ascii_uppercase          <span class="comment">#大写字母</span></span><br><span class="line">	before = string.ascii_letters</span><br><span class="line">	after = lower[k:] + lower[:k] + upper[k:] + upper[:k]</span><br><span class="line">	table = <span class="string">''</span>.maketrans(before, after)     <span class="comment">#创建映射表</span></span><br><span class="line">	<span class="keyword">return</span> s.translate(table)</span><br><span class="line"></span><br><span class="line">s = <span class="string">"Python is a greate programming language. I like it!"</span></span><br><span class="line">kaisa(s, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p>‘Sbwkrq lv d juhdwh surjudpplqj odqjxdjh. L olnh lw!’</p>
-</blockquote>
-<ul>
-<li><p>strip()、rstrip()、lstrip()</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">" abc  "</span></span><br><span class="line">s2 = s.strip()                        <span class="comment">#删除空白字符</span></span><br><span class="line">s2</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>“abc”</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'\n\nhello world   \n\n'</span>.strip()      <span class="comment">#删除空白字符</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘hello world’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddf"</span>.strip(<span class="string">"a"</span>)                <span class="comment">#删除指定字符</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>“ssddf”</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddf"</span>.strip(<span class="string">"af"</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>“ssdd”</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddfaaa"</span>.rstrip(<span class="string">"a"</span>)            <span class="comment">#删除字符串右端指定字符</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘aaaassddf’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"aaaassddfaaa"</span>.lstrip(<span class="string">"a"</span>)            <span class="comment">#删除字符串左端指定字符</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘ssddfaaa’</p>
-</blockquote>
-<hr>
-</li>
-<li><p>这三个函数的参数指定的字符串并不作为一个整体对待，而是在原字符串的两侧、右侧、左侧删除参数字符串中包含的所有字符，一层一层地从外往里扒</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'af'</span>)  <span class="comment">#字母f不在字符串两侧，所以不删除</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘bbccddeeeffg’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gaf'</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘bbccddeee’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gaef'</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘bbccdd’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gbaef'</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘ccdd’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'aabbccddeeeffg'</span>.strip(<span class="string">'gbaefcd'</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘’</p>
-</blockquote>
-<hr>
-</li>
-</ul>
-<ul>
-<li>内置函数eval()<br>  <strong>eval()函数是非常危险的</strong></li>
-</ul>
-<ul>
-<li><p>成员判断，关键字in</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"a"</span> <span class="keyword">in</span> <span class="string">"abcde"</span>     <span class="comment">#测试一个字符中是否存在于另一个字符串中</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>True</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'ab'</span> <span class="keyword">in</span> <span class="string">'abcde'</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>True</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'ac'</span> <span class="keyword">in</span> <span class="string">'abcde'</span>    <span class="comment">#关键字in左边的字符串作为一个整体对待</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>False</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"j"</span> <span class="keyword">in</span> <span class="string">"abcde"</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>False</p>
-</blockquote>
-<hr>
-</li>
-</ul>
-<ul>
-<li>Python字符串支持与整数的乘法运算，表示序列重复，也就是字符串内容的重复</li>
-</ul>
-<ul>
-<li><p>s.startswith(t)、s.endswith(t)，判断字符串是否以指定字符串开始或结束</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">'Beautiful is better than ugly.'</span></span><br><span class="line">s.startswith(<span class="string">'Be'</span>)             <span class="comment">#检测整个字符串</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>True</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.startswith(<span class="string">'Be'</span>, <span class="number">5</span>)         <span class="comment">#指定检测范围起始位置</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>False</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.startswith(<span class="string">'Be'</span>, <span class="number">0</span>, <span class="number">5</span>)     <span class="comment">#指定检测范围起始和结束位置</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>True</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">[filename <span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(<span class="string">r'c:\\'</span>) <span class="keyword">if</span> filename.endswith((<span class="string">'.bmp'</span>,<span class="string">'.jpg'</span>,<span class="string">'.gif'</span>))]</span><br></pre></td></tr></table></figure>
-<hr>
-</li>
-<li><p>center()、ljust()、rjust()，返回指定宽度的新字符串，原字符串居中、左对齐或右对齐出现在新字符串中，如果指定宽度大于字符串长度，则使用指定的字符（默认为空格）进行填充</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Hello world!'</span>.center(<span class="number">20</span>)        <span class="comment">#居中对齐，以空格进行填充</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘    Hello world!    ‘</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Hello world!'</span>.center(<span class="number">20</span>, <span class="string">'='</span>)   <span class="comment">#居中对齐，以字符=进行填充</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘====Hello world!====’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Hello world!'</span>.ljust(<span class="number">20</span>, <span class="string">'='</span>)    <span class="comment">#左对齐</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘Hello world!========’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Hello world!'</span>.rjust(<span class="number">20</span>, <span class="string">'='</span>)    <span class="comment">#右对齐</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘========Hello world!’</p>
-</blockquote>
-<hr>
-</li>
-<li><p>zfill()返回指定宽度的字符串，在左侧以字符0进行填充</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abc'</span>.zfill(<span class="number">5</span>)        <span class="comment">#在左侧填充数字字符0</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘00abc’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'abc'</span>.zfill(<span class="number">2</span>)        <span class="comment">#指定宽度小于字符串长度时，返回字符串本身</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘abc’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'uio'</span>.zfill(<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘00000000000000000uio’</p>
-</blockquote>
-<hr>
-</li>
-</ul>
-<ul>
-<li>isalnum()、isalpha()、isdigit()、isdecimal()、isnumeric()、isspace()、isupper()、islower()，用来测试字符串是否为数字或字母、是否为字母、是否为数字字符、是否为空白字符、是否为大写字母以及是否为小写字母</li>
-</ul>
-<ul>
-<li><p>除了字符串对象提供的方法以外，很多Python内置函数也可以对字符串进行操作</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="string">'Hello world.'</span></span><br><span class="line">len(x)                    <span class="comment">#字符串长度</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>12</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max(x)                    <span class="comment">#最大字符</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘w’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min(x)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘ ‘</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(zip(x,x))            <span class="comment">#zip()也可以作用于字符串</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>[(‘H’, ‘H’), (‘e’, ‘e’), (‘l’, ‘l’), (‘l’, ‘l’), (‘o’, ‘o’), (‘ ‘, ‘ ‘), (‘w’, ‘w’), (‘o’, ‘o’), (‘r’, ‘r’), (‘l’, ‘l’), (‘d’, ‘d’), (‘.’, ‘.’)]</p>
-</blockquote>
-<hr>
-</li>
-</ul>
-<ul>
-<li>切片也适用于字符串，但仅限于读取其中的元素，不支持字符串修改</li>
-</ul>
-<ul>
-<li><p>Pytho标准库zlib中提供的compress()和decompress()函数可以用于数据的压缩和解压缩，在压缩字符串之前需要先编码为字节串</p>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zlib</span><br><span class="line">x = <span class="string">'Python程序设计系列图书，董付国编著，清华大学出版社'</span>.encode()</span><br><span class="line">len(x)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>72</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = zlib.compress(x)</span><br><span class="line">len(y)                           <span class="comment">#对于重复度比较小的信息，压缩比小</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>83</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = (<span class="string">'Python系列图书'</span>*<span class="number">3</span>).encode()</span><br><span class="line">len(x)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>54</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y = zlib.compress(x)                <span class="comment">#信息重复度越高，压缩比越大</span></span><br><span class="line">len(y)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>30</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = zlib.decompress(y)</span><br><span class="line">len(z)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>54</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z.decode()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘Python系列图书Python系列图书Python系列图书’</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = [<span class="string">'董付国'</span>] * <span class="number">8</span></span><br><span class="line">y = str(x).encode()</span><br><span class="line">len(y)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>104</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z = zlib.compress(y)                <span class="comment">#只能对字节串进行压缩</span></span><br><span class="line">len(z)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>26</p>
-</blockquote>
-<hr>
-  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zlib.decompress(z).decode()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>“[‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’, ‘董付国’]”</p>
-</blockquote>
-<hr>
-</li>
-</ul>
-<ul>
-<li>Python标准库string中定义数字字符、标点符号、英文字母、大写字母、小写字母等常量</li>
-<li>随机密码生成原理</li>
-<li>在Python中，字符串属于不可变对象，不支持原地修改，如果需要修改其中的值，只能重新创建一个新的字符串对象。然而，如果确实需要一个支持原地修改的unicode数据对象，可以使用io.StringIO对象或array模块</li>
-</ul>
-<h2 id="可变字符串"><a href="#可变字符串" class="headerlink" title="可变字符串"></a>可变字符串</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sio.getvalue()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘Hello, there!’</p>
-</blockquote>
-<hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> array</span><br><span class="line">a = array.array(<span class="string">'u'</span>, s)</span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>array(‘u’, ‘Hello, world’)</p>
-</blockquote>
-<hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a[<span class="number">0</span>] = <span class="string">'y'</span></span><br><span class="line">print(a)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>array(‘u’, ‘yello, world’)</p>
-</blockquote>
-<hr>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a.tounicode()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>‘yello, world’</p>
-</blockquote>
-<hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/08/python23-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jason Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome to My Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/08/python23-1/" itemprop="url">python23.1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-08T16:15:28+08:00">
-                2018-05-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  955
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="提纲"><a href="#提纲" class="headerlink" title="提纲"></a>提纲</h2><blockquote>
-<p>容器</p>
-<blockquote>
-<p>映射:dict:{}</p>
-<p>序列</p>
-<blockquote>
-<p>*list:[]<br>tuple:()</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<p><strong>tuple不可更改</strong></p>
-<h2 id="序列"><a href="#序列" class="headerlink" title="序列"></a>序列</h2><p>Python中常用的序列结构有列表/元组/字符串/字典/集合以及range等对象也支持类似的操作<br>列表/元组/字符串支持双向索引,即具有负索引<br>列表是Python中内置有序可变序列,列表的所有元素放在一堆括号<code>[]</code>中,并使用<code>,</code>号隔开</p>
-<h3 id="列表的常用方法"><a href="#列表的常用方法" class="headerlink" title="列表的常用方法"></a>列表的常用方法</h3><table>
-<thead>
-<tr>
-<th>方法</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>lst.append(x)</td>
-<td>将元素添加至列表lst尾部</td>
-</tr>
-<tr>
-<td>lst.extend(L)</td>
-<td>将L中所有元素添加至列表lst尾部</td>
-</tr>
-<tr>
-<td>lst.insert(index,x)</td>
-<td>在列表lst指定位置index处添加元素x,该位置后面的所有元素后移一个位置</td>
-</tr>
-<tr>
-<td>lst.remove(x)</td>
-<td>在列表lst中删除首次出现的指定元素,该元素之后的所有元素前移一个位置</td>
-</tr>
-<tr>
-<td>lst.pop([index])</td>
-<td>删除并返回lst中下标为index(默认为-1)的元素</td>
-</tr>
-<tr>
-<td>lst.clear()</td>
-<td>删除列表lst中所有元素,但保留列表对象</td>
-</tr>
-<tr>
-<td>lst.index()</td>
-<td>返回列表lst中第一个值为x的元素的下标,若不存在值为x的元素则抛出异常</td>
-</tr>
-<tr>
-<td>lst.count(x)</td>
-<td>返回制定元素x在列表lst中的出现次数</td>
-</tr>
-<tr>
-<td>lst.reverse()</td>
-<td>对列表lst所有元素进行逆序</td>
-</tr>
-<tr>
-<td>lst.sort(key=None,reverse=False)</td>
-<td>对列表lst中的元素进行排序,key用来指定排序一句,reverse决定升序(Flase)还是降序(True)</td>
-</tr>
-<tr>
-<td>lst.copy()</td>
-<td>返回列表lst的浅复制<strong>(1)</strong></td>
-</tr>
-</tbody>
-</table>
-<p><strong>(1)<br>浅复制就是引用,复制的是指针<br>深复制是复制的值</strong></p>
-<ul>
-<li>创建空表尚未分配空间,查询不到id</li>
-<li>强制类型转换函数:list()函数/tuple()函数/dict()函数</li>
-<li>当不再使用时,使用del命令删除这个列表,如果列表对象所指向的值不再有其他对象指向,Python将同时删除该值</li>
-<li>可以使用”+”运算符添加到列表中,<strong>不建议使用,慢!</strong></li>
-<li>使用列表对象的append()方法,原地修改列表,是真正意义上的在列表的尾部添加元素,速度较快,<strong>所谓原地,是指不改变列表的首地址</strong></li>
-</ul>
-<h3 id="赋值程序比较"><a href="#赋值程序比较" class="headerlink" title="赋值程序比较"></a>赋值程序比较</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">result = []</span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">    result = result + [i]</span><br><span class="line">print(len(result),<span class="string">','</span>,time.time()-start)</span><br><span class="line"></span><br><span class="line">result = []</span><br><span class="line">start = time.time()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10000</span>):</span><br><span class="line">    result.append(i)</span><br><span class="line">print(len(result), <span class="string">','</span>, time.time() - start)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>python采用的是基于值的内存管理模式，<strong>如果为不同变量赋值为相同值，这个值在内存中只有一份，多个变量指向同一块内存地址</strong></li>
-<li>列表中包含的是元素值的引用,而不是直接包含的元素值.如果是直接修改序列变量的值,则与Python普通变量的情况是一样的</li>
-<li><p>如果是通过下标来修改序列中元素的值或通过可变序列对象自身提供的方法来增加和删除元素时,序列对象在内存中的起始地址是不变的,仅仅是被改变值的元素地址发生变化,也就是所谓的”<strong>原地操作</strong>“</p>
-</li>
-<li><p>查看引用次数<br>from sys import getrefcount<br>print(getrefcount(a))</p>
-</li>
-<li><p>查看引用间拓扑关系<br>import objgraph<br>objgraph.show_refs([z].filename=’ref_topo.png’)<br>可用<code>gvedit.exe</code>查看</p>
-</li>
-</ul>
-<h3 id="值内存管理的深入学习"><a href="#值内存管理的深入学习" class="headerlink" title="值内存管理的深入学习"></a>值内存管理的深入学习</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>]</span><br><span class="line">c = a==b</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">id(a)</span><br><span class="line"></span><br><span class="line">id(b)</span><br><span class="line"></span><br><span class="line">print(<span class="string">"%x"</span>,id(a))</span><br><span class="line"></span><br><span class="line">print(<span class="string">"%x"</span>,% id(a))</span><br><span class="line"></span><br><span class="line">print(<span class="string">"%x"</span>,% id(a))</span><br><span class="line"></span><br><span class="line">print(hex(id(a)))</span><br><span class="line"></span><br><span class="line">print(hex(id(a[<span class="number">0</span>])))</span><br><span class="line"></span><br><span class="line">print(hex(id(b[<span class="number">0</span>])))</span><br><span class="line"></span><br><span class="line">print(hex(id(a[<span class="number">2</span>])))</span><br><span class="line"></span><br><span class="line">print(hex(id(b[<span class="number">2</span>])))</span><br></pre></td></tr></table></figure>
-<ul>
-<li>使用insert()函数向序列指定位置添加元素</li>
-<li>使用乘法来扩展列表对象,将列表与整数相乘,生成一个新列表,新列表是原列表中元素的重复</li>
-</ul>
-
           
         
       
@@ -1912,7 +764,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/02/python23/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/28/区块链/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jason Wang">
@@ -1931,211 +783,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/02/python23/" itemprop="url">Python和C语言之间的区别</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-02T21:00:45+08:00">
-                2018-05-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  621
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><ul>
-<li>Python是一门跨平台、开源、免费的解释型高级动态编程语言，支持伪编译编译将python源程序转换为字节码来优化程序和提高运行速度</li>
-<li>支持使用<code>py2exe</code>、<code>pyinstaller</code>或<code>cx_Freeze</code>工具将python程序转化为二进制可执行文件</li>
-<li>Python支持命令式编程，函数式编程</li>
-<li>完全支持面向对象程序设计</li>
-<li>语法简洁清晰，拥有大量的几乎支持所有领域应用开发的成熟扩展库</li>
-<li>胶水语言，可以把多种不同语言编写的程序融合到一起实现无缝连接，更好地发挥不同语言和工具的优势，满足不同应用领域的要求</li>
-</ul>
-<h3 id="Python-3-x和2-x的区别"><a href="#Python-3-x和2-x的区别" class="headerlink" title="Python 3.x和2.x的区别"></a>Python 3.x和2.x的区别</h3><ul>
-<li><code>print()函数</code>代替<code>print语句</code></li>
-<li>3.x默认使用<code>UTF-8编码</code></li>
-<li>除运算/有区别<code>3.x：1/2=0.5</code> &lt;– <code>2.x：1/2=0</code></li>
-<li>异常处理有区别</li>
-<li>八进制表示：<code>3.x 002432</code> &lt;– <code>2.x 02432或O02432</code></li>
-<li>不等于运算符：<code>3.x!=</code> &lt;– <code>2.x!=或&lt;&gt;</code></li>
-<li>数据类型<br>  3.x 无<code>long</code>，只有<code>int</code>；增加<code>bytes</code>对应2.x的8位串<br>  2.x <code>long</code>和<code>int</code></li>
-<li>以<code>.py</code>作扩展名的文件是python源代码文件，由python.exe解释，可在控制台下运行</li>
-<li>以<code>.pyc</code>作扩展名的文件是python编译文件。<code>.pyc</code>文件是不能直接用文本编辑器进行编辑，其优点是<code>.pyc</code>文件的执行速度要快</li>
-<li><code>.pyw</code>是设计用来运行python纯CUI(图形界面)程序的</li>
-<li><code>.pyo</code>文件<code>python-O</code>源文件即可将python源程序编译成<code>.pyo</code>文件，但有时仍得采用<code>.pyc</code>作后缀，才能正常运行</li>
-<li><code>.pyd</code>文件是非Python，由其他编程语言“编程-编译”生成的Python扩展模块。python要导入<code>.pyd</code>文件.实际上是在<code>.pyd</code>    文件中封装了一个<code>module</code>。在python中使用时，把他当成<code>module</code>来用就可以了。即：<code>import路径名modulename</code>即可。路径名为<code>.pyd</code>文件所在的路径。</li>
-</ul>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
-<li>python属于强类型编程语言。python解释器会根据赋值或运算来自动推断变量类型</li>
-<li>python采用的是基于值的内存管理模式，<strong>如果为不同变量赋值为相同值，这个值在内存中只有一份，多个变量指向同一块内存地址</strong></li>
-<li>python具有自动内存管理功能，不过该del还是del好</li>
-<li>字符串：使用单引号、双引号或三引号括起来的符号系列成为字符串</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-    
-    <div>
-      
-    </div>
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/28/qukuailian/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jason Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome to My Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/28/qukuailian/" itemprop="url">如何把内容上传区块链</a></h1>
+                <a class="post-title-link" href="/2018/04/28/区块链/" itemprop="url">如何把内容上传区块链</a></h1>
         
 
         <div class="post-meta">
@@ -2579,13 +1227,189 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/06/Avatar-Bug-in-Theme-Next/" itemprop="url">Avatar Bug in Theme Next</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-06T23:09:40+08:00">
+                2018-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  98
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Why-can’t-the-avatar-be-a-rectangle"><a href="#Why-can’t-the-avatar-be-a-rectangle" class="headerlink" title="Why can’t the avatar be a rectangle?"></a>Why can’t the avatar be a rectangle?</h3><p>When I add a head portrait to my blog (edit the theme configuration file, modify the field “Avatar”),but it doesn’s work.Then I google the bug.<br>Unfortunately,it seems that few people have the same problem like me.<br>So,modifying the source code is another way to make my blog has an avatar.<br>Why can’t the avatar be a rectangle?</p>
+<h2 id="The-path"><a href="#The-path" class="headerlink" title="The path"></a>The path</h2><p><code>/themes/next/layout/_macro/sidebar.swig</code></p>
+<p><code>/source/css/_common/components/sidebar/sidebar.styl</code></p>
+<h2 id="Colors-for-use-across-theme"><a href="#Colors-for-use-across-theme" class="headerlink" title="Colors for use across theme."></a>Colors for use across theme.</h2><p><code>/themes/next/source/css/_variables/base.styl</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+    
+    <div>
+      
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
 
 
           </div>
@@ -2634,7 +1458,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -2645,7 +1469,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -2656,7 +1480,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -2742,7 +1566,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">6.3k</span>
+    <span title="Site words total count">1.1k</span>
   
 </div>
 

@@ -423,7 +423,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/23/python23-4/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/查找与排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jason Wang">
@@ -442,7 +442,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/23/python23-4/" itemprop="url">python23.4</a></h1>
+                <a class="post-title-link" href="/2020/03/02/查找与排序/" itemprop="url">查找与排序</a></h1>
         
 
         <div class="post-meta">
@@ -454,8 +454,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-23T10:17:36+08:00">
-                2018-05-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-02T11:34:48+08:00">
+                2020-03-02
               </time>
             
 
@@ -464,6 +464,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -486,7 +508,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  0
+                  365
                 </span>
               
 
@@ -525,7 +547,32 @@
       
         
           
-            
+            <h2 id="查找与排序的关系"><a href="#查找与排序的关系" class="headerlink" title="查找与排序的关系"></a>查找与排序的关系</h2><h3 id="排序的过程"><a href="#排序的过程" class="headerlink" title="排序的过程"></a>排序的过程</h3><ol>
+<li>选择元素/位置</li>
+<li>根据元素<strong>查找</strong>位置/根据位置<strong>查找</strong>元素</li>
+<li>排序</li>
+</ol>
+<p><strong>所以查找是排序的前提，不同的查找方式导致了不同的排序方式</strong></p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p>根据元素查找位置</p>
+<ul>
+<li><strong>顺序查找</strong></li>
+<li><strong>折半查找</strong></li>
+<li><strong>分块查找</strong></li>
+</ul>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h4 id="根据元素查找位置"><a href="#根据元素查找位置" class="headerlink" title="根据元素查找位置"></a>根据元素查找位置</h4><ul>
+<li><h5 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h5><p>| 顺序查找 | <strong>直接插入排序</strong> |<br>| ——– | —————- |<br>| 折半查找 | <strong>折半插入排序</strong> |<br>| 分块查找 | <strong>希尔排序</strong>     |</p>
+</li>
+</ul>
+<h4 id="根据位置查找元素"><a href="#根据位置查找元素" class="headerlink" title="根据位置查找元素"></a>根据位置查找元素</h4><ul>
+<li><h5 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h5><p>| 选择无序表表尾的位置                         | <strong>冒泡排序</strong> |<br>| ——————————————– | ———— |<br>| 分治思想，一趟排序递归选择多个位置，递归排序 | <strong>快速排序</strong> |</p>
+</li>
+<li><h5 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h5><p>| 选择线性表中无序表表尾位置       | <strong>简单选择排序</strong> |<br>| ——————————– | —————- |<br>| 选择树形结构的根或其子树的根结点 | <strong>堆排序</strong>       |</p>
+<p>堆排序之所以容易出错，是因为它是上述唯一的<strong>已排序的有序部分会在排序过程中再次变为无序</strong>的排序算法，这也是堆排序的数据结构是树这种递归结构却不能使用分治递归排序的原因。</p>
+</li>
+<li><h5 id="归并排序：子表之间是无序的（分治思想中，子表之间是有序的）。"><a href="#归并排序：子表之间是无序的（分治思想中，子表之间是有序的）。" class="headerlink" title="归并排序：子表之间是无序的（分治思想中，子表之间是有序的）。"></a><strong>归并排序</strong>：子表之间是无序的（分治思想中，子表之间是有序的）。</h5></li>
+<li><h5 id="基排序：已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。"><a href="#基排序：已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。" class="headerlink" title="基排序：已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。"></a><strong>基排序</strong>：已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。</h5></li>
+</ul>
+
           
         
       
@@ -631,8 +678,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Algorithm-Practice/" itemprop="url" rel="index">
-                    <span itemprop="name">Algorithm Practice</span>
+                  <a href="/categories/LeedCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeedCode</span>
                   </a>
                 </span>
 
@@ -2576,7 +2623,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -2673,7 +2720,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">5.9k</span>
+    <span title="Site words total count">6.3k</span>
   
 </div>
 

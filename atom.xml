@@ -163,7 +163,7 @@
     <link href="http://yoursite.com/2018/04/20/make-g-%E5%91%BD%E4%BB%A4%E6%B2%A1%E6%89%BE%E5%88%B0/"/>
     <id>http://yoursite.com/2018/04/20/make-g-命令没找到/</id>
     <published>2018-04-19T18:04:25.000Z</published>
-    <updated>2018-04-19T18:07:44.513Z</updated>
+    <updated>2020-03-02T23:00:03.702Z</updated>
     
     <summary type="html">
     
@@ -178,8 +178,8 @@
     
     </summary>
     
+      <category term="BUG" scheme="http://yoursite.com/categories/BUG/"/>
     
-      <category term="BUG" scheme="http://yoursite.com/tags/BUG/"/>
     
   </entry>
   
@@ -237,7 +237,7 @@
     <link href="http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next/"/>
     <id>http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next/</id>
     <published>2018-04-06T15:09:40.000Z</published>
-    <updated>2018-04-15T11:20:07.000Z</updated>
+    <updated>2020-03-02T23:00:42.266Z</updated>
     
     <summary type="html">
     
@@ -253,8 +253,6 @@
     
       <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
     
-    
-      <category term="BUG" scheme="http://yoursite.com/tags/BUG/"/>
     
   </entry>
   

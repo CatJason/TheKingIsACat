@@ -741,6 +741,16 @@ pre .javascript .function {
   max-width: 150px;
   max-height: 150px;
 }
+.content-wrap {
+  color: #fff;
+}
+.tag-cloud-tags {
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 15px;
+}
+.post-title {
+  font-size: 40px;
+}
 .post-body .note {
   position: relative;
   padding: 15px;
@@ -1827,7 +1837,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #001bff;
+  background: #09e360;
 }
 .links-of-blogroll {
   font-size: 13px;

@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="查找与排序的关系排序的过程  选择元素/位置 根据元素查找位置/根据位置查找元素 排序  所以查找是排序的前提，不同的查找方式导致了不同的排序方式 查找根据元素查找位置  顺序查找 折半查找 分块查找  排序根据元素查找位置 插入排序 直接插入排序顺序查找  折半插入排序折半查找  希尔排序分块查找     根据位置查找元素 交换排序 冒泡排序选择无序表表尾的位置  快速排序分治思想，一趟排序递归">
+<meta name="description" content="作者：杨博链接：https://www.zhihu.com/question/19773379/answer/31625054来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 Java语言欠缺属性、事件、多重继承功能。所以，如果要在Java程序中实现一些面向对象编程的常见需求，只能手写大量胶水代码。Java Bean正是编写这套胶水代码的惯用模式或约定。这些约定包括g">
 <meta property="og:type" content="article">
-<meta property="og:title" content="查找与排序">
-<meta property="og:url" content="http://yoursite.com/2020/03/02/查找与排序/index.html">
+<meta property="og:title" content="简单理解Javabean的意义">
+<meta property="og:url" content="http://yoursite.com/2020/03/02/简单理解Javabean的意义/index.html">
 <meta property="og:site_name" content="Welcome to My Blog">
-<meta property="og:description" content="查找与排序的关系排序的过程  选择元素/位置 根据元素查找位置/根据位置查找元素 排序  所以查找是排序的前提，不同的查找方式导致了不同的排序方式 查找根据元素查找位置  顺序查找 折半查找 分块查找  排序根据元素查找位置 插入排序 直接插入排序顺序查找  折半插入排序折半查找  希尔排序分块查找     根据位置查找元素 交换排序 冒泡排序选择无序表表尾的位置  快速排序分治思想，一趟排序递归">
+<meta property="og:description" content="作者：杨博链接：https://www.zhihu.com/question/19773379/answer/31625054来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 Java语言欠缺属性、事件、多重继承功能。所以，如果要在Java程序中实现一些面向对象编程的常见需求，只能手写大量胶水代码。Java Bean正是编写这套胶水代码的惯用模式或约定。这些约定包括g">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-02T06:50:15.692Z">
+<meta property="og:updated_time" content="2020-03-02T08:07:01.622Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="查找与排序">
-<meta name="twitter:description" content="查找与排序的关系排序的过程  选择元素/位置 根据元素查找位置/根据位置查找元素 排序  所以查找是排序的前提，不同的查找方式导致了不同的排序方式 查找根据元素查找位置  顺序查找 折半查找 分块查找  排序根据元素查找位置 插入排序 直接插入排序顺序查找  折半插入排序折半查找  希尔排序分块查找     根据位置查找元素 交换排序 冒泡排序选择无序表表尾的位置  快速排序分治思想，一趟排序递归">
+<meta name="twitter:title" content="简单理解Javabean的意义">
+<meta name="twitter:description" content="作者：杨博链接：https://www.zhihu.com/question/19773379/answer/31625054来源：知乎著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 Java语言欠缺属性、事件、多重继承功能。所以，如果要在Java程序中实现一些面向对象编程的常见需求，只能手写大量胶水代码。Java Bean正是编写这套胶水代码的惯用模式或约定。这些约定包括g">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/02/查找与排序/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/02/简单理解Javabean的意义/"/>
 
 
 
 
 
-  <title>查找与排序 | Welcome to My Blog</title>
+  <title>简单理解Javabean的意义 | Welcome to My Blog</title>
   
 
 
@@ -263,7 +263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/查找与排序/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/简单理解Javabean的意义/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jason Wang">
@@ -280,7 +280,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">查找与排序</h1>
+          <h1 class="post-title" itemprop="name headline">简单理解Javabean的意义</h1>
         
 
         <div class="post-meta">
@@ -292,7 +292,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-02T11:34:48+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-02T16:00:21+08:00">
                 2020-03-02
               </time>
             
@@ -315,8 +315,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
                   </a>
                 </span>
 
@@ -346,7 +346,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  374
+                  968
                 </span>
               
 
@@ -362,7 +362,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  4
                 </span>
               
             </div>
@@ -383,53 +383,27 @@
       
 
       
-        <h2 id="查找与排序的关系"><a href="#查找与排序的关系" class="headerlink" title="查找与排序的关系"></a>查找与排序的关系</h2><p>排序的过程</p>
-<ol>
-<li>选择元素/位置</li>
-<li>根据元素<strong>查找</strong>位置/根据位置<strong>查找</strong>元素</li>
-<li>排序</li>
-</ol>
-<p><strong>所以查找是排序的前提，不同的查找方式导致了不同的排序方式</strong></p>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p>根据元素查找位置</p>
-<ul>
-<li><h6 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a><strong>顺序查找</strong></h6></li>
-<li><h6 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a><strong>折半查找</strong></h6></li>
-<li><h6 id="分块查找"><a href="#分块查找" class="headerlink" title="分块查找"></a><strong>分块查找</strong></h6></li>
-</ul>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h4 id="根据元素查找位置"><a href="#根据元素查找位置" class="headerlink" title="根据元素查找位置"></a>根据元素查找位置</h4><ul>
-<li><h5 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h5><ul>
-<li><h6 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a><strong>直接插入排序</strong></h6><p>顺序查找</p>
-</li>
-<li><h6 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a><strong>折半插入排序</strong></h6><p>折半查找</p>
-</li>
-<li><h6 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a><strong>希尔排序</strong></h6><p>分块查找</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="根据位置查找元素"><a href="#根据位置查找元素" class="headerlink" title="根据位置查找元素"></a>根据位置查找元素</h4><ul>
-<li><h5 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h5><ul>
-<li><h6 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a><strong>冒泡排序</strong></h6><p>选择无序表表尾的位置</p>
-</li>
-<li><h6 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a><strong>快速排序</strong></h6><p>分治思想，一趟排序递归选择多个位置，递归排序</p>
-</li>
-</ul>
-</li>
-<li><h5 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h5><ul>
-<li><h6 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a><strong>简单选择排序</strong></h6><p>选择线性表中无序表表尾位置</p>
-</li>
-<li><h6 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a><strong>堆排序</strong></h6><p>选择树形结构的根或其子树的根结点</p>
-</li>
-</ul>
-<p>堆排序之所以容易出错，是因为它是上述唯一的<strong>已排序的有序部分会在排序过程中再次变为无序</strong>的排序算法，这也是堆排序的数据结构是树这种递归结构却不能使用分治递归排序的原因。</p>
-</li>
-</ul>
-<h4 id="两种特殊的排序算法"><a href="#两种特殊的排序算法" class="headerlink" title="两种特殊的排序算法"></a>两种特殊的排序算法</h4><ul>
-<li><h6 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a><strong>归并排序</strong></h6><p>子表之间是无序的（分治思想中，子表之间是有序的）。</p>
-</li>
-<li><h6 id="基排序"><a href="#基排序" class="headerlink" title="基排序"></a><strong>基排序</strong></h6><p>已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。</p>
-</li>
-</ul>
+        <p>作者：杨博<br>链接：<a href="https://www.zhihu.com/question/19773379/answer/31625054" target="_blank" rel="noopener">https://www.zhihu.com/question/19773379/answer/31625054</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>Java语言欠缺属性、事件、多重继承功能。所以，如果要在Java程序中实现一些面向对象编程的常见需求，只能手写大量胶水代码。Java Bean正是编写这套胶水代码的惯用模式或约定。这些约定包括getXxx、setXxx、isXxx、addXxxListener、XxxEvent等。遵守上述约定的类可以用于若干工具或库。</p>
+<p>举个例子，假如有人要用Java实现一个单向链表类，可能会这样写：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 编译成 java-int-list_1.0.jar</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaIntList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Node next;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> Node head;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span> size;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述实现为了能够快速获取链表的大小，把链表大小缓存在size变量中。用法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JavaIntList myList = <span class="keyword">new</span> JavaIntList();</span><br><span class="line">System.out.println(myList.size);</span><br></pre></td></tr></table></figure>
+<p>JavaIntList的作者很满意，于是开源了java-int-list库的1.0版。文件名是java-int-list_1.0.jar。发布后，吸引了许多用户来使用java-int-list_1.0.jar。<br>有一天，作者决定要节省内存，不要缓存size变量了，把代码改成这样：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 编译成 java-int-list_2.0.jar</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">JavaIntList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Node next;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> Node head;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Node n = head;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (n != <span class="keyword">null</span>) &#123;</span><br><span class="line">      n = n.next;</span><br><span class="line">      i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后发布了2.0版：java-int-list_2.0.jar。发布后，原有java-int-list_1.0.jar的用户纷纷升级版本到2.0。这些用户一升级，就发现自己的程序全部坏掉了，说是找不到什么size变量。于是这些用户就把作者暴打一顿，再也不敢用java-int-list库了。</p>
+<p>这个故事告诉我们，如果不想被暴打致死，你就必须保持向后兼容性。太阳公司在设计Java语言时，也懂得这个道理。所以Java标准库中，绝对不会出现public int size这样的代码，而一定会一开始就写成：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> size; &#125;</span><br></pre></td></tr></table></figure>
+<p>让用户一开始就使用getSize，以便有朝一日修改getSize实现时，不破坏向后兼容性。这种public int getSize() { return size; }的惯用手法，就是Java Bean。</p>
+<p>现在是2014年，C#、Scala等比Java新的面向对象语言自身就提供了语言特性来实现这些常用需求，所以根本不需要Java Bean这样繁琐的约定。</p>
+<p>比如，假如有个Scala版的ScalaIntList：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 编译成 scala-int-list_1.0.jar</span></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">ScalaIntList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>(<span class="params">next: <span class="type">Node</span>, value: <span class="type">Int</span></span>)</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class"><span class="title">final</span> <span class="title">class</span> <span class="title">ScalaIntList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> head: <span class="type">ScalaIntList</span>.<span class="type">Node</span> = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">var</span> size: <span class="type">Int</span> = <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用户这样用：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> myList = <span class="keyword">new</span> <span class="type">ScalaIntList</span></span><br><span class="line">println(myList.size)</span><br></pre></td></tr></table></figure>
+<p>有一天你心血来潮改成这样：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 编译成 scala-int-list_2.0.jar</span></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">ScalaIntList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">final</span> <span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>(<span class="params">next: <span class="type">Node</span>, value: <span class="type">Int</span></span>)</span></span><br><span class="line"><span class="class">&#125;</span></span><br><span class="line"><span class="class"><span class="title">final</span> <span class="title">class</span> <span class="title">ScalaIntList</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> head: <span class="type">ScalaIntList</span>.<span class="type">Node</span> = <span class="literal">null</span></span><br><span class="line">  <span class="keyword">final</span> <span class="function"><span class="keyword">def</span> <span class="title">size</span></span>: <span class="type">Int</span> = &#123;</span><br><span class="line">    <span class="keyword">var</span> n = head</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> (n != <span class="literal">null</span>) &#123;</span><br><span class="line">      n = n.next</span><br><span class="line">      i++</span><br><span class="line">    &#125;</span><br><span class="line">    i</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用户还是照样能用，根本不破坏向后兼容性。所以Scala程序只要不考虑和Java交互，一般就不需要类似Java Bean这样的约定。</p>
+<p>顺便说一句，向后兼容性分为源代码级和二进制级，Scala的var或val改为final def的话，无论源代码级的向后兼容性，还是二进制级的向后兼容性，都不遭受破坏。但C#的字段改为属性的话，虽然不破坏源代码级的向后兼容性，但是会破坏二进制级的向后兼容性。这是C#的设计缺陷，导致微软的编码规范不得不禁止使用公有字段。</p>
 
       
     </div>
@@ -464,8 +438,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/29/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2020/03/02/查找与排序/" rel="next" title="查找与排序">
+                <i class="fa fa-chevron-left"></i> 查找与排序
               </a>
             
           </div>
@@ -474,8 +448,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/03/02/简单理解Javabean的意义/" rel="prev" title="简单理解Javabean的意义">
-                简单理解Javabean的意义 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/03/02/test/" rel="prev" title="test">
+                test <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -546,17 +520,8 @@ var jiathis_config={
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="sidebar-photo">
           <img src="/images/avatar.jpeg"/>
@@ -643,22 +608,6 @@ var jiathis_config={
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查找与排序的关系"><span class="nav-number">1.</span> <span class="nav-text">查找与排序的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找"><span class="nav-number">2.</span> <span class="nav-text">查找</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#顺序查找"><span class="nav-number">2.0.0.0.1.</span> <span class="nav-text">顺序查找</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#折半查找"><span class="nav-number">2.0.0.0.2.</span> <span class="nav-text">折半查找</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#分块查找"><span class="nav-number">2.0.0.0.3.</span> <span class="nav-text">分块查找</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">3.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#根据元素查找位置"><span class="nav-number">3.0.1.</span> <span class="nav-text">根据元素查找位置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#插入排序"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#直接插入排序"><span class="nav-number">3.0.1.1.1.</span> <span class="nav-text">直接插入排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#折半插入排序"><span class="nav-number">3.0.1.1.2.</span> <span class="nav-text">折半插入排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#希尔排序"><span class="nav-number">3.0.1.1.3.</span> <span class="nav-text">希尔排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据位置查找元素"><span class="nav-number">3.0.2.</span> <span class="nav-text">根据位置查找元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#交换排序"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">交换排序</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#冒泡排序"><span class="nav-number">3.0.2.1.1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#快速排序"><span class="nav-number">3.0.2.1.2.</span> <span class="nav-text">快速排序</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#选择排序"><span class="nav-number">3.0.2.2.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#简单选择排序"><span class="nav-number">3.0.2.2.1.</span> <span class="nav-text">简单选择排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#堆排序"><span class="nav-number">3.0.2.2.2.</span> <span class="nav-text">堆排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两种特殊的排序算法"><span class="nav-number">3.0.3.</span> <span class="nav-text">两种特殊的排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#归并排序"><span class="nav-number">3.0.3.0.1.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#基排序"><span class="nav-number">3.0.3.0.2.</span> <span class="nav-text">基排序</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

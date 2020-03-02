@@ -508,7 +508,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  365
+                  374
                 </span>
               
 
@@ -560,17 +560,36 @@
 <li><strong>分块查找</strong></li>
 </ul>
 <h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h4 id="根据元素查找位置"><a href="#根据元素查找位置" class="headerlink" title="根据元素查找位置"></a>根据元素查找位置</h4><ul>
-<li><h5 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h5><p>| 顺序查找 | <strong>直接插入排序</strong> |<br>| ——– | —————- |<br>| 折半查找 | <strong>折半插入排序</strong> |<br>| 分块查找 | <strong>希尔排序</strong>     |</p>
+<li><h5 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h5><ul>
+<li><h6 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a><strong>直接插入排序</strong></h6><p>顺序查找</p>
+</li>
+<li><h6 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a><strong>折半插入排序</strong></h6><p>折半查找</p>
+</li>
+<li><h6 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a><strong>希尔排序</strong></h6><p>分块查找</p>
+</li>
+</ul>
 </li>
 </ul>
 <h4 id="根据位置查找元素"><a href="#根据位置查找元素" class="headerlink" title="根据位置查找元素"></a>根据位置查找元素</h4><ul>
-<li><h5 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h5><p>| 选择无序表表尾的位置                         | <strong>冒泡排序</strong> |<br>| ——————————————– | ———— |<br>| 分治思想，一趟排序递归选择多个位置，递归排序 | <strong>快速排序</strong> |</p>
+<li><h5 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h5><ul>
+<li><h6 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a><strong>冒泡排序</strong></h6><p>选择无序表表尾的位置</p>
 </li>
-<li><h5 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h5><p>| 选择线性表中无序表表尾位置       | <strong>简单选择排序</strong> |<br>| ——————————– | —————- |<br>| 选择树形结构的根或其子树的根结点 | <strong>堆排序</strong>       |</p>
+<li><h6 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a><strong>快速排序</strong></h6><p>分治思想，一趟排序递归选择多个位置，递归排序</p>
+</li>
+</ul>
+</li>
+<li><h5 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h5><ul>
+<li><h6 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a><strong>简单选择排序</strong></h6><p>选择线性表中无序表表尾位置</p>
+</li>
+<li><h6 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a><strong>堆排序</strong></h6><p>选择树形结构的根或其子树的根结点</p>
+</li>
+</ul>
 <p>堆排序之所以容易出错，是因为它是上述唯一的<strong>已排序的有序部分会在排序过程中再次变为无序</strong>的排序算法，这也是堆排序的数据结构是树这种递归结构却不能使用分治递归排序的原因。</p>
 </li>
-<li><h5 id="归并排序：子表之间是无序的（分治思想中，子表之间是有序的）。"><a href="#归并排序：子表之间是无序的（分治思想中，子表之间是有序的）。" class="headerlink" title="归并排序：子表之间是无序的（分治思想中，子表之间是有序的）。"></a><strong>归并排序</strong>：子表之间是无序的（分治思想中，子表之间是有序的）。</h5></li>
-<li><h5 id="基排序：已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。"><a href="#基排序：已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。" class="headerlink" title="基排序：已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。"></a><strong>基排序</strong>：已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。</h5></li>
+</ul>
+<h4 id="两种特殊的排序算法"><a href="#两种特殊的排序算法" class="headerlink" title="两种特殊的排序算法"></a>两种特殊的排序算法</h4><ul>
+<li><h5 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a><strong>归并排序</strong></h5><h5 id="子表之间是无序的（分治思想中，子表之间是有序的）。"><a href="#子表之间是无序的（分治思想中，子表之间是有序的）。" class="headerlink" title="子表之间是无序的（分治思想中，子表之间是有序的）。"></a>子表之间是无序的（分治思想中，子表之间是有序的）。</h5></li>
+<li><h5 id="基排序"><a href="#基排序" class="headerlink" title="基排序"></a><strong>基排序</strong></h5><h5 id="已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。"><a href="#已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。" class="headerlink" title="已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。"></a>已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。</h5></li>
 </ul>
 
           

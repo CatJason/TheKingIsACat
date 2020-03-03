@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-03T03:13:09.139Z</updated>
+  <updated>2020-03-03T08:10:48.950Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何在github上为开源项目贡献</title>
+    <link href="http://yoursite.com/2020/03/03/%E5%A6%82%E4%BD%95%E5%9C%A8github%E4%B8%8A%E4%B8%BA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E8%B4%A1%E7%8C%AE/"/>
+    <id>http://yoursite.com/2020/03/03/如何在github上为开源项目贡献/</id>
+    <published>2020-03-03T07:07:56.000Z</published>
+    <updated>2020-03-03T08:10:48.950Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;以&lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;tensorflow&lt;/a&gt;为例子介绍如何在&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;github&lt;/a&gt;上为一个开源项目做出贡献，进行多人协作编程&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="GitHub" scheme="http://yoursite.com/categories/GitHub/"/>
+    
+    
+      <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>

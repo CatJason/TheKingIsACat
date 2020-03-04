@@ -1280,6 +1280,9 @@ pre .javascript .function {
 .posts-expand {
   padding-top: 40px;
 }
+.page-number {
+  color: #fff;
+}
 @media (max-width: 767px) {
   .posts-expand {
     margin: 0 20px;
@@ -1618,7 +1621,7 @@ pre .javascript .function {
   left: auto;
 }
 .posts-expand .post-eof {
-  display: block;
+  display: none;
   margin: 80px auto 60px;
   width: 8%;
   height: 1px;
@@ -1837,7 +1840,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #78e4ff;
+  background: #74ee14;
 }
 .links-of-blogroll {
   font-size: 13px;

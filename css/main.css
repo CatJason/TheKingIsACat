@@ -1017,6 +1017,7 @@ pre .javascript .function {
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
+  color: #fff !important;
 }
 .pagination .prev:hover,
 .pagination .next:hover,
@@ -1029,9 +1030,11 @@ pre .javascript .function {
 }
 .pagination .prev {
   margin-left: 0;
+  color: #fff !important;
 }
 .pagination .next {
   margin-right: 0;
+  color: #fff !important;
 }
 .pagination .page-number.current {
   color: #fff;
@@ -1843,7 +1846,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #62ffff;
+  background: #eb0570;
 }
 .links-of-blogroll {
   font-size: 13px;

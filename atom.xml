@@ -229,4 +229,22 @@
     
   </entry>
   
+  <entry>
+    <title>Avatar Bug in Theme Next</title>
+    <link href="http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next/"/>
+    <id>http://yoursite.com/2018/04/06/Avatar-Bug-in-Theme-Next/</id>
+    <published>2018-04-06T15:09:40.000Z</published>
+    <updated>2020-03-03T02:14:25.217Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Why-can’t-the-avatar-be-a-rectangle&quot;&gt;&lt;a href=&quot;#Why-can’t-the-avatar-be-a-rectangle&quot; class=&quot;headerlink&quot; title=&quot;Why can’t the avatar be a rectangle?&quot;&gt;&lt;/a&gt;Why can’t the avatar be a rectangle?&lt;/h3&gt;&lt;p&gt;When I add a head portrait to my blog (edit the theme configuration file, modify the field “Avatar”),but it doesn’s work.Then I google the bug.&lt;br&gt;Unfortunately,it seems that few people have the same problem like me.&lt;br&gt;So,modifying the source code is another way to make my blog has an avatar.&lt;br&gt;Why can’t the avatar be a rectangle?&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://yoursite.com/categories/Hexo/"/>
+    
+    
+  </entry>
+  
 </feed>

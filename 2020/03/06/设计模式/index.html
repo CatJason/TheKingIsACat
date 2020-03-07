@@ -77,7 +77,7 @@
 
 
 
-  <meta name="keywords" content="排序," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -90,18 +90,17 @@
 
 
 
-<meta name="description" content="查找与排序的关系排序的过程  选择元素/位置 根据元素查找位置/根据位置查找元素 排序  所以查找是排序的前提，不同的查找方式导致了不同的排序方式">
-<meta name="keywords" content="排序">
+<meta name="description" content="本文是《大话数据结构》一书的总结笔记，将不断完善。 感谢我的大学C++老师，推荐给我的《大话…》系列书籍，寓教于乐，深入浅出。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="查找与排序">
-<meta property="og:url" content="http://yoursite.com/2020/03/02/查找与排序/index.html">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://yoursite.com/2020/03/06/设计模式/index.html">
 <meta property="og:site_name" content="Welcome to My Blog">
-<meta property="og:description" content="查找与排序的关系排序的过程  选择元素/位置 根据元素查找位置/根据位置查找元素 排序  所以查找是排序的前提，不同的查找方式导致了不同的排序方式">
+<meta property="og:description" content="本文是《大话数据结构》一书的总结笔记，将不断完善。 感谢我的大学C++老师，推荐给我的《大话…》系列书籍，寓教于乐，深入浅出。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-03T02:12:20.045Z">
+<meta property="og:updated_time" content="2020-03-07T12:03:39.468Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="查找与排序">
-<meta name="twitter:description" content="查找与排序的关系排序的过程  选择元素/位置 根据元素查找位置/根据位置查找元素 排序  所以查找是排序的前提，不同的查找方式导致了不同的排序方式">
+<meta name="twitter:title" content="设计模式">
+<meta name="twitter:description" content="本文是《大话数据结构》一书的总结笔记，将不断完善。 感谢我的大学C++老师，推荐给我的《大话…》系列书籍，寓教于乐，深入浅出。">
 
 
 
@@ -131,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/03/02/查找与排序/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/06/设计模式/"/>
 
 
 
 
 
-  <title>查找与排序 | Welcome to My Blog</title>
+  <title>设计模式 | Welcome to My Blog</title>
   
 
 
@@ -270,7 +269,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/查找与排序/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/06/设计模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jason Wang">
@@ -287,7 +286,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">查找与排序</h1>
+          <h1 class="post-title" itemprop="name headline">设计模式</h1>
         
 
         <div class="post-meta">
@@ -299,8 +298,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-02T11:34:48+08:00">
-                2020-03-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-06T22:26:47+08:00">
+                2020-03-06
               </time>
             
 
@@ -322,8 +321,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -340,8 +339,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/03/02/查找与排序/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/02/查找与排序/" itemprop="commentCount"></span>
+                <a href="/2020/03/06/设计模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/06/设计模式/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -363,7 +362,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  374
+                  776
                 </span>
               
 
@@ -379,7 +378,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  3
                 </span>
               
             </div>
@@ -400,55 +399,29 @@
       
 
       
-        <h2 id="查找与排序的关系"><a href="#查找与排序的关系" class="headerlink" title="查找与排序的关系"></a>查找与排序的关系</h2><p>排序的过程</p>
-<ol>
-<li>选择元素/位置</li>
-<li>根据元素<strong>查找</strong>位置/根据位置<strong>查找</strong>元素</li>
-<li>排序</li>
-</ol>
-<p><strong>所以查找是排序的前提，不同的查找方式导致了不同的排序方式</strong></p>
+        <p>本文是《大话数据结构》一书的总结笔记，将不断完善。</p>
+<p>感谢我的大学C++老师，推荐给我的《大话…》系列书籍，寓教于乐，深入浅出。</p>
 <a id="more"></a>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><p>根据元素查找位置</p>
-<ul>
-<li><h6 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a><strong>顺序查找</strong></h6></li>
-<li><h6 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a><strong>折半查找</strong></h6></li>
-<li><h6 id="分块查找"><a href="#分块查找" class="headerlink" title="分块查找"></a><strong>分块查找</strong></h6></li>
-</ul>
-<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h4 id="根据元素查找位置"><a href="#根据元素查找位置" class="headerlink" title="根据元素查找位置"></a>根据元素查找位置</h4><ul>
-<li><h5 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h5><ul>
-<li><h6 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a><strong>直接插入排序</strong></h6><p>顺序查找</p>
-</li>
-<li><h6 id="折半插入排序"><a href="#折半插入排序" class="headerlink" title="折半插入排序"></a><strong>折半插入排序</strong></h6><p>折半查找</p>
-</li>
-<li><h6 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a><strong>希尔排序</strong></h6><p>分块查找</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="根据位置查找元素"><a href="#根据位置查找元素" class="headerlink" title="根据位置查找元素"></a>根据位置查找元素</h4><ul>
-<li><h5 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h5><ul>
-<li><h6 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a><strong>冒泡排序</strong></h6><p>选择无序表表尾的位置</p>
-</li>
-<li><h6 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a><strong>快速排序</strong></h6><p>分治思想，一趟排序递归选择多个位置，递归排序</p>
-</li>
-</ul>
-</li>
-<li><h5 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h5><ul>
-<li><h6 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a><strong>简单选择排序</strong></h6><p>选择线性表中无序表表尾位置</p>
-</li>
-<li><h6 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a><strong>堆排序</strong></h6><p>选择树形结构的根或其子树的根结点</p>
-</li>
-</ul>
-<p>堆排序之所以容易出错，是因为它是上述唯一的<strong>已排序的有序部分会在排序过程中再次变为无序</strong>的排序算法，这也是堆排序的数据结构是树这种递归结构却不能使用分治递归排序的原因。</p>
-</li>
-</ul>
-<h4 id="两种特殊的排序算法"><a href="#两种特殊的排序算法" class="headerlink" title="两种特殊的排序算法"></a>两种特殊的排序算法</h4><ul>
-<li><h6 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a><strong>归并排序</strong></h6><p>子表之间是无序的（分治思想中，子表之间是有序的）。</p>
-</li>
-<li><h6 id="基排序"><a href="#基排序" class="headerlink" title="基排序"></a><strong>基排序</strong></h6><p>已排序的有序部分会在排序过程中再次变为无序，与堆排序不同，不用再次进行排序。</p>
-</li>
-</ul>
-
+<h2 id="代码无错便是优？"><a href="#代码无错便是优？" class="headerlink" title="代码无错便是优？"></a>代码无错便是优？</h2><p>代码规范</p>
+<p>面向对象</p>
+<p>复制VS复用</p>
+<p>业务的封装</p>
+<p>高内聚低耦合</p>
+<p>UML类图</p>
+<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p>Q：在实例化问题中，到底应该实例化谁，将来会不会增加实例化对象</p>
+<p>将容易变化的地方，用一个单独的类来做这个创造实例的过程，这就是工厂。</p>
+<p>工厂通过多态实例化出合适的对象，返回父类的方法实现需要的函数。</p>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>Q：如何解决算法时常变动的情况</p>
+<p>策略模式定义并封装了算法家族，让他们之间可以相互替换，此模式让算法的变化，不会影响到使用算法的客户。</p>
+<p>策略模式类，作为定义所有算法的公共接口与具体策略类的父类，并在上下文类中被调用。不同的算法被封装在具体策略类中。</p>
+<h3 id="策略模式与简单工厂模式结合"><a href="#策略模式与简单工厂模式结合" class="headerlink" title="策略模式与简单工厂模式结合"></a>策略模式与简单工厂模式结合</h3><p>Q：如何在策略模式的基础上避免在客户端判断使用哪一个算法</p>
+<p>简单工厂模式中，客户端由工厂类实例化出父类的一个具体的子类，既要知道父类，又要知道工厂类。</p>
+<p>而策略模式与简单工厂模式结合，由上下文类调用策略算法（接口）类并实例化具体的策略算法类，客户端只需要知道上下文类即可。</p>
+<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>就一个类而言，应该仅有一个引起它变化的原因。</p>
+<p>如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职责的变化可能会削弱或者抑制这个类完成其他职责的能力。这种耦合会导致脆弱的设计，当变化发生时，设计会遭受到意想不到的破坏[ASD]。</p>
+<p>软件设计真正要做的许多内容，就是发现职责并把那些职责相互分离[ASD]。</p>
+<p>判断是否应该分离出类：多于一个动机去改变一个类，这个类就有多于一个的职责[ASD]，就应该考虑类的职责分离。</p>
+<h2 id="开放-封闭原则"><a href="#开放-封闭原则" class="headerlink" title="开放-封闭原则"></a>开放-封闭原则</h2><h2 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h2><h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><h2 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h2><h2 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h2><h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><h2 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h2><h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2><h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h2 id="抽象工厂模式-1"><a href="#抽象工厂模式-1" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><h2 id="状态模式-1"><a href="#状态模式-1" class="headerlink" title="状态模式"></a>状态模式</h2><h2 id="适配器模式-1"><a href="#适配器模式-1" class="headerlink" title="适配器模式"></a>适配器模式</h2><h2 id="备忘录模式-1"><a href="#备忘录模式-1" class="headerlink" title="备忘录模式"></a>备忘录模式</h2><h2 id="组合模式-1"><a href="#组合模式-1" class="headerlink" title="组合模式"></a>组合模式</h2><h2 id="迭代器模式-1"><a href="#迭代器模式-1" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><h2 id="单例模式-1"><a href="#单例模式-1" class="headerlink" title="单例模式"></a>单例模式</h2><h2 id="桥接模式-1"><a href="#桥接模式-1" class="headerlink" title="桥接模式"></a>桥接模式</h2><h2 id="命令模式-1"><a href="#命令模式-1" class="headerlink" title="命令模式"></a>命令模式</h2><h2 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h2><h2 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h2><h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><h2 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h2><h2 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h2>
       
     </div>
     
@@ -473,12 +446,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/排序/" <i class="fa fa-tag"></i> 排序</a>
-          
-        </div>
-      
 
       
       
@@ -488,8 +455,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/21/n-abc/" rel="next" title="abc排列组合">
-                <i class="fa fa-chevron-left"></i> abc排列组合
+              <a href="/2020/03/05/My-First-Blog/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
               </a>
             
           </div>
@@ -497,10 +464,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/02/简单理解Javabean的意义/" rel="prev" title="简单理解Javabean的意义">
-                简单理解Javabean的意义 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -680,7 +643,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查找与排序的关系"><span class="nav-number">1.</span> <span class="nav-text">查找与排序的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查找"><span class="nav-number">2.</span> <span class="nav-text">查找</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#顺序查找"><span class="nav-number">2.0.0.0.1.</span> <span class="nav-text">顺序查找</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#折半查找"><span class="nav-number">2.0.0.0.2.</span> <span class="nav-text">折半查找</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#分块查找"><span class="nav-number">2.0.0.0.3.</span> <span class="nav-text">分块查找</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序"><span class="nav-number">3.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#根据元素查找位置"><span class="nav-number">3.0.1.</span> <span class="nav-text">根据元素查找位置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#插入排序"><span class="nav-number">3.0.1.1.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#直接插入排序"><span class="nav-number">3.0.1.1.1.</span> <span class="nav-text">直接插入排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#折半插入排序"><span class="nav-number">3.0.1.1.2.</span> <span class="nav-text">折半插入排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#希尔排序"><span class="nav-number">3.0.1.1.3.</span> <span class="nav-text">希尔排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#根据位置查找元素"><span class="nav-number">3.0.2.</span> <span class="nav-text">根据位置查找元素</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#交换排序"><span class="nav-number">3.0.2.1.</span> <span class="nav-text">交换排序</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#冒泡排序"><span class="nav-number">3.0.2.1.1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#快速排序"><span class="nav-number">3.0.2.1.2.</span> <span class="nav-text">快速排序</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#选择排序"><span class="nav-number">3.0.2.2.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#简单选择排序"><span class="nav-number">3.0.2.2.1.</span> <span class="nav-text">简单选择排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#堆排序"><span class="nav-number">3.0.2.2.2.</span> <span class="nav-text">堆排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两种特殊的排序算法"><span class="nav-number">3.0.3.</span> <span class="nav-text">两种特殊的排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#归并排序"><span class="nav-number">3.0.3.0.1.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#基排序"><span class="nav-number">3.0.3.0.2.</span> <span class="nav-text">基排序</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码无错便是优？"><span class="nav-number">1.</span> <span class="nav-text">代码无错便是优？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单工厂模式"><span class="nav-number">2.</span> <span class="nav-text">简单工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式"><span class="nav-number">3.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式与简单工厂模式结合"><span class="nav-number">3.1.</span> <span class="nav-text">策略模式与简单工厂模式结合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单一职责原则"><span class="nav-number">4.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开放-封闭原则"><span class="nav-number">5.</span> <span class="nav-text">开放-封闭原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖倒转原则"><span class="nav-number">6.</span> <span class="nav-text">依赖倒转原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰模式"><span class="nav-number">7.</span> <span class="nav-text">装饰模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-number">8.</span> <span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">9.</span> <span class="nav-text">工厂方法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型模式"><span class="nav-number">10.</span> <span class="nav-text">原型模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板方法模式"><span class="nav-number">11.</span> <span class="nav-text">模板方法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迪米特法则"><span class="nav-number">12.</span> <span class="nav-text">迪米特法则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外观模式"><span class="nav-number">13.</span> <span class="nav-text">外观模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建造者模式"><span class="nav-number">14.</span> <span class="nav-text">建造者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者模式"><span class="nav-number">15.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂模式"><span class="nav-number">16.</span> <span class="nav-text">抽象工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态模式"><span class="nav-number">17.</span> <span class="nav-text">状态模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-number">18.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备忘录模式"><span class="nav-number">19.</span> <span class="nav-text">备忘录模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合模式"><span class="nav-number">20.</span> <span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器模式"><span class="nav-number">21.</span> <span class="nav-text">迭代器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">22.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桥接模式"><span class="nav-number">23.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令模式"><span class="nav-number">24.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂模式-1"><span class="nav-number">25.</span> <span class="nav-text">抽象工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态模式-1"><span class="nav-number">26.</span> <span class="nav-text">状态模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式-1"><span class="nav-number">27.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备忘录模式-1"><span class="nav-number">28.</span> <span class="nav-text">备忘录模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合模式-1"><span class="nav-number">29.</span> <span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器模式-1"><span class="nav-number">30.</span> <span class="nav-text">迭代器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式-1"><span class="nav-number">31.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桥接模式-1"><span class="nav-number">32.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令模式-1"><span class="nav-number">33.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#职责链模式"><span class="nav-number">34.</span> <span class="nav-text">职责链模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中介者模式"><span class="nav-number">35.</span> <span class="nav-text">中介者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#享元模式"><span class="nav-number">36.</span> <span class="nav-text">享元模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释器模式"><span class="nav-number">37.</span> <span class="nav-text">解释器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问者模式"><span class="nav-number">38.</span> <span class="nav-text">访问者模式</span></a></li></ol></div>
             
 
           </div>

@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-15T10:52:40.796Z">
+<meta property="og:updated_time" content="2020-03-15T12:15:32.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1,914
+                  2,186
                 </span>
               
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  7
+                  8
                 </span>
               
             </div>
@@ -464,6 +464,47 @@
 <li>缺点：要在运行时动态分配内存，数据访问速度较慢。</li>
 </ul>
 <p>Java 堆区在 NM 启动的时候即被创建，它只要求逻辑上是连续的，在物理空间上可以是不连续。所有的线程共享 Java 堆，在这里可以划分钱程私有的缓冲区 ( Thread Local Allocation Buffer, TLAB ) 。</p>
+<p>Java 堆是 GC ( Garbage Collection）执行垃圾回收的重点区域，GC 极有可能会在<u>大内存的使用</u>和<u>频繁进行垃圾回收</u>过程上成为系统性能瓶颈。</p>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><ul>
+<li><p>类的类型信息</p>
+<ul>
+<li>类的完整名称</li>
+<li>父类的完整名称</li>
+<li>类型修饰符( pubIic/protected/private )</li>
+<li>类型的直接接口类表</li>
+</ul>
+</li>
+<li><p>常量池</p>
+<p>类方法、域等信息所引用的常量信息。</p>
+</li>
+<li><p>域信息</p>
+<ul>
+<li>域名称</li>
+<li>域类型</li>
+<li>域修饰符</li>
+</ul>
+</li>
+<li><p>方法信息</p>
+<ul>
+<li>方法名称</li>
+<li>返回类型</li>
+<li>方法参数</li>
+<li>方法修饰符表</li>
+<li>方法字节码</li>
+<li>操作数栈</li>
+<li>方法栈帧的局部变量区大小</li>
+<li>异常表.</li>
+</ul>
+</li>
+</ul>
+<p>方法区是线程间共享的（与堆空间类似）：当两个线程同时需要加载一个类型时，只有一个类会请求 ClassLoader 加载，另一个线程则会等待。方法区内保存的信息大部分来自于 Class 文件（类的元数据）。</p>
+<p>GC 针对方法区的回收：</p>
+<ul>
+<li><p>GC 对方法区常量池的回收</p>
+</li>
+<li><p>方法区对类元数据的回收</p>
+</li>
+</ul>
 
       
     </div>
@@ -686,7 +727,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-amp-amp-GC-深入知识"><span class="nav-number">1.</span> <span class="nav-text">JVM &amp;&amp; GC 深入知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈的内部结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚拟机栈的内部结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-堆"><span class="nav-number">1.4.</span> <span class="nav-text">Java 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆相对于栈的优缺点："><span class="nav-number">1.4.1.</span> <span class="nav-text">堆相对于栈的优缺点：</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-amp-amp-GC-深入知识"><span class="nav-number">1.</span> <span class="nav-text">JVM &amp;&amp; GC 深入知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈的内部结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚拟机栈的内部结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-堆"><span class="nav-number">1.4.</span> <span class="nav-text">Java 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆相对于栈的优缺点："><span class="nav-number">1.4.1.</span> <span class="nav-text">堆相对于栈的优缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">1.5.</span> <span class="nav-text">方法区</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -732,7 +773,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.1k</span>
+    <span title="Site words total count">35.4k</span>
   
 </div>
 

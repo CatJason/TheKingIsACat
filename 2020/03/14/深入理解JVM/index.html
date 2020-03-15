@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-15T16:02:20.365Z">
+<meta property="og:updated_time" content="2020-03-15T16:23:25.956Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2,574
+                  2,526
                 </span>
               
 
@@ -426,8 +426,8 @@
 <li>返回地址</li>
 <li>附加信息</li>
 </ul>
-<p>方法的调用=&gt;栈帧的入栈操作</p>
-<p>方法的返回=&gt;栈帧的出栈操作 </p>
+<p>方法的调用 =&gt; 栈帧的入栈操作</p>
+<p>方法的返回 =&gt; 栈帧的出栈操作 </p>
 <p> 如果方法调用时，方法的参数和局部变量相对较多，那么栈帧中的局部变量表就会比较大，栈帧会不断膨胀以满足方法调用所需传递的信息增大需求。因此，单个方法调用所需的栈空间也会比较多。</p>
 <p><em>局部变量:</em></p>
 <ul>
@@ -439,10 +439,8 @@
 </ul>
 <p><em>全局变量:</em></p>
 <ul>
-<li><p><em>定义在函数外部,模块内部的变量称为全局变量</em></p>
-</li>
-<li><p><em>所有的函数都可以直接访问”全局”变量,但函数内部不能直接通过赋值语句来改变全局变量</em></p>
-</li>
+<li><em>定义在函数外部,模块内部的变量称为全局变量</em></li>
+<li><em>所有的函数都可以直接访问”全局”变量,但函数内部不能直接通过赋值语句来改变全局变量</em></li>
 </ul>
 <p><em>局部变量表</em></p>
 <ul>
@@ -510,8 +508,9 @@
 <p>实现：为每个对象配置一个整形的计数器。</p>
 <p>对于一个对象 A，只要有任何 一个对象引用了 A ，则 A 的引用计数器就加 1，当引用失效时，引用计数器就减 1，只要对象 A 的引用计数器的值为 0，则对象 A 就不可能再被使用。</p>
 <p>引用计数器算法的一大优势就是不用等待内存不够用的时候，才进行垃圾的回收，完全可以在赋值操作的同时检查计数器是否为 0 ，如果是的话就可以立即回收。</p>
-<p>一个严重的问题：即无法处理循环引用</p>
-<p>一个简单的循环引用问题的描述如下 : 有对象 A 和对象 B ,对象 A 中含有对象 B 的引用,对象 B 中含有对象 A 的引用。此时，对象 A 和对象 B 的引用计数器都不为 0，但是在系统中却不存在任何第 3 个对象引用了 A 或 B 。也就是说 , A 和 B 是应该被回收的垃圾对象 , 但由于垃圾对象间相互引用，从而使垃圾回收器无法识别，引起内存泄漏。</p>
+<p>需要单独的字段存储计数器 =&gt; 增加存储空间的开销。</p>
+<p>每次赋值都需要更新计数器 =&gt; 这增加了时间开销。</p>
+<h4 id="一个严重的问题：无法处理循环引用"><a href="#一个严重的问题：无法处理循环引用" class="headerlink" title="一个严重的问题：无法处理循环引用"></a>一个严重的问题：无法处理循环引用</h4><p>垃圾对象间相互引用形成死锁，从而使垃圾回收器无法识别，引起内存泄漏。导致在 Java 的垃圾回收器中没有使用这类算法 。</p>
 
       
     </div>
@@ -734,7 +733,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-amp-amp-GC-深入知识"><span class="nav-number">1.</span> <span class="nav-text">JVM &amp;&amp; GC 深入知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈的内部结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚拟机栈的内部结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-堆"><span class="nav-number">1.4.</span> <span class="nav-text">Java 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆相对于栈的优缺点："><span class="nav-number">1.4.1.</span> <span class="nav-text">堆相对于栈的优缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">1.5.</span> <span class="nav-text">方法区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数算法"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数算法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-amp-amp-GC-深入知识"><span class="nav-number">1.</span> <span class="nav-text">JVM &amp;&amp; GC 深入知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈的内部结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚拟机栈的内部结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-堆"><span class="nav-number">1.4.</span> <span class="nav-text">Java 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆相对于栈的优缺点："><span class="nav-number">1.4.1.</span> <span class="nav-text">堆相对于栈的优缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">1.5.</span> <span class="nav-text">方法区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数算法"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个严重的问题：无法处理循环引用"><span class="nav-number">2.1.1.</span> <span class="nav-text">一个严重的问题：无法处理循环引用</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -780,7 +779,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.8k</span>
+    <span title="Site words total count">35.7k</span>
   
 </div>
 

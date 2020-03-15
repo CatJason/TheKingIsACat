@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-15T15:44:06.020Z">
+<meta property="og:updated_time" content="2020-03-15T16:02:20.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -511,7 +511,7 @@
 <p>对于一个对象 A，只要有任何 一个对象引用了 A ，则 A 的引用计数器就加 1，当引用失效时，引用计数器就减 1，只要对象 A 的引用计数器的值为 0，则对象 A 就不可能再被使用。</p>
 <p>引用计数器算法的一大优势就是不用等待内存不够用的时候，才进行垃圾的回收，完全可以在赋值操作的同时检查计数器是否为 0 ，如果是的话就可以立即回收。</p>
 <p>一个严重的问题：即无法处理循环引用</p>
-<p>一个简单的循环引用问题的描述如下 : 有对象 A 和对象 B ,对象 A 中含有对象 B 的引用,对象 B 中含有对象 A 的引<br>用。此时，对象 A 和对象 B 的引用计数器都不为 0，但是在系统中却不存在任何第 3 个对象引用了 A 或 B 。也就是说 , A 和 B 是应该被回收的垃圾对象 , 但由于垃圾对象间相互引用，从而使垃圾回收器无法识别，引起内存泄漏。</p>
+<p>一个简单的循环引用问题的描述如下 : 有对象 A 和对象 B ,对象 A 中含有对象 B 的引用,对象 B 中含有对象 A 的引用。此时，对象 A 和对象 B 的引用计数器都不为 0，但是在系统中却不存在任何第 3 个对象引用了 A 或 B 。也就是说 , A 和 B 是应该被回收的垃圾对象 , 但由于垃圾对象间相互引用，从而使垃圾回收器无法识别，引起内存泄漏。</p>
 
       
     </div>

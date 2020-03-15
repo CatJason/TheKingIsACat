@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-15T16:23:25.956Z">
+<meta property="og:updated_time" content="2020-03-15T17:23:21.391Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2,526
+                  3,259
                 </span>
               
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  9
+                  11
                 </span>
               
             </div>
@@ -507,10 +507,24 @@
 <h2 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h2><h3 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h3><p>垃圾标记阶段：区分出内存中哪些是存活对象，哪些是已经死亡的对象。</p>
 <p>实现：为每个对象配置一个整形的计数器。</p>
 <p>对于一个对象 A，只要有任何 一个对象引用了 A ，则 A 的引用计数器就加 1，当引用失效时，引用计数器就减 1，只要对象 A 的引用计数器的值为 0，则对象 A 就不可能再被使用。</p>
+<p>存活对象：计数器中的值不为0。</p>
 <p>引用计数器算法的一大优势就是不用等待内存不够用的时候，才进行垃圾的回收，完全可以在赋值操作的同时检查计数器是否为 0 ，如果是的话就可以立即回收。</p>
 <p>需要单独的字段存储计数器 =&gt; 增加存储空间的开销。</p>
 <p>每次赋值都需要更新计数器 =&gt; 这增加了时间开销。</p>
 <h4 id="一个严重的问题：无法处理循环引用"><a href="#一个严重的问题：无法处理循环引用" class="headerlink" title="一个严重的问题：无法处理循环引用"></a>一个严重的问题：无法处理循环引用</h4><p>垃圾对象间相互引用形成死锁，从而使垃圾回收器无法识别，引起内存泄漏。导致在 Java 的垃圾回收器中没有使用这类算法 。</p>
+<h3 id="根搜索算法"><a href="#根搜索算法" class="headerlink" title="根搜索算法"></a>根搜索算法</h3><p>Hotspot 和大部分 JVM 都是使用根搜索算法作为垃圾标记的算法实现。</p>
+<p>使用根搜索算法后,内存中的存活对象都会被根对象集合直接或间接连接着。</p>
+<p>根搜索算法是以根对象集合为起始点，按照从上至下的方式搜索被根对象集合所连接的目标对象是否可达，如果目标对象不可达，就意味着该对象己经死亡，便可以在 instanceOopDesc 的 Mark World 中将其标记为垃圾对象。</p>
+<p>存活对象：能够被根对象集合直接或者间接连接的对象。</p>
+<p>在 Hotspot 中，根对象集合中</p>
+<ul>
+<li>Java 栈内的对象引用</li>
+<li>本地方法栈内的对象引用</li>
+<li>运行时常量池中的对象引用</li>
+<li>方法区中类静态属性的对象引用</li>
+<li>与一个类对应的唯一数据类型的 Class 对象</li>
+</ul>
+<p><strong>在根搜索算法中不可达的对象,也并非是“非死不可”的，这时候它们暂时处于“缓刑”阶段，要真正宣告 一个对象死亡，至少要经历两次标记过程。如果对象在进行根搜索后发现没有与 GCRoots 相连接的引用链,那它将会被第一次标记井且进行一次筛选，筛选的条件是此对象是否有必要执行 finalize()方法。当对象没有覆盖<code>finalize()</code>方法,或者 <code>finalize()</code>方法已经被虚拟机调用过，虚拟机将这两种情况都视为“没有必要执行。如果这个对象被判定有必要执行 <code>finalize()</code>方法，那么这个对象将会被放置在一个名为 F-Queue 的队列之中，并在稍后由一条由虚拟机自动建立的、低优先级的 Finalizer 线程去执行。这里所谓的“执行”是指虚拟机会触发这个方法，但并不承诺会等待它运行结束。这样做的原因是，如果一个对象在 <code>finalize()</code>方法中执行缓慢，或者发生了死循环(更极端的情况)，很可能会导致 F-Queue 队列中的其他对象永久处于等待状态，甚至导致整个内存回收系统崩溃。 <code>finalize()</code>方法是对象逃脱死亡命运的最后一次机会，稍后 GC 将对 F-Queue 中的对象进行第二次小规模的标记，如果对象要在<code>finalize()</code>中成功拯救自己一一只要重新与引用链上的任何一个对象建立关联即可，譬如把自己(this 关键字)赋值给某个类变量或对象的成员变量，那在第二次标记时它将被移除出“即将回收”的集合。如果对象这时候还没有逃脱，那它就真的离死不远了 。</strong></p>
 
       
     </div>
@@ -733,7 +747,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-amp-amp-GC-深入知识"><span class="nav-number">1.</span> <span class="nav-text">JVM &amp;&amp; GC 深入知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈的内部结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚拟机栈的内部结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-堆"><span class="nav-number">1.4.</span> <span class="nav-text">Java 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆相对于栈的优缺点："><span class="nav-number">1.4.1.</span> <span class="nav-text">堆相对于栈的优缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">1.5.</span> <span class="nav-text">方法区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数算法"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个严重的问题：无法处理循环引用"><span class="nav-number">2.1.1.</span> <span class="nav-text">一个严重的问题：无法处理循环引用</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-amp-amp-GC-深入知识"><span class="nav-number">1.</span> <span class="nav-text">JVM &amp;&amp; GC 深入知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈的内部结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚拟机栈的内部结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-堆"><span class="nav-number">1.4.</span> <span class="nav-text">Java 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆相对于栈的优缺点："><span class="nav-number">1.4.1.</span> <span class="nav-text">堆相对于栈的优缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">1.5.</span> <span class="nav-text">方法区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数算法"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个严重的问题：无法处理循环引用"><span class="nav-number">2.1.1.</span> <span class="nav-text">一个严重的问题：无法处理循环引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根搜索算法"><span class="nav-number">2.2.</span> <span class="nav-text">根搜索算法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -779,7 +793,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">35.7k</span>
+    <span title="Site words total count">36.5k</span>
   
 </div>
 

@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-15T08:17:52.196Z">
+<meta property="og:updated_time" content="2020-03-15T08:29:45.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1,301
+                  1,437
                 </span>
               
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  4
+                  5
                 </span>
               
             </div>
@@ -431,12 +431,29 @@
 <p>方法的调用=&gt;栈帧的入栈操作</p>
 <p>方法的返回=&gt;栈帧的出栈操作 </p>
 <p> 如果方法调用时，方法的参数和局部变量相对较多，那么栈帧中的局部变量表就会比较大，栈帧会不断膨胀以满足方法调用所需传递的信息增大需求。因此，单个方法调用所需的栈空间也会比较多。</p>
+<p><em>局部变量:</em></p>
+<ul>
+<li><em>定义在函数内部的变量称为局部变量(函数的形参也是局部变量)</em></li>
+<li><em>局部变量只能在函数内部使用</em><ul>
+<li><em>局部变量在函数调用时才能够被创建,在函数调用结束之后会自动销毁</em></li>
+</ul>
+</li>
+</ul>
+<p><em>全局变量:</em></p>
+<ul>
+<li><p><em>定义在函数外部,模块内部的变量称为全局变量</em></p>
+</li>
+<li><p><em>所有的函数都可以直接访问”全局”变量,但函数内部不能直接通过赋值语句来改变全局变量</em></p>
+</li>
+</ul>
 <p><em>局部变量表</em></p>
 <ul>
 <li><em>定义为一个数字数组，主要用于存储方法参数和定义在方法体内的局部变量（包含各类基本数据类型、对象引用（reference），以及returnAddress类型。）</em></li>
 <li><em>最基本的存储单元是slot（变量槽）。</em></li>
 <li><em>建立在线程的栈上，是线程的私有数据，因此不存在数据安全问题。</em></li>
-<li><em>局部变量表所需的容量大小是在编译期固定下来的，保存在Code属性的maximum local variables数据项中。</em></li>
+<li><p><em>局部变量表所需的容量大小是在编译期固定下来的，保存在Code属性的maximum local variables数据项中。</em></p>
+</li>
+<li></li>
 </ul>
 
       
@@ -706,7 +723,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.5k</span>
+    <span title="Site words total count">34.6k</span>
   
 </div>
 

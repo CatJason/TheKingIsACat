@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-15T10:10:30.957Z">
+<meta property="og:updated_time" content="2020-03-15T10:36:14.198Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1,442
+                  1,657
                 </span>
               
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5
+                  6
                 </span>
               
             </div>
@@ -451,7 +451,13 @@
 <li><em>建立在线程的栈上，是线程的私有数据，因此不存在数据安全问题。</em></li>
 <li><em>局部变量表所需的容量大小是在编译期固定下来的，保存在Code属性的maximum local variables数据项中。</em></li>
 </ul>
-<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>虚拟机实现本地方法：传递给函数的参数以某个确定的顺序入栈，也以确定的方式返回值。</p>
+<p>线程会保存本地方法栈的状态并进入到另一个 Java 栈 。</p>
+<p>本地方法栈的内存区允许动态扩展收缩，某些 JVM 也允许用户或者程序员指定该内存区的初始大小以及最大、最小值。</p>
+<p>Java 虚拟机栈用于管理 Java 函数的调用，而本地方法栈用于管理本地方法的调用。</p>
+<p>本地方法并不是用 Java 实现的，而是使用 C 实现的。本质上是依赖于实现的。Can do anything you want,even register operation.</p>
+<p><em>在 SUN 的 Hotspot 虚拟机中，不区分本地方法械和虚拟机栈。因此，和虚拟机栈一样，它也会抛出 STACKOVERFLOWERROR 和OUTOFMEMORYERROR 。</em></p>
+
       
     </div>
     
@@ -719,7 +725,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.7k</span>
+    <span title="Site words total count">34.9k</span>
   
 </div>
 

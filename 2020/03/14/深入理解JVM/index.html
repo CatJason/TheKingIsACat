@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-16T12:47:39.328Z">
+<meta property="og:updated_time" content="2020-03-16T13:27:20.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  4,363
+                  4,755
                 </span>
               
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  15
+                  16
                 </span>
               
             </div>
@@ -597,12 +597,30 @@
 <p>缺点：系统内存折半。</p>
 <h3 id="标记-压缩算法-Mark-Compact"><a href="#标记-压缩算法-Mark-Compact" class="headerlink" title="标记-压缩算法 ( Mark-Compact)"></a>标记-压缩算法 ( Mark-Compact)</h3><p>标记-压缩算法是标记-清除算法和复制算法的有机结合。</p>
 <ol>
-<li>标记出内存中的垃圾对象</li>
-<li>将所有的存活对象都移动到 一个规整且连续的内存空间中</li>
-<li>然后执行 Full GC (老年代的垃圾回收 )回收无用对象所占用的内存空间 </li>
-<li>执行压缩之后，己用和未用的内存都各自一边，彼此之间维系着一个记录下一 次分配起始点的标记指针</li>
-<li>为新对象分配内存（使用指针碰撞( Bump the Pointer )技术修改指针的偏移量将新对象分配在第 一个空闲内存位置上，为新对象分配内存带来便捷）</li>
+<li><p>标记出内存中的垃圾对象</p>
+</li>
+<li><p>将所有的存活对象都移动到一个规整且连续的内存空间中（内存的一端）</p>
+</li>
+<li><p>然后执行 Full GC (老年代的垃圾回收 )回收无用对象所占用的内存空间 </p>
+<p><em>执行压缩之后，已用和未用的内存都各自一边，彼此之间维系着一个记录下一 次分配起始点的标记指针</em></p>
+</li>
+<li><p>为新对象分配内存（使用指针碰撞( Bump the Pointer )技术修改指针的偏移量将新对象分配在第 一个空闲内存位置上，为新对象分配内存带来便捷）</p>
+</li>
 </ol>
+<p>在 HotSpot 中，基于分代的概念，GC 所使用的内存回收算法必须结合年轻代和老年代各自<br>的特点。针对不同的代空间，结合使用不同的垃圾收集算法：</p>
+<ul>
+<li><p>年轻代通常是以速度优先</p>
+<ul>
+<li>存储的瞬时对象生命周期非常短暂 =&gt; 可以有针对性地使用复制算法，执行 Minor GC 时, 一 定要保持高效和快速</li>
+<li>生存空间通常都比较小 =&gt; 回收年轻代时一定会非常频繁</li>
+</ul>
+</li>
+<li><p>老年代通常使用更节省内存的回收算法</p>
+<p>老年代中所存储的对象生命周期都非常长，并且老年代占据了大部分的堆空间，所以老年代的 Full GC 并不会跟年轻代的 Minor GC 一样频繁，不过一旦程序中发生一次 Full GC ，将会耗费更长的时间来完成，那么在老年代中使用标记-清除算法或者标记-压缩算法执行垃圾回收将会是不错的选择。</p>
+</li>
+</ul>
+<p><em>复制算法的高效性是建立在存活对象少、垃圾对象多的前提下的。这种情况在年轻代经常发生，但是在老年代更常见的情况是大部分对象都是存活对象。如果依然使用复制算法，由于存活的对象较多，复制的成本也将很高。</em></p>
+<p>既避免了碎片的产生，又不需要两块相同的内存空间，性价比比较高。</p>
 
       
     </div>
@@ -871,7 +889,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">37.6k</span>
+    <span title="Site words total count">38.0k</span>
   
 </div>
 

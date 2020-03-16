@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-15T17:23:21.391Z">
+<meta property="og:updated_time" content="2020-03-16T04:13:03.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -401,7 +401,7 @@
 <li>在 Java 应用程序内部透明。</li>
 <li>字节码解释器的工作依赖计数器来完成。</li>
 </ul>
-<p>Java线程数量超过 CPU 数量时,线程之间采用时间片轮转调度算法实现并发执行，为此，每一个线程都必须有<br>一个独立的程序计数器，它被用来记录下一条需要执行的计算机指令 ，是线程独有的一块内存空间。</p>
+<p>Java线程数量超过 CPU 数量时,线程之间采用时间片轮转调度算法实现并发执行，为此，每一个线程都必须有一个独立的程序计数器，它被用来记录下一条需要执行的计算机指令 ，是线程独有的一块内存空间。</p>
 <p>如果当前线程正在执行一个 Java 方法，则程序计数器记录正在执行的 Java 字节码地址,如果当前线程正在执行 一个本地方法，则程序计数器为空。</p>
 <p>简单概括，即在多线程环境下，为了让线程切换后能恢复到正确的执行位置，每个钱程都需要有一个独立的程序计数器，各个线程之间互不影响、独立存储,因此这块内存是线程私有的。 NM 中的寄存器类似于物理寄存器的一种抽象模拟，它是线程私有的，所以生命周期与线程的生命周期保持一致。</p>
 <p>根据 Java 虚拟机定义来看，程序寄存器区域是唯一一个在 Java 虚拟机规范中没有规定任何 OutOtMemoryError情况的区域。</p>

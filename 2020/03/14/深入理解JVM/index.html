@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-16T11:38:09.318Z">
+<meta property="og:updated_time" content="2020-03-16T12:47:39.328Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  3,761
+                  4,363
                 </span>
               
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  13
+                  15
                 </span>
               
             </div>
@@ -526,7 +526,7 @@
 </ul>
 <p><strong>在根搜索算法中不可达的对象,也并非是“非死不可”的，这时候它们暂时处于“缓刑”阶段，要真正宣告 一个对象死亡，至少要经历两次标记过程。如果对象在进行根搜索后发现没有与 GCRoots 相连接的引用链,那它将会被第一次标记井且进行一次筛选，筛选的条件是此对象是否有必要执行 finalize()方法。当对象没有覆盖<code>finalize()</code>方法,或者 <code>finalize()</code>方法已经被虚拟机调用过，虚拟机将这两种情况都视为“没有必要执行。如果这个对象被判定有必要执行 <code>finalize()</code>方法，那么这个对象将会被放置在一个名为 F-Queue 的队列之中，并在稍后由一条由虚拟机自动建立的、低优先级的 Finalizer 线程去执行。这里所谓的“执行”是指虚拟机会触发这个方法，但并不承诺会等待它运行结束。这样做的原因是，如果一个对象在 <code>finalize()</code>方法中执行缓慢，或者发生了死循环(更极端的情况)，很可能会导致 F-Queue 队列中的其他对象永久处于等待状态，甚至导致整个内存回收系统崩溃。 <code>finalize()</code>方法是对象逃脱死亡命运的最后一次机会，稍后 GC 将对 F-Queue 中的对象进行第二次小规模的标记，如果对象要在<code>finalize()</code>中成功拯救自己一一只要重新与引用链上的任何一个对象建立关联即可，譬如把自己(this 关键字)赋值给某个类变量或对象的成员变量，那在第二次标记时它将被移除出“即将回收”的集合。如果对象这时候还没有逃脱，那它就真的离死不远了 。</strong></p>
 <p><em>任何一个对象的 finalize()方法都只会被系统自动调用一次,如果对象面临下一次回收,它的 finalize()方法不会被再次执行。</em></p>
-<h3 id="三种常用GC算法"><a href="#三种常用GC算法" class="headerlink" title="三种常用GC算法"></a>三种常用GC算法</h3><p>当成功区分出内存中存活对象和死亡对象后，GC 接下来的任务就是执行垃圾回收，释放掉无用对象所占用的内存 空间，以便有足够的可用内存空间为新对象分配内存。</p>
+<h3 id="三种常用GC算法的比较"><a href="#三种常用GC算法的比较" class="headerlink" title="三种常用GC算法的比较"></a>三种常用GC算法的比较</h3><p>当成功区分出内存中存活对象和死亡对象后，GC 接下来的任务就是执行垃圾回收，释放掉无用对象所占用的内存 空间，以便有足够的可用内存空间为新对象分配内存。</p>
 <table>
 <thead>
 <tr>
@@ -567,8 +567,7 @@
 </ul>
 <p>collector 就是回收不再使用的内存来供 mutator 进行 NEW 操作的使用。</p>
 <p>mutator 根对象一般指的是分配在堆内存之外，可以直接被 mutator 直接访问到的对象，一般是指静态/全局变量以及 ThreadLocal 变量。</p>
-<h4 id="标记·清除算法-Mark-Sweep"><a href="#标记·清除算法-Mark-Sweep" class="headerlink" title="标记·清除算法 ( Mark-Sweep )"></a>标记·清除算法 ( Mark-Sweep )</h4><p>标记·清除算法:</p>
-<ol>
+<h3 id="标记-清除算法-Mark-Sweep"><a href="#标记-清除算法-Mark-Sweep" class="headerlink" title="标记-清除算法 ( Mark-Sweep )"></a>标记-清除算法 ( Mark-Sweep )</h3><ol>
 <li><p>标记阶段：collector 从 mutator 根对象开始进行遍历，对从 mutator 根对象可以访问到的对象都打上一个标识，一般是在对象的 header 中，将其记录为可达对象。</p>
 </li>
 <li><p>清除阶段：collector 对堆内存( heap memory )从头到尾进行线性的遍历，如果发现某个对象没有标记为可达对象，通过读取对象的 header 信息，则将其回收。</p>
@@ -580,7 +579,31 @@
 </li>
 </ol>
 <p>这种分步执行的思路奠定了现代垃圾收集算法的思想基础。</p>
-<h4 id="复制算法-Copying"><a href="#复制算法-Copying" class="headerlink" title="复制算法 ( Copying )"></a>复制算法 ( Copying )</h4><h4 id="标记-压缩算法-Mark-Compact"><a href="#标记-压缩算法-Mark-Compact" class="headerlink" title="标记-压缩算法 ( Mark-Compact)"></a>标记-压缩算法 ( Mark-Compact)</h4>
+<p><em>与引用计数算法不同，标记-清除算法不需要运行环境监测每一次内存分配和指针操作,而只要在“标记”阶段中跟踪每一个指针变量的指向，用类似思路实现的垃圾收集器也常被后人统称为跟踪收集器( Tracing Collector )。</em></p>
+<h4 id="标记-清除算法缺点"><a href="#标记-清除算法缺点" class="headerlink" title="标记-清除算法缺点"></a>标记-清除算法缺点</h4><ul>
+<li>产生碎片：回收后的空间是不连续的。</li>
+<li>效率低下：在对象的堆空间分配过程中，尤其是大对象的内存分配，不连续的内存空间的工作效率要低于连续的空间。</li>
+</ul>
+<h4 id="复制算法-Copying"><a href="#复制算法-Copying" class="headerlink" title="复制算法 ( Copying )"></a>复制算法 ( Copying )</h4><p><em>为了解决标记-清除算法在垃圾收集效率方面的缺陷 , M.L.Minsky 于 1963 年发表了著名的</em><br><em>论文，“ 一利使用双存储区的 Lisp 语 言垃圾收集器 CA LISP Garbage Collector Algorithm Using</em><br><em>Serial Secondary Storage )”。</em></p>
+<ol>
+<li>将活着的内存空间分为两块，每次只使用其中一块</li>
+<li>在垃圾回收时将正在使用的内存中的存活对象复制到未被使用的内存块中</li>
+<li>清除正在使用的内存块中的所有对象</li>
+<li>交换两个内存的角色</li>
+<li>最后完成垃圾回收</li>
+</ol>
+<p>如果系统中的垃圾对象很多，复制算法需要复制的存活对象数量并不会太大。因此在真正需要垃圾回收的时刻,复制算法的效率是很高的。</p>
+<p>又由于对象在垃圾回收过程中统一被复制到新的内存空间中，回收后的内存空间是没有碎片的。</p>
+<p>缺点：系统内存折半。</p>
+<h3 id="标记-压缩算法-Mark-Compact"><a href="#标记-压缩算法-Mark-Compact" class="headerlink" title="标记-压缩算法 ( Mark-Compact)"></a>标记-压缩算法 ( Mark-Compact)</h3><p>标记-压缩算法是标记-清除算法和复制算法的有机结合。</p>
+<ol>
+<li>标记出内存中的垃圾对象</li>
+<li>将所有的存活对象都移动到 一个规整且连续的内存空间中</li>
+<li>然后执行 Full GC (老年代的垃圾回收 )回收无用对象所占用的内存空间 </li>
+<li>执行压缩之后，己用和未用的内存都各自一边，彼此之间维系着一个记录下一 次分配起始点的标记指针</li>
+<li>为新对象分配内存（使用指针碰撞( Bump the Pointer )技术修改指针的偏移量将新对象分配在第 一个空闲内存位置上，为新对象分配内存带来便捷）</li>
+</ol>
+
       
     </div>
     
@@ -802,7 +825,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-amp-amp-GC-深入知识"><span class="nav-number">1.</span> <span class="nav-text">JVM &amp;&amp; GC 深入知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈的内部结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚拟机栈的内部结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-堆"><span class="nav-number">1.4.</span> <span class="nav-text">Java 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆相对于栈的优缺点："><span class="nav-number">1.4.1.</span> <span class="nav-text">堆相对于栈的优缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">1.5.</span> <span class="nav-text">方法区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数算法"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个严重的问题：无法处理循环引用"><span class="nav-number">2.1.1.</span> <span class="nav-text">一个严重的问题：无法处理循环引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根搜索算法"><span class="nav-number">2.2.</span> <span class="nav-text">根搜索算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种常用GC算法"><span class="nav-number">2.3.</span> <span class="nav-text">三种常用GC算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标记·清除算法-Mark-Sweep"><span class="nav-number">2.3.1.</span> <span class="nav-text">标记·清除算法 ( Mark-Sweep )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制算法-Copying"><span class="nav-number">2.3.2.</span> <span class="nav-text">复制算法 ( Copying )</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-压缩算法-Mark-Compact"><span class="nav-number">2.3.3.</span> <span class="nav-text">标记-压缩算法 ( Mark-Compact)</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-amp-amp-GC-深入知识"><span class="nav-number">1.</span> <span class="nav-text">JVM &amp;&amp; GC 深入知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈的内部结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">虚拟机栈的内部结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-堆"><span class="nav-number">1.4.</span> <span class="nav-text">Java 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆相对于栈的优缺点："><span class="nav-number">1.4.1.</span> <span class="nav-text">堆相对于栈的优缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">1.5.</span> <span class="nav-text">方法区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数算法"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个严重的问题：无法处理循环引用"><span class="nav-number">2.1.1.</span> <span class="nav-text">一个严重的问题：无法处理循环引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根搜索算法"><span class="nav-number">2.2.</span> <span class="nav-text">根搜索算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种常用GC算法的比较"><span class="nav-number">2.3.</span> <span class="nav-text">三种常用GC算法的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-清除算法-Mark-Sweep"><span class="nav-number">2.4.</span> <span class="nav-text">标记-清除算法 ( Mark-Sweep )</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-清除算法缺点"><span class="nav-number">2.4.1.</span> <span class="nav-text">标记-清除算法缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制算法-Copying"><span class="nav-number">2.4.2.</span> <span class="nav-text">复制算法 ( Copying )</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-压缩算法-Mark-Compact"><span class="nav-number">2.5.</span> <span class="nav-text">标记-压缩算法 ( Mark-Compact)</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -848,7 +871,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">37.0k</span>
+    <span title="Site words total count">37.6k</span>
   
 </div>
 

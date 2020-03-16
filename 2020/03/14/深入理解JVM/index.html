@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-16T14:22:51.696Z">
+<meta property="og:updated_time" content="2020-03-16T14:32:51.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -634,7 +634,7 @@
 <p>增量收集算法的基础仍是传统的标记-清除和复制算法。</p>
 <p>增量收集算法通过对进程间冲突的妥善处理，允许垃圾收集进程以分阶段的方式完成标记、清理或复制工作。</p>
 <h3 id="分代收集算法-GenerationalCollecting"><a href="#分代收集算法-GenerationalCollecting" class="headerlink" title="分代收集算法( GenerationalCollecting )"></a>分代收集算法( GenerationalCollecting )</h3><p>大多数内存块的生存周期都比较短，垃圾收集器应当把更多的精力放在检查和清理新分配的内存块上。</p>
-<p><em>D E. Knuth, T. Knight、 G. Sussman 和 R. Stallman 等人对内存垃圾的分类处理做了最早的研究。 1983 年, H. Lieberman 和 C. Hewitt 发表了题为“基于对象寿命的一种实时垃圾收集器( A Real-Time Garbage Collector Based on the Lifetimes of Object ) ”的论文。这篇著名的论文标志着分代收集算法的正式诞生。此后,在 H. G. Baker 、 R. L. Hudson 、 J.E. B. Moss 等人的共同努力下,分代收集算法逐渐成为了垃圾收集领域里的主流技术</em>。</p>
+<p><em>D E. Knuth, T. Knight、 G. Sussman 和 R. Stallman 等人对内存垃圾的分类处理做了最早的研究。 1983 年， H. Lieberman 和 C. Hewitt 发表了题为“基于对象寿命的一种实时垃圾收集器( A Real-Time Garbage Collector Based on the Lifetimes of Object ) ”的论文。这篇著名的论文标志着分代收集算法的正式诞生。此后,在 H. G. Baker 、 R. L. Hudson 、 J.E. B. Moss 等人的共同努力下，分代收集算法逐渐成为了垃圾收集领域里的主流技术</em>。</p>
 <h4 id="分代思想"><a href="#分代思想" class="headerlink" title="分代思想"></a>分代思想</h4><p>将内存区间根据对象的特点分成几块，根据每块内存区间的特点，使用不同的回收算法以提高垃圾回收的效率 。</p>
 <p>以Hotspot 虚拟机为例：</p>
 <ul>
@@ -643,10 +643,10 @@
 </li>
 <li><p>老年代：经过几次回收后依然存活的对象所在区域。</p>
 <p><em>可以认为这些对象在一段时期内，甚至在应用程序的整个生命周期中，将是常驻内存的。如果依然使用复制算法回收老年代，将需要复制大量对象。再加上老年代的回收性价比也要低于年轻代，因此这种做法也是不可取的。</em></p>
-<p>使用标记-压缩算法,提高垃圾回收效率。</p>
+<p>使用标记-压缩算法，提高垃圾回收效率。</p>
 </li>
 </ul>
-<p>总的来说，分代收集算法是基于对对象生命周期分析后得出的垃圾回收算法。它把对象分为年轻代、老年代、持久代,对不同生命周期的对象使用不同的算法(上述方式中的一个)进行回收。</p>
+<p>总的来说，分代收集算法是基于对对象生命周期分析后得出的垃圾回收算法。它把对象分为年轻代、老年代、持久代，对不同生命周期的对象使用不同的算法(上述方式中的一个)进行回收。</p>
 
       
     </div>

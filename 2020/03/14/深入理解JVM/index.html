@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-17T04:46:30.398Z">
+<meta property="og:updated_time" content="2020-03-17T04:53:11.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -431,10 +431,10 @@
 <p> 如果方法调用时，方法的参数和局部变量相对较多，那么栈帧中的局部变量表就会比较大，栈帧会不断膨胀以满足方法调用所需传递的信息增大需求。因此，单个方法调用所需的栈空间也会比较多。</p>
 <p><em>局部变量:</em></p>
 <ul>
-<li><em>定义在函数内部的变量称为局部变量(函数的形参也是局部变量)</em></li>
-<li><em>局部变量只能在函数内部使用</em><ul>
-<li><em>局部变量在函数调用时才能够被创建，在函数调用结束之后会自动销毁</em></li>
-</ul>
+<li><p><em>定义在函数内部的变量称为局部变量(函数的形参也是局部变量)</em></p>
+</li>
+<li><p><em>局部变量只能在函数内部使用</em></p>
+<p><em>局部变量在函数调用时才能够被创建，在函数调用结束之后会自动销毁</em></p>
 </li>
 </ul>
 <p><em>全局变量:</em></p>

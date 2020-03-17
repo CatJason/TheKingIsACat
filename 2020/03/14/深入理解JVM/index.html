@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-17T05:00:00.746Z">
+<meta property="og:updated_time" content="2020-03-17T11:08:06.503Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  5,896
+                  6,195
                 </span>
               
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  20
+                  22
                 </span>
               
             </div>
@@ -643,7 +643,27 @@
 </li>
 </ul>
 <p>总的来说，分代收集算法是基于对对象生命周期分析后得出的垃圾回收算法。它把对象分为年轻代、老年代、持久代，对不同生命周期的对象使用不同的算法(上述方式中的一个)进行回收。</p>
-
+<h2 id="Garbage-Collection"><a href="#Garbage-Collection" class="headerlink" title="Garbage Collection"></a>Garbage Collection</h2><h3 id="GC概念"><a href="#GC概念" class="headerlink" title="GC概念"></a>GC概念</h3><h4 id="HotSpot中GC划分的两大块"><a href="#HotSpot中GC划分的两大块" class="headerlink" title="HotSpot中GC划分的两大块"></a>HotSpot中GC划分的两大块</h4><ul>
+<li>内存的动态分配</li>
+<li>垃圾回收</li>
+</ul>
+<p>在内存执行分配之前 GC 首先会对内存空间进行分代划分</p>
+<p>当内存空间中的内存消耗达到了一定阔值的时候，GC 就会执行垃圾回收。</p>
+<h4 id="回收算法四个要求"><a href="#回收算法四个要求" class="headerlink" title="回收算法四个要求"></a>回收算法四个要求</h4><ol>
+<li>不能造成内存中存活的对象被错误地回收掉</li>
+<li>不能造成已经死亡的对象没有被及时地回收掉</li>
+<li>高效，不应该导致应用程序出现长时间的暂停</li>
+<li>避免产生内存碎片</li>
+</ol>
+<h4 id="GC性能标准"><a href="#GC性能标准" class="headerlink" title="GC性能标准"></a>GC性能标准</h4><ul>
+<li>吞吐量：程序的运行时间(程序的运行时间+内存回收的时间)。</li>
+<li>垃圾收集开销：吞吐量的补数,垃圾收集器所占时间与总时间的比例。</li>
+<li>暂停时间：执行垃圾收集时,程序的工作线程被暂停的时间。</li>
+<li>收集频率：相对于应用程序的执行,收集操作发生的频率。</li>
+<li>堆空间：Java 堆区所占的内存大小。</li>
+<li>快速：一个对象从诞生到被回收所经历的时间。</li>
+</ul>
+<h3 id="垃圾收集器分类"><a href="#垃圾收集器分类" class="headerlink" title="垃圾收集器分类"></a>垃圾收集器分类</h3>
       
     </div>
     
@@ -865,7 +885,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-amp-amp-GC-深入知识"><span class="nav-number">1.</span> <span class="nav-text">JVM &amp;&amp; GC 深入知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两种与栈空间有关的异常"><span class="nav-number">1.2.1.</span> <span class="nav-text">两种与栈空间有关的异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈的内部结构"><span class="nav-number">1.2.2.</span> <span class="nav-text">虚拟机栈的内部结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部变量"><span class="nav-number">1.2.3.</span> <span class="nav-text">局部变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#全局变量"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#局部变量表"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">局部变量表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-堆"><span class="nav-number">1.4.</span> <span class="nav-text">Java 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆相对于栈的优缺点："><span class="nav-number">1.4.1.</span> <span class="nav-text">堆相对于栈的优缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">1.5.</span> <span class="nav-text">方法区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数算法"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个严重的问题：无法处理循环引用"><span class="nav-number">2.1.1.</span> <span class="nav-text">一个严重的问题：无法处理循环引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根搜索算法"><span class="nav-number">2.2.</span> <span class="nav-text">根搜索算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种常用GC算法的比较"><span class="nav-number">2.3.</span> <span class="nav-text">三种常用GC算法的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-清除算法-Mark-Sweep"><span class="nav-number">2.4.</span> <span class="nav-text">标记-清除算法 ( Mark-Sweep )</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-清除算法缺点"><span class="nav-number">2.4.1.</span> <span class="nav-text">标记-清除算法缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制算法-Copying"><span class="nav-number">2.4.2.</span> <span class="nav-text">复制算法 ( Copying )</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-压缩算法-Mark-Compact"><span class="nav-number">2.5.</span> <span class="nav-text">标记-压缩算法 ( Mark-Compact)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增量算法-Incremental-Collecting"><span class="nav-number">2.6.</span> <span class="nav-text">增量算法 ( Incremental Collecting )</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Stop-the-World状态"><span class="nav-number">2.6.1.</span> <span class="nav-text">Stop the World状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多进程的运行环境面临的问题"><span class="nav-number">2.6.2.</span> <span class="nav-text">多进程的运行环境面临的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增量算法的基本思想"><span class="nav-number">2.6.3.</span> <span class="nav-text">增量算法的基本思想</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分代收集算法-GenerationalCollecting"><span class="nav-number">2.7.</span> <span class="nav-text">分代收集算法( GenerationalCollecting )</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分代思想"><span class="nav-number">2.7.1.</span> <span class="nav-text">分代思想</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM-amp-amp-GC-深入知识"><span class="nav-number">1.</span> <span class="nav-text">JVM &amp;&amp; GC 深入知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">1.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">1.2.</span> <span class="nav-text">虚拟机栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#两种与栈空间有关的异常"><span class="nav-number">1.2.1.</span> <span class="nav-text">两种与栈空间有关的异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机栈的内部结构"><span class="nav-number">1.2.2.</span> <span class="nav-text">虚拟机栈的内部结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#局部变量"><span class="nav-number">1.2.3.</span> <span class="nav-text">局部变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#全局变量"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">全局变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#局部变量表"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">局部变量表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-堆"><span class="nav-number">1.4.</span> <span class="nav-text">Java 堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆相对于栈的优缺点："><span class="nav-number">1.4.1.</span> <span class="nav-text">堆相对于栈的优缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">1.5.</span> <span class="nav-text">方法区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">2.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用计数算法"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个严重的问题：无法处理循环引用"><span class="nav-number">2.1.1.</span> <span class="nav-text">一个严重的问题：无法处理循环引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根搜索算法"><span class="nav-number">2.2.</span> <span class="nav-text">根搜索算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种常用GC算法的比较"><span class="nav-number">2.3.</span> <span class="nav-text">三种常用GC算法的比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-清除算法-Mark-Sweep"><span class="nav-number">2.4.</span> <span class="nav-text">标记-清除算法 ( Mark-Sweep )</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标记-清除算法缺点"><span class="nav-number">2.4.1.</span> <span class="nav-text">标记-清除算法缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制算法-Copying"><span class="nav-number">2.4.2.</span> <span class="nav-text">复制算法 ( Copying )</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标记-压缩算法-Mark-Compact"><span class="nav-number">2.5.</span> <span class="nav-text">标记-压缩算法 ( Mark-Compact)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增量算法-Incremental-Collecting"><span class="nav-number">2.6.</span> <span class="nav-text">增量算法 ( Incremental Collecting )</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Stop-the-World状态"><span class="nav-number">2.6.1.</span> <span class="nav-text">Stop the World状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多进程的运行环境面临的问题"><span class="nav-number">2.6.2.</span> <span class="nav-text">多进程的运行环境面临的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#增量算法的基本思想"><span class="nav-number">2.6.3.</span> <span class="nav-text">增量算法的基本思想</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分代收集算法-GenerationalCollecting"><span class="nav-number">2.7.</span> <span class="nav-text">分代收集算法( GenerationalCollecting )</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分代思想"><span class="nav-number">2.7.1.</span> <span class="nav-text">分代思想</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Garbage-Collection"><span class="nav-number">3.</span> <span class="nav-text">Garbage Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GC概念"><span class="nav-number">3.1.</span> <span class="nav-text">GC概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HotSpot中GC划分的两大块"><span class="nav-number">3.1.1.</span> <span class="nav-text">HotSpot中GC划分的两大块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回收算法四个要求"><span class="nav-number">3.1.2.</span> <span class="nav-text">回收算法四个要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GC性能标准"><span class="nav-number">3.1.3.</span> <span class="nav-text">GC性能标准</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集器分类"><span class="nav-number">3.2.</span> <span class="nav-text">垃圾收集器分类</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -911,7 +931,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">39.1k</span>
+    <span title="Site words total count">39.4k</span>
   
 </div>
 

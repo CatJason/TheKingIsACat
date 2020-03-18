@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-18T12:49:17.039Z">
+<meta property="og:updated_time" content="2020-03-18T12:59:07.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  9,401
+                  9,685
                 </span>
               
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  33
+                  34
                 </span>
               
             </div>
@@ -762,10 +762,21 @@
 <p>基于低延迟的考虑，JVM 的设计者们提供了基于井行回收的 CMS ( Concurrent-Marking-Sweep )收集器，它是一款优秀的老年代垃圾收集器，也可以被称作 Mostly-Concurrent 收集器。</p>
 <p> CMS 天生为并发而生，低延迟是它的优势，不过垃圾收集算法却并没有采用标记-复制算法，而是采用标记-清除算法，并且也会因为“ Stop-the-world ”机制而出现短暂的暂停。</p>
 <h4 id="CMS-的执行过程"><a href="#CMS-的执行过程" class="headerlink" title="CMS 的执行过程"></a>CMS 的执行过程</h4><ul>
-<li>初始标记( Initial-Mark )阶段</li>
-<li>并发标记( Concurrent-Mark )阶段</li>
-<li>标记 ( Remark ) 阶段</li>
-<li>并发清除 ( Concurrent-Sweep ) 阶段</li>
+<li><p>初始标记( Initial-Mark )阶段</p>
+<p>程序中所有的工作线程都将会因为“ Stop-the-World ”机制而出现短暂的暂停，这个阶段的主要任务就是标记出内存中那些被根对象集合所连接的目标对象是否可达，一旦标记完成之后就会恢复之前被暂停的所有应用线程。</p>
+</li>
+<li><p>并发标记( Concurrent-Mark )阶段</p>
+<p>这个阶段的主要任务就是将之前的不可达对象标记为垃圾对象。</p>
+</li>
+</ul>
+<p>由于在并发标记阶段中，程序的工作线程会和垃圾收集线程同时运行或者交叉运行，因此在并发标记阶段将无法有效确保之前被标记为垃圾的无用对象的引用关系遭到更改，为了解决这个问题，CMS 会进入到再次标记阶段。</p>
+<ul>
+<li><p>标记 ( Remark ) 阶段</p>
+<p>程序会因为“ Stop-the-World ”机制而再次出现短暂的暂停，以确保这些垃圾对象都能够被成功且正确地标记 。</p>
+</li>
+<li><p>并发清除 ( Concurrent-Sweep ) 阶段</p>
+<p>CMS 最终将会进入到并发清除阶段执行内存回收，释放掉无用对象所占用的内存空间。</p>
+</li>
 </ul>
 
       
@@ -1035,7 +1046,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">42.6k</span>
+    <span title="Site words total count">42.9k</span>
   
 </div>
 

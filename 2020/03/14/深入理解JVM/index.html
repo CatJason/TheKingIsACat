@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-18T12:59:07.695Z">
+<meta property="og:updated_time" content="2020-03-18T13:27:33.563Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  9,685
+                  9,968
                 </span>
               
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  34
+                  35
                 </span>
               
             </div>
@@ -769,7 +769,7 @@
 <p>这个阶段的主要任务就是将之前的不可达对象标记为垃圾对象。</p>
 </li>
 </ul>
-<p>由于在并发标记阶段中，程序的工作线程会和垃圾收集线程同时运行或者交叉运行，因此在并发标记阶段将无法有效确保之前被标记为垃圾的无用对象的引用关系遭到更改，为了解决这个问题，CMS 会进入到再次标记阶段。</p>
+<p><em>由于在并发标记阶段中，程序的工作线程会和垃圾收集线程同时运行或者交叉运行，因此在并发标记阶段将无法有效确保之前被标记为垃圾的无用对象的引用关系遭到更改，为了解决这个问题，CMS 会进入到再次标记阶段。</em></p>
 <ul>
 <li><p>标记 ( Remark ) 阶段</p>
 <p>程序会因为“ Stop-the-World ”机制而再次出现短暂的暂停，以确保这些垃圾对象都能够被成功且正确地标记 。</p>
@@ -778,6 +778,8 @@
 <p>CMS 最终将会进入到并发清除阶段执行内存回收，释放掉无用对象所占用的内存空间。</p>
 </li>
 </ul>
+<p><em>尽管 CMS 收集器采用的是并行回收，但是在其初始化标记和再次标记这两个阶段中仍然需要执行“ Stop-the-World ”机制暂停程序中的工作线程，不过暂停时间并不会太长，因此可以说明目前所有的垃圾收集器都做不到完全不需要“ Stop-the-World ”，只是尽可能地缩短暂停时间。</em></p>
+<p><em>Serial Old 收集器 、 Parallel Old 老年代垃圾收集器的垃圾收集算法都是采用标记-压缩来避免执行 Full GC 后产生内存碎片，而 CMS 收集器的垃圾收集算法采用的是标记-清除算法，这意味着每次执行完内存回收后，由于被执行内存回收的无用对象所占用的内存空间极有可能是不连续的一些内存块，不可避免地将会产生一些内存碎片。那么 CMS 在为新对象分配内存空间后，将无法使用指针碰撞( Bump the Pointer )技术，而只能选择空闲列表( Free List )执行内存分配。</em></p>
 
       
     </div>
@@ -1046,7 +1048,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">42.9k</span>
+    <span title="Site words total count">43.2k</span>
   
 </div>
 

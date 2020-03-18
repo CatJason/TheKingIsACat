@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-18T05:28:33.690Z">
+<meta property="og:updated_time" content="2020-03-18T05:30:29.435Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -697,7 +697,7 @@
 <h3 id="Serial-收集器"><a href="#Serial-收集器" class="headerlink" title="Serial 收集器"></a>Serial 收集器</h3><p>它采用复制算法、串行回收和“ Stop-the-World ”机制的方式执行内存回收 。</p>
 <p><em>在早期的 JDK 版本中，由于那个年代的 CPU 速度并没有这么快,所以在 CPU 受限于单个 CPU 的情况下，使用 Serial 收集器执行年轻代垃圾收集几乎是唯一 的选择。Serial 收集器默认也作为 HotSpot 中 Client 模式下的年轻代垃圾收集器。</em></p>
 <p>Serial 收集器还提供用于执行老年代垃圾收集的 Serial Old 收集器。同样也采用了串行回收和“ Stop the-World ”机制，只不过内存回收算法使用的是标记-压缩算法。</p>
-<p><em>如果在 JVM 受限于单个 CPU 的环境下，使用 Serial 收集器加上 Serial Old 收集器的组合执行 Client 模式下的内存回收将会是不错的选择——基于串行回收的垃圾收集器适用于大多数对暂停时间要求不高的 Client 模式下的 JVM，由于 CPU 不需要频繁地做任务切换，因此可以有效避免多线程交互过程中产生的一些额外开销，虽然执行串行回收会降低程序的吞吐量，但是回收质量还是不错的。在程序中，开发人员可以通过选项 “ -XX:+UseSerialGC “ 手动指定使用 Serial 收集器执行内存回收任务。</em></p>
+<p><em>如果在 JVM 受限于单个 CPU 的环境下，使用 Serial 收集器加上 Serial Old 收集器的组合执行 Client 模式下的内存回收将会是不错的选择——基于串行回收的垃圾收集器适用于大多数对暂停时间要求不高的 Client 模式下的 JVM，由于 CPU 不需要频繁地做任务切换，因此可以有效避免多线程交互过程中产生的一些额外开销，虽然执行串行回收会降低程序的吞吐量，但是回收质量还是不错的。在程序中，开发人员可以通过选项 “ -XX:+UseSerialGC” 手动指定使用 Serial 收集器执行内存回收任务。</em></p>
 
       
     </div>

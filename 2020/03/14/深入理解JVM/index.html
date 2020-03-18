@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="Welcome to My Blog">
 <meta property="og:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-03-18T10:04:02.964Z">
+<meta property="og:updated_time" content="2020-03-18T10:34:21.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解 JVM">
 <meta name="twitter:description" content="本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。">
@@ -340,7 +340,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  7,585
+                  7,899
                 </span>
               
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  26
+                  27
                 </span>
               
             </div>
@@ -719,6 +719,14 @@
 </ul>
 <h3 id="ParNew-收集器"><a href="#ParNew-收集器" class="headerlink" title="ParNew 收集器"></a>ParNew 收集器</h3><p>如果说 Serial 是年轻代中的单线程垃圾收集器，那么 ParNew 收集器则是 Serial 收集器的多线程版本。</p>
 <p>ParNew 收集器除了采用井行回收的方式执行内存回收外，两款垃圾收集器之间几乎没有任何区别，因为 ParNew 收集器在年轻代中同样也是采用复制算法和“Stop-the-World”机制。</p>
+<p>ParNew 收集器运行在多 CPU 的环境下，由于可以充分利用多 CPU 、多核心等物理硬件资源优势，确实可以更快速地完成垃圾收集，提升程序的吞吐量，但是如果是在单个 CPU 的环境下，ParNew 收集器不见得比 Serial 收集器更高效。</p>
+<p><em>虽然 Serial 收集器是基于串行回收，但是由于 CPU 不需要频繁地做任务切换,因此可以有效避免多线程交互过程中产生的一 些额外开销 。所以从理论上来说， Serial 收集器的优势是在 JVM 受限于单 CPU 环境中，而 ParNew 收集器的优势则是体现在多 CPU 、多核心的环境中，并且在某些注重低延迟的应用场景下，ParNew 收集器和 CMS (Concurrent-Mark-Sweep )收集器的组合模式，在 Sever 模式下的内存回收效果很好。在程序中，开发人员可以通过选项“-XX:+UseParNewGC ”手动指定使用 ParNew 收集器执行内存回收任务。</em></p>
+<ul>
+<li><p>-XX:+UseParallelGC：年轻代使用并行回收收集器，老年代使用串行收集器。</p>
+</li>
+<li><p>-XX:+UseParNewGC：年轻代使用井行收集器，老年代使用串行收集器。</p>
+</li>
+</ul>
 
       
     </div>
@@ -987,7 +995,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">40.8k</span>
+    <span title="Site words total count">41.1k</span>
   
 </div>
 

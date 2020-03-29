@@ -23,7 +23,8 @@
   <entry>
     <title>详解KMP算法</title>
     <url>/2020/03/25/%E8%AF%A6%E8%A7%A3KMP%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<p>因为发现网上缺少kmp算法的详细解析，大多解析又是从数学角度解释kmp算法的原理，让人云里雾里看不明白，故有了这篇文章，主要对kmp算法难点求next[]数组的算法进行详细解析。</p>
+<a id="more"></a>
 
 <p><img src="/images/pictures/%E8%AF%A6%E8%A7%A3KMP%E7%AE%97%E6%B3%95/1.jpeg" alt="success"></p>
 <p><img src="/images/pictures/%E8%AF%A6%E8%A7%A3KMP%E7%AE%97%E6%B3%95/2.jpeg" alt="success"></p>

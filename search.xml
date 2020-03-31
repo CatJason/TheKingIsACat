@@ -23,32 +23,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Android内存分析命令</title>
-    <url>/2020/03/31/Android%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h2 id="常用的内存调优分析命令"><a href="#常用的内存调优分析命令" class="headerlink" title="常用的内存调优分析命令"></a>常用的内存调优分析命令</h2><ol>
-<li>dumpsys meminfo</li>
-<li>procrank</li>
-<li>cat /proc/meminfo</li>
-<li>free</li>
-<li>showmap</li>
-<li>vmstat</li>
-</ol>
-<a id="more"></a>
-
-<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><ol>
-<li>dumpsys meminfo`适用场景： 查看进程的oom adj，或者dalvik/native等区域内存情况，或者某个进程或apk的内存情况，功能非常强大；</li>
-<li><code>procrank</code>适用场景： 查看进程的VSS/RSS/PSS/USS各个内存指标；</li>
-<li><code>cat /proc/meminfo</code>适用场景： 查看系统的详尽内存信息，包含内核情况；</li>
-<li><code>free</code>适用场景： 只查看系统的可用内存；</li>
-<li><code>showmap</code>适用场景： 查看进程的虚拟地址空间的内存分配情况；</li>
-<li><code>vmstat</code>适用场景： 周期性地打印出进程运行队列、系统切换、CPU时间占比等情况；</li>
-</ol>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-  </entry>
-  <entry>
     <title>详解KMP算法</title>
     <url>/2020/03/25/%E8%AF%A6%E8%A7%A3KMP%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<p>因为发现网上缺少kmp算法的详细解析，大多解析又是从数学角度解释kmp算法的原理，让人云里雾里看不明白，故有了这篇文章，主要对kmp算法难点求next[]数组的算法进行详细解析。</p>

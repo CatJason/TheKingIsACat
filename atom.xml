@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-15T13:36:54.340Z</updated>
+  <updated>2020-04-20T13:25:20.407Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android基础知识梳理</title>
+    <link href="http://yoursite.com/2020/04/19/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/"/>
+    <id>http://yoursite.com/2020/04/19/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/</id>
+    <published>2020-04-19T10:57:36.000Z</published>
+    <updated>2020-04-20T13:25:20.407Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Activity生命周期参考&lt;a href=&quot;https://www.cnblogs.com/lwbqqyumidi/p/3769113.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/lwbqqyumidi/p/3769113.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Activity启动模式（lauchMode）参考&lt;a href=&quot;https://blog.csdn.net/liuhe688/java/article/details/6754323&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/liuhe688/java/article/details/6754323&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>三色旗算法</title>
@@ -26,23 +46,6 @@
     <summary type="html">
     
       &lt;p&gt;三色旗算法&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>博主的FLAG</title>
-    <link href="http://yoursite.com/2020/04/09/%E5%8D%9A%E4%B8%BB%E7%9A%84FLAG/"/>
-    <id>http://yoursite.com/2020/04/09/%E5%8D%9A%E4%B8%BB%E7%9A%84FLAG/</id>
-    <published>2020-04-09T13:28:07.000Z</published>
-    <updated>2020-04-09T13:35:36.671Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;立此帖专门提醒博主本人，踏实再踏实，实践再实践。&lt;/p&gt;
     
     </summary>
     
@@ -106,7 +109,7 @@
     <link href="http://yoursite.com/2020/03/31/java%E4%B8%AD%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8%EF%BC%88%E5%BC%BA%E3%80%81%E5%BC%B1%E3%80%81%E8%BD%AF%E3%80%81%E8%99%9A%EF%BC%89%E5%92%8CGC%E7%9A%84%E5%85%B3%E7%B3%BB/"/>
     <id>http://yoursite.com/2020/03/31/java%E4%B8%AD%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8%EF%BC%88%E5%BC%BA%E3%80%81%E5%BC%B1%E3%80%81%E8%BD%AF%E3%80%81%E8%99%9A%EF%BC%89%E5%92%8CGC%E7%9A%84%E5%85%B3%E7%B3%BB/</id>
     <published>2020-03-31T05:46:56.000Z</published>
-    <updated>2020-03-31T06:00:48.976Z</updated>
+    <updated>2020-04-20T13:26:50.914Z</updated>
     
     <summary type="html">
     
@@ -115,7 +118,7 @@
     </summary>
     
     
-      <category term="JAVA" scheme="http://yoursite.com/categories/JAVA/"/>
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
     
     
   </entry>

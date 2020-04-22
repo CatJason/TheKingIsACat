@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://yoursite.com/images/pictures/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/Activity%E6%A0%87%E5%87%86%E7%9A%84%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F-singleInstance%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8E%9F%E7%90%863.png">
 <meta property="og:image" content="http://yoursite.com/images/pictures/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/Server%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.jpg">
 <meta property="article:published_time" content="2020-04-19T10:57:36.000Z">
-<meta property="article:modified_time" content="2020-04-22T18:20:03.070Z">
+<meta property="article:modified_time" content="2020-04-22T18:22:52.746Z">
 <meta property="article:author" content="Jason Wang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/pictures/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/Activity%E6%A0%87%E5%87%86%E7%9A%84%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F-standard%E6%A8%A1%E5%BC%8F%E5%90%AF%E5%8A%A8%E5%AE%9E%E9%AA%8C.png">
@@ -677,8 +677,8 @@
 </li>
 </ul>
 <p>关于这些返回值的详情，请参阅每个常量的参考文档链接。</p>
-<h4 id="启动一个服务"><a href="#启动一个服务" class="headerlink" title="启动一个服务"></a>启动一个服务</h4><p>从activity或其它应用程序组件中可以启动一个服务，调用<a href="http://developer.android.com/reference/android/content/Context.html#startService(android.content.Intent)" target="_blank" rel="noopener">startService()</a>并传入一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank" rel="noopener">Intent</a>（指定所需启动的服务）即可。Android系统将调用服务的[onStartCommand()](<a href="http://developer.android.com/reference/android/app/Service.html#onStartCommand" target="_blank" rel="noopener">http://developer.android.com/reference/android/app/Service.html#onStartCommand</a>(android.content.Intent, int, int))方法，并传入该<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank" rel="noopener">Intent</a>（你永远都不应该直接去调用[onStartCommand()](<a href="http://developer.android.com/reference/android/app/Service.html#onStartCommand" target="_blank" rel="noopener">http://developer.android.com/reference/android/app/Service.html#onStartCommand</a>(android.content.Intent, int, int))。）</p>
-<p>例如，一个activity可以用一个显式的intent通过<a href="http://developer.android.com/reference/android/content/Context.html#startService(android.content.Intent)" target="_blank" rel="noopener">startService()</a>启动上一节的示例服务（HelloSevice）：</p>
+<h4 id="启动一个服务"><a href="#启动一个服务" class="headerlink" title="启动一个服务"></a>启动一个服务</h4><p>从activity或其它应用程序组件中可以启动一个服务，调用<code>startService()</code>并传入一个<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank" rel="noopener">Intent</a>（指定所需启动的服务）即可。Android系统将调用服务的<code>onStartCommand()</code>方法，并传入该<a href="http://developer.android.com/reference/android/content/Intent.html" target="_blank" rel="noopener">Intent</a>（你永远都不应该直接去调用<code>onStartCommand()</code>。）</p>
+<p>例如，一个activity可以用一个显式的intent通过<code>startService()</code>启动上一节的示例服务（HelloSevice）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Intent intent &#x3D; new Intent(this, HelloService.class);</span><br><span class="line">startService(intent);</span><br></pre></td></tr></table></figure>
 
 <p><a href="http://developer.android.com/reference/android/content/Context.html#startService(android.content.Intent)" target="_blank" rel="noopener">startService()</a>方法会立即返回，Android系统会去调用服务的[onStartCommand()](<a href="http://developer.android.com/reference/android/app/Service.html#onStartCommand" target="_blank" rel="noopener">http://developer.android.com/reference/android/app/Service.html#onStartCommand</a>(android.content.Intent, int, int)) 方法。如果服务还未运行，系统会首先调用<a href="http://developer.android.com/reference/android/app/Service.html#onCreate()" target="_blank" rel="noopener">onCreate()</a>，然后再去调用[onStartCommand()](<a href="http://developer.android.com/reference/android/app/Service.html#onStartCommand" target="_blank" rel="noopener">http://developer.android.com/reference/android/app/Service.html#onStartCommand</a>(android.content.Intent, int, int)) 。</p>
@@ -755,7 +755,7 @@
   <p><span>本文标题:</span>Android基础知识梳理</a></p>
   <p><span>文章作者:</span>Jason Wang</a></p>
   <p><span>发布时间:</span>2020年04月19日 - 18:57:36</p>
-  <p><span>最后更新:</span>2020年04月23日 - 02:20:03</p>
+  <p><span>最后更新:</span>2020年04月23日 - 02:22:52</p>
   <p><span>原始链接:</span><a href="/2020/04/19/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/" title="Android基础知识梳理">https://catjason.github.io/2020/04/19/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/04/19/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/"  aria-label="复制成功！"></i></span>
   </p>

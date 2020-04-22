@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-20T13:25:20.407Z</updated>
+  <updated>2020-04-21T04:36:42.135Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,15 +17,35 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>LeetCode常用Java语言API与API用法</title>
+    <link href="http://yoursite.com/2020/04/20/LeetCode%E5%B8%B8%E7%94%A8Java%E8%AF%AD%E8%A8%80API%E4%B8%8EAPI%E7%94%A8%E6%B3%95/"/>
+    <id>http://yoursite.com/2020/04/20/LeetCode%E5%B8%B8%E7%94%A8Java%E8%AF%AD%E8%A8%80API%E4%B8%8EAPI%E7%94%A8%E6%B3%95/</id>
+    <published>2020-04-20T15:18:51.000Z</published>
+    <updated>2020-04-21T04:36:42.135Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;对leetcode刷题中常用的Java语言API进行总结，穿插一些经典的写法。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="http://yoursite.com/categories/LeetCode/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Android基础知识梳理</title>
     <link href="http://yoursite.com/2020/04/19/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/"/>
     <id>http://yoursite.com/2020/04/19/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/</id>
     <published>2020-04-19T10:57:36.000Z</published>
-    <updated>2020-04-20T13:25:20.407Z</updated>
+    <updated>2020-04-21T05:02:12.482Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;Activity生命周期参考&lt;a href=&quot;https://www.cnblogs.com/lwbqqyumidi/p/3769113.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/lwbqqyumidi/p/3769113.html&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;以下内容均有参考Android官法开发文档&lt;/p&gt;
+&lt;p&gt;Activity生命周期参考&lt;a href=&quot;https://www.cnblogs.com/lwbqqyumidi/p/3769113.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/lwbqqyumidi/p/3769113.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Activity启动模式（lauchMode）参考&lt;a href=&quot;https://blog.csdn.net/liuhe688/java/article/details/6754323&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/liuhe688/java/article/details/6754323&lt;/a&gt;&lt;/p&gt;
     
     </summary>
@@ -388,33 +408,6 @@
     
       <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>查找与排序</title>
-    <link href="http://yoursite.com/2020/03/02/%E6%9F%A5%E6%89%BE%E4%B8%8E%E6%8E%92%E5%BA%8F/"/>
-    <id>http://yoursite.com/2020/03/02/%E6%9F%A5%E6%89%BE%E4%B8%8E%E6%8E%92%E5%BA%8F/</id>
-    <published>2020-03-02T03:34:48.000Z</published>
-    <updated>2020-03-25T15:47:52.233Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;查找与排序的关系&quot;&gt;&lt;a href=&quot;#查找与排序的关系&quot; class=&quot;headerlink&quot; title=&quot;查找与排序的关系&quot;&gt;&lt;/a&gt;查找与排序的关系&lt;/h2&gt;&lt;p&gt;排序的过程&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;选择元素/位置&lt;/li&gt;
-&lt;li&gt;根据元素&lt;strong&gt;查找&lt;/strong&gt;位置/根据位置&lt;strong&gt;查找&lt;/strong&gt;元素&lt;/li&gt;
-&lt;li&gt;排序&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;strong&gt;所以查找是排序的前提，不同的查找方式导致了不同的排序方式&lt;/strong&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="数据结构" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-    
-      <category term="排序" scheme="http://yoursite.com/tags/%E6%8E%92%E5%BA%8F/"/>
     
   </entry>
   

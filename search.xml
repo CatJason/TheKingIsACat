@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>chrome反注册</title>
+    <url>/2020/04/24/chrome%E5%8F%8D%E6%B3%A8%E5%86%8C/</url>
+    <content><![CDATA[<p>Windows 下 Chrome 反向注册（reg文件）</p>
+<a id="more"></a>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"> Windows Registry Editor Version 5.00</span><br><span class="line"></span><br><span class="line">; WARNING, this file will remove Google Chrome registry entries </span><br><span class="line">; from your Windows Registry. Consider backing up your registry before</span><br><span class="line">; using this file: http://support.microsoft.com/kb/322756</span><br><span class="line"></span><br><span class="line">; To run this file, save it as 'remove.reg' on your desktop and double-click it.</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Classes\ChromeHTML]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Clients\StartMenuInternet\chrome.exe]</span><br><span class="line">[HKEY_LOCAL_MACHINE\SOFTWARE\RegisteredApplications]</span><br><span class="line">"Chrome"=-</span><br><span class="line"></span><br><span class="line">[-HKEY_CURRENT_USER\SOFTWARE\Classes\ChromeHTML]</span><br><span class="line">[-HKEY_CURRENT_USER\SOFTWARE\Clients\StartMenuInternet\chrome.exe]</span><br><span class="line">[HKEY_CURRENT_USER\SOFTWARE\RegisteredApplications]</span><br><span class="line">"Chrome"=-</span><br><span class="line"></span><br><span class="line">[-HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Uninstall\Chrome]</span><br><span class="line">[-HKEY_CURRENT_USER\Software\Google\Update\Clients\&#123;8A69D345-D564-463c-AFF1-A69D9E530F96&#125;]</span><br><span class="line">[-HKEY_CURRENT_USER\Software\Google\Update\ClientState\&#123;8A69D345-D564-463c-AFF1-A69D9E530F96&#125;]</span><br><span class="line"></span><br><span class="line">[-HKEY_CURRENT_USER\Software\Google\Update\Clients\&#123;00058422-BABE-4310-9B8B-B8DEB5D0B68A&#125;]</span><br><span class="line">[-HKEY_CURRENT_USER\Software\Google\Update\ClientState\&#123;00058422-BABE-4310-9B8B-B8DEB5D0B68A&#125;]</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Google\Update\ClientStateMedium\&#123;8A69D345-D564-463c-AFF1-A69D9E530F96&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Google\Update\Clients\&#123;8A69D345-D564-463c-AFF1-A69D9E530F96&#125;]</span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Google\Update\ClientState\&#123;8A69D345-D564-463c-AFF1-A69D9E530F96&#125;]</span><br><span class="line"></span><br><span class="line">[-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Google\Update\Clients\&#123;8A69D345-D564-463c-AFF1-A69D9E530F96&#125;]</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>软件安装</category>
+      </categories>
+  </entry>
+  <entry>
     <title>LeetCode常用Java语言API与API用法</title>
     <url>/2020/04/20/LeetCode%E5%B8%B8%E7%94%A8Java%E8%AF%AD%E8%A8%80API%E4%B8%8EAPI%E7%94%A8%E6%B3%95/</url>
     <content><![CDATA[<p>对leetcode刷题中常用的Java语言API进行总结，穿插一些经典的写法。</p>

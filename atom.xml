@@ -72,6 +72,27 @@
   </entry>
   
   <entry>
+    <title>Android基础知识梳理</title>
+    <link href="http://yoursite.com/2020/04/19/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/"/>
+    <id>http://yoursite.com/2020/04/19/Android%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/</id>
+    <published>2020-04-19T10:57:36.000Z</published>
+    <updated>2020-04-24T09:27:27.368Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;以下内容均有参考Android官法开发文档&lt;/p&gt;
+&lt;p&gt;Activity生命周期参考&lt;a href=&quot;https://www.cnblogs.com/lwbqqyumidi/p/3769113.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/lwbqqyumidi/p/3769113.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Activity启动模式（lauchMode）参考&lt;a href=&quot;https://blog.csdn.net/liuhe688/java/article/details/6754323&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/liuhe688/java/article/details/6754323&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>三色旗算法</title>
     <link href="http://yoursite.com/2020/04/15/%E4%B8%89%E8%89%B2%E6%97%97%E7%AE%97%E6%B3%95/"/>
     <id>http://yoursite.com/2020/04/15/%E4%B8%89%E8%89%B2%E6%97%97%E7%AE%97%E6%B3%95/</id>
@@ -386,26 +407,6 @@
     
     
       <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单理解Javabean的意义</title>
-    <link href="http://yoursite.com/2020/03/02/%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3Javabean%E7%9A%84%E6%84%8F%E4%B9%89/"/>
-    <id>http://yoursite.com/2020/03/02/%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3Javabean%E7%9A%84%E6%84%8F%E4%B9%89/</id>
-    <published>2020-03-02T08:00:21.000Z</published>
-    <updated>2020-03-03T02:12:05.245Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;作者：杨博&lt;br&gt;链接：&lt;a href=&quot;https://www.zhihu.com/question/19773379/answer/31625054&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.zhihu.com/question/19773379/answer/31625054&lt;/a&gt;&lt;br&gt;来源：知乎&lt;br&gt;著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。&lt;/p&gt;
-&lt;p&gt;Java语言欠缺属性、事件、多重继承功能。所以，如果要在Java程序中实现一些面向对象编程的常见需求，只能手写大量胶水代码。Java Bean正是编写这套胶水代码的惯用模式或约定。这些约定包括getXxx、setXxx、isXxx、addXxxListener、XxxEvent等。遵守上述约定的类可以用于若干工具或库。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
-    
     
   </entry>
   

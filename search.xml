@@ -23,6 +23,432 @@
 ]]></content>
   </entry>
   <entry>
+    <title>「转」单例模式DCL</title>
+    <url>/2020/08/13/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8FDCL/</url>
+    <content><![CDATA[<p>原文连接：<a href="https://www.cnblogs.com/xz816111/p/8470048.html" target="_blank" rel="noopener">Java中的双重检查锁（double checked locking）</a></p>
+<p>作者：<a href="https://home.cnblogs.com/u/xz816111/" target="_blank" rel="noopener">Decouple</a></p>
+<a id="more"></a>
+
+<p><strong>双检锁/双重校验锁（DCL，即 double-checked locking）</strong></p>
+<p><strong>JDK 版本：</strong>JDK1.5 起</p>
+<p><strong>是否 Lazy 初始化：</strong>是</p>
+<p><strong>是否多线程安全：</strong>是</p>
+<p><strong>实现难度：</strong>较复杂</p>
+<p><strong>描述：</strong>这种方式采用双锁机制，安全且在多线程情况下能保持高性能。<br>getInstance() 的性能对应用程序很关键。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton singleton;  </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span> <span class="params">()</span></span>&#123;&#125;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getSingleton</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;  </span><br><span class="line">        <span class="keyword">synchronized</span> (Singleton<span class="class">.<span class="keyword">class</span>) </span>&#123;  </span><br><span class="line">        <span class="keyword">if</span> (singleton == <span class="keyword">null</span>) &#123;  </span><br><span class="line">            singleton = <span class="keyword">new</span> Singleton();  </span><br><span class="line">        &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> singleton;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h2><p>在实现单例模式时，如果未考虑多线程的情况，就容易写出下面的错误代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueSingleton;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == uniqueSingleton) &#123;</span><br><span class="line">            uniqueSingleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uniqueSingleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在多线程的情况下，这样写可能会导致<code>uniqueSingleton</code>有多个实例。比如下面这种情况，考虑有两个线程同时调用<code>getInstance()</code>：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Time</th>
+<th align="left">Thread A</th>
+<th align="left">Thread B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">T1</td>
+<td align="left">检查到<code>uniqueSingleton</code>为空</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">T2</td>
+<td align="left"></td>
+<td align="left">检查到<code>uniqueSingleton</code>为空</td>
+</tr>
+<tr>
+<td align="left">T3</td>
+<td align="left"></td>
+<td align="left">初始化对象<code>A</code></td>
+</tr>
+<tr>
+<td align="left">T4</td>
+<td align="left"></td>
+<td align="left">返回对象<code>A</code></td>
+</tr>
+<tr>
+<td align="left">T5</td>
+<td align="left">初始化对象<code>B</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">T6</td>
+<td align="left">返回对象<code>B</code></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>可以看到，<code>uniqueSingleton</code>被实例化了两次并且被不同对象持有。完全违背了单例的初衷。</p>
+<h1 id="加锁"><a href="#加锁" class="headerlink" title="加锁"></a>加锁</h1><p>出现这种情况，第一反应就是加锁，如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueSingleton;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == uniqueSingleton) &#123;</span><br><span class="line">            uniqueSingleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uniqueSingleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样虽然解决了问题，但是因为用到了<code>synchronized</code>，会导致很大的性能开销，并且加锁其实只需要在第一次初始化的时候用到，之后的调用都没必要再进行加锁。</p>
+<h1 id="双重检查锁"><a href="#双重检查锁" class="headerlink" title="双重检查锁"></a>双重检查锁</h1><p>双重检查锁（double checked locking）是对上述问题的一种优化。先判断对象是否已经被初始化，再决定要不要加锁。</p>
+<h2 id="错误的双重检查锁"><a href="#错误的双重检查锁" class="headerlink" title="错误的双重检查锁"></a>错误的双重检查锁</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Singleton uniqueSingleton;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == uniqueSingleton) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">null</span> == uniqueSingleton) &#123;</span><br><span class="line">                    uniqueSingleton = <span class="keyword">new</span> Singleton();   <span class="comment">// error</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uniqueSingleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果这样写，运行顺序就成了：</p>
+<ol>
+<li>检查变量是否被初始化(不去获得锁)，如果已被初始化则立即返回。</li>
+<li>获取锁。</li>
+<li>再次检查变量是否已经被初始化，如果还没被初始化就初始化一个对象。</li>
+</ol>
+<p>执行双重检查是因为，如果多个线程同时了通过了第一次检查，并且其中一个线程首先通过了第二次检查并实例化了对象，那么剩余通过了第一次检查的线程就不会再去实例化对象。</p>
+<p>这样，除了初始化的时候会出现加锁的情况，后续的所有调用都会避免加锁而直接返回，解决了性能消耗的问题。</p>
+<h3 id="隐患"><a href="#隐患" class="headerlink" title="隐患"></a>隐患</h3><p>上述写法看似解决了问题，但是有个很大的隐患。实例化对象的那行代码（标记为error的那行），实际上可以分解成以下三个步骤：</p>
+<ol>
+<li>分配内存空间</li>
+<li>初始化对象</li>
+<li>将对象指向刚分配的内存空间</li>
+</ol>
+<p>但是有些编译器为了性能的原因，可能会将第二步和第三步进行<strong>重排序</strong>，顺序就成了：</p>
+<ol>
+<li>分配内存空间</li>
+<li>将对象指向刚分配的内存空间</li>
+<li>初始化对象</li>
+</ol>
+<p>现在考虑重排序后，两个线程发生了以下调用：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Time</th>
+<th align="left">Thread A</th>
+<th align="left">Thread B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">T1</td>
+<td align="left">检查到<code>uniqueSingleton</code>为空</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">T2</td>
+<td align="left">获取锁</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">T3</td>
+<td align="left">再次检查到<code>uniqueSingleton</code>为空</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">T4</td>
+<td align="left">为<code>uniqueSingleton</code>分配内存空间</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">T5</td>
+<td align="left">将<code>uniqueSingleton</code>指向内存空间</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">T6</td>
+<td align="left"></td>
+<td align="left">检查到<code>uniqueSingleton</code>不为空</td>
+</tr>
+<tr>
+<td align="left">T7</td>
+<td align="left"></td>
+<td align="left">访问<code>uniqueSingleton</code>（此时对象还未完成初始化）</td>
+</tr>
+<tr>
+<td align="left">T8</td>
+<td align="left">初始化<code>uniqueSingleton</code></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>在这种情况下，T7时刻线程B对<code>uniqueSingleton</code>的访问，访问的是一个<strong>初始化未完成</strong>的对象。</p>
+<h2 id="正确的双重检查锁"><a href="#正确的双重检查锁" class="headerlink" title="正确的双重检查锁"></a>正确的双重检查锁</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> Singleton uniqueSingleton;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Singleton <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == uniqueSingleton) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Singleton<span class="class">.<span class="keyword">class</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">null</span> == uniqueSingleton) &#123;</span><br><span class="line">                    uniqueSingleton = <span class="keyword">new</span> Singleton();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> uniqueSingleton;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为了解决上述问题，需要在<code>uniqueSingleton</code>前加入关键字<code>volatile</code>。使用了volatile关键字后，重排序被禁止，所有的写（write）操作都将发生在读（read）操作之前。</p>
+<p>至此，双重检查锁就可以完美工作了。</p>
+<p>参考资料：</p>
+<ol>
+<li><a href="https://zh.wikipedia.org/wiki/双重检查锁定模式" target="_blank" rel="noopener">双重检查锁定模式</a></li>
+<li><a href="http://www.importnew.com/12196.html" target="_blank" rel="noopener">如何在Java中使用双重检查锁实现单例</a></li>
+<li><a href="http://www.infoq.com/cn/articles/double-checked-locking-with-delay-initialization#anch136785" target="_blank" rel="noopener">双重检查锁定与延迟初始化</a></li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>「转」APP启动方式:冷启动和热启动</title>
+    <url>/2020/08/13/APP%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F-%E5%86%B7%E5%90%AF%E5%8A%A8%E5%92%8C%E7%83%AD%E5%90%AF%E5%8A%A8/</url>
+    <content><![CDATA[<p>作者：王伟desire<br>链接：<a href="https://www.jianshu.com/p/8ba3d576f16a" target="_blank" rel="noopener">https://www.jianshu.com/p/8ba3d576f16a</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<a id="more"></a>
+
+<ol>
+<li><h3 id="一、APP启动方式"><a href="#一、APP启动方式" class="headerlink" title="一、APP启动方式"></a>一、APP启动方式</h3><p>通常来说，APP中启动方式分为两种：冷启动和热启动。</p>
+<h6 id="1-冷启动："><a href="#1-冷启动：" class="headerlink" title="1.冷启动："></a>1.冷启动：</h6><p>当启动应用时，后台没有该应用的进程，这时系统会重新创建一个新的进程分配给该应用，这个启动方式就是冷启动。</p>
+<h5 id="2-热启动："><a href="#2-热启动：" class="headerlink" title="2.热启动："></a>2.热启动：</h5><p>当启动应用时，后台已有该应用的进程（例：按back键/home键，应用虽然会退出，但是该应用的进程是依然会保留在后台，可进入任务列表查看），所以在已有进程的情况下，这种启动会从已有的进程中来启动应用，这个方式叫热启动。</p>
+<p>请注意：上面说的启动是点击app的启动图标来启动的，而另外一种方式是进入最近使用的列表界面来启动应用，这种不应该叫启动，应该叫恢复。</p>
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>「转」Android各存储方式对比</title>
+    <url>/2020/08/12/Android%E5%90%84%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94/</url>
+    <content><![CDATA[<p>作者：篱开罗<br>链接：<a href="https://www.jianshu.com/p/d9dde3f59be5" target="_blank" rel="noopener">https://www.jianshu.com/p/d9dde3f59be5</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<a id="more"></a>
+
+<h2 id="SharedPreferences"><a href="#SharedPreferences" class="headerlink" title="SharedPreferences"></a>SharedPreferences</h2><p>SharedPreferences使用键值对的形式保存原始类型的数据</p>
+<h3 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取以Activity类名命名的SharedPreferences</span></span><br><span class="line">mActivityPreferences = getPreferences(MODE_PRIVATE);</span><br><span class="line"><span class="comment">// 获取自己命名的SharedPreferences</span></span><br><span class="line">mSharedPreferences = getSharedPreferences(<span class="string">"test"</span>, MODE_PRIVATE);        </span><br><span class="line"></span><br><span class="line">SharedPreferences.Editor editor = mSharedPreferences.edit();</span><br><span class="line">editor.putString(<span class="string">"hello"</span>, <span class="string">"hello"</span>);</span><br><span class="line"><span class="comment">// 同步方式,会立即阻塞，将数据持久化</span></span><br><span class="line"><span class="comment">// editor.commit();</span></span><br><span class="line"><span class="comment">// 异步方式，会先存到内存，再异步的将数据持久化</span></span><br><span class="line">editor.apply();</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 获取数据，第一个参数为键，第二个参数为默认值</span></span><br><span class="line">String data = mSharedPreferences.getString(<span class="string">"hello"</span>,<span class="string">"data miss"</span>);</span><br><span class="line">mDisplayTv.setText(data);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置数据变化监听器</span></span><br><span class="line">mSharedPreferences.registerOnSharedPreferenceChangeListener(</span><br><span class="line">                <span class="keyword">new</span> SharedPreferences.OnSharedPreferenceChangeListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSharedPreferenceChanged</span><span class="params">(SharedPreferences sharedPreferences, String key)</span> </span>&#123;</span><br><span class="line">                Toast.makeText(MainActivity.<span class="keyword">this</span>,</span><br><span class="line">                        sharedPreferences.getString(key, <span class="string">"miss"</span>), Toast.LENGTH_SHORT).show();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>SharedPreferences和内嵌的Editor其实都只是接口定义而已，并没有实现任何方法。它只是用来制定了一个存储键值对的协议，具体的实现方式和存储形式可以是任意的。在Android系统中，它默认以XML格式的文件来存储这些数据，实现的类则是SharedPreferencesImpl</p>
+<p>xml文件形式,保存在/data/data/(packagename)/shared_prefs/，需有root权限才能查看</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version='1.0' encoding='utf-8' standalone='yes' ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string</span> <span class="attr">name</span>=<span class="string">"hello"</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>数据的获取较快，而数据写入由于io原因使用commit()会花费一些时间，可用apply()进行异步存储。适合存储量小、简单的数据。</p>
+<h2 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h2><p>使用文件进行数据持久化，分为使用内部存储和外部存储，这边的内部存储和外部存储比较容易产生歧义。打开ddms可以看到data、storage和mnt三个文件夹</p>
+<p>其中data及其子文件夹就是我们说的内部存储，storage、mnt即为外部存储</p>
+<h3 id="内部存储"><a href="#内部存储" class="headerlink" title="内部存储"></a>内部存储</h3><p>内部存储不是内存,内部存储位于系统中很特殊的一个位置，如果你想将文件存储于内部存储中，那么文件默认只能被你的应用访问到，且一个应用所创建的所有文件都在和应用包名相同的目录下。当一个应用卸载之后，内部存储中的这些文件也被删除。对于内部存储空间，我们要尽量避免使用。Shared Preferences和SQLite数据库都是存储在内部存储空间上的。内部存储一般用Context来获取和操作。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// getFilesDir()获取你app的内部存储空间，相当于你的应用在内部存储上的根目录（例：/data/user/0/package-name/files）。Context的对象还提供deleteFile(String name)、fileList()、getDir()等方法方便我们操作</span></span><br><span class="line">File file = <span class="keyword">new</span> File(getFilesDir(), filename);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 写入文件</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    FileOutputStream fos = openFileOutput(<span class="string">"hello"</span>, Context.MODE_PRIVATE);</span><br><span class="line">    fos.write(<span class="string">"hello"</span>.getBytes());</span><br><span class="line">    fos.close();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//读取文件</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    FileInputStream fis = openFileInput(<span class="string">"hello"</span>);</span><br><span class="line">    BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(fis));</span><br><span class="line">    String line = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">        sb.append(line);</span><br><span class="line">    &#125;</span><br><span class="line">    fis.close();</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="缓存文件"><a href="#缓存文件" class="headerlink" title="缓存文件"></a>缓存文件</h4><p>如果您想要缓存一些数据，而不是永久存储这些数据，应该使用 getCacheDir() 来打开一个 File，它表示您的应用应该将临时缓存文件保存到的内部目录。</p>
+<p>当设备的内部存储空间不足时，Android 可能会删除这些缓存文件以回收空间。 但您不应该依赖系统来为您清理这些文件， 而应该始终自行维护缓存文件，使其占用的空间保持在合理的限制范围内（例如 1 MB）。 当用户卸载您的应用时，这些文件也会被移除。</p>
+<h3 id="外部存储"><a href="#外部存储" class="headerlink" title="外部存储"></a>外部存储</h3><p>外部存储才是我们平时操作最多的，外部存储一般就是我们上面看到的storage文件夹，当然也有可能是mnt文件夹，这个不同厂家有可能不一样</p>
+<p>一般来说，在storage文件夹中有一个sdcard文件夹，这个文件夹中的文件又分为两类，一类是公有目录，还有一类是私有目录，其中的公有目录有九大类，比如DCIM、DOWNLOAD等这种系统为我们创建的文件夹，私有目录就是android这个文件夹，这个文件夹打开之后里边有一个data文件夹，打开这个data文件夹，里边有许多包名组成的文件夹。无论私有目录还是公有目录，只要存储在外部存储，用户与其他应用都可访问</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1. 首先需要声明权限</span></span><br><span class="line">&lt;manifest ...&gt;</span><br><span class="line">    &lt;uses-permission android:name=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span> /&gt;</span><br><span class="line">    ...</span><br><span class="line">&lt;/manifest&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 检查介质是否可用</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isExternalStorageWritable</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String state = Environment.getExternalStorageState( ;</span><br><span class="line">    <span class="keyword">if</span> (Environment.MEDIA_MOUNTED.equals(state)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="公有文件"><a href="#公有文件" class="headerlink" title="公有文件"></a>公有文件</h4><p>为了方便用户访问与系统媒体扫描程序扫描，应将公有文件保存到共享的公共目录，在您的外部文件目录中包含名为 .nomedia 的空文件，这将阻止媒体扫描程序读取您的媒体文件</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// DIRECTORY_DOCUMENTS在api19后加入</span></span><br><span class="line">File file = <span class="keyword">new</span> File(Environment.getExternalStoragePublicDirectory(</span><br><span class="line">        Environment.DIRECTORY_DOCUMENTS), <span class="string">"test.txt"</span>);</span><br><span class="line">FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">fos.write(<span class="string">"hello"</span>.getBytes());</span><br><span class="line">fos.close();</span><br></pre></td></tr></table></figure>
+
+<h4 id="私有文件"><a href="#私有文件" class="headerlink" title="私有文件"></a>私有文件</h4><p>从 Android 4.4 开始读写私有文件不用声明权限,当用户卸载应用后，私有文件夹中的内容都将被删除，系统媒体扫描程序不会读取这些目录中的文件</p>
+<blockquote>
+<p>有时，已分配某个内部存储器分区用作外部存储的设备可能还提供了 SD 卡槽。在使用运行 Android 4.3 和更低版本的这类设备时，getExternalFilesDir() 方法将仅提供内部分区的访问权限，而您的应用无法读取或写入 SD 卡。不过，从 Android 4.4 开始，可通过调用 getExternalFilesDirs() 来同时访问两个位置，该方法将会返回包含各个位置条目的 File 数组。 数组中的第一个条目被视为外部主存储；除非该位置已满或不可用，否则应该使用该位置。 如果您希望在支持 Android 4.3 和更低版本的同时访问两个可能的位置，请使用支持库中的静态方法 ContextCompat.getExternalFilesDirs()。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 获取外部存储私有目录路径</span></span><br><span class="line">File file = <span class="keyword">new</span> File(getExternalFilesDir(<span class="keyword">null</span>), <span class="string">"test.txt"</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用文件进行数据持久化的优缺点"><a href="#使用文件进行数据持久化的优缺点" class="headerlink" title="使用文件进行数据持久化的优缺点"></a>使用文件进行数据持久化的优缺点</h3><p>使用文件进行持久化可保存的数据量较大，可以保存多种类型的数据，其他应用也可进行访问，文件io会造成一定性能开销</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>Android 提供了对 SQLite 数据库的完全支持。应用中的任何类（不包括应用外部的类）均可按名称访问您所创建的任何数据库。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建SQLiteHelp子类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextSQLiteOpenHelper</span> <span class="keyword">extends</span> <span class="title">SQLiteOpenHelper</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String TABLE_NAME = <span class="string">"text_db"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String TABLE_CREATE =</span><br><span class="line">            <span class="string">"CREATE TABLE "</span> + TABLE_NAME + <span class="string">" ("</span> +</span><br><span class="line">                    <span class="string">"id integer primary key autoincrement, "</span> +</span><br><span class="line">                    <span class="string">"name varchar(64));"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TextSQLiteOpenHelper</span><span class="params">(Context context, String name,SQLiteDatabase.CursorFactory factory, <span class="keyword">int</span> version)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, name, factory, version);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(SQLiteDatabase db)</span> </span>&#123;</span><br><span class="line">        db.execSQL(TABLE_CREATE);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onUpgrade</span><span class="params">(SQLiteDatabase db, <span class="keyword">int</span> oldVersion, <span class="keyword">int</span> newVersion)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入数据</span></span><br><span class="line">TextSQLiteOpenHelper helper = <span class="keyword">new</span> TextSQLiteOpenHelper(</span><br><span class="line">                <span class="keyword">this</span>, TextSQLiteOpenHelper.TABLE_NAME, <span class="keyword">null</span>, <span class="number">1</span>);</span><br><span class="line">SQLiteDatabase database = helper.getWritableDatabas();</span><br><span class="line">ContentValues contentValues = <span class="keyword">new</span> ContentValues();</span><br><span class="line">contentValues.put(<span class="string">"id"</span>, <span class="number">1</span>);</span><br><span class="line">contentValues.put(<span class="string">"name"</span>, <span class="string">"hello"</span>);</span><br><span class="line">database.insert(TextSQLiteOpenHelper.TABLE_NAME,<span class="keyword">null</span>, contentValues);</span><br><span class="line">database.close();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询数据</span></span><br><span class="line"> TextSQLiteOpenHelper helper = <span class="keyword">new</span> TextSQLiteOpenHelper(</span><br><span class="line"><span class="keyword">this</span>, TextSQLiteOpenHelper.TABLE_NAME, <span class="keyword">null</span>, <span class="number">1</span>);</span><br><span class="line">SQLiteDatabase database = helper.getReadableDatabas();</span><br><span class="line">Cursor cursor = database.query(TextSQLiteOpenHelper.TABLE_NAME, <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>,<span class="keyword">null</span>, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">cursor.moveToFirst();</span><br><span class="line">String name = cursor.getString(cursor.getColumnInde(<span class="string">"name"</span>));</span><br><span class="line">mDisplayTv.setText(name);</span><br><span class="line">cursor.close();</span><br><span class="line">database.close();</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用数据库进行持久化优缺点"><a href="#使用数据库进行持久化优缺点" class="headerlink" title="使用数据库进行持久化优缺点"></a>使用数据库进行持久化优缺点</h3><p>适合存储结构化数据，但是不适合存储大量数据，且数据库的存取属于本地io，如果查询的数据量较大则需要异步执行</p>
+<h2 id="云端"><a href="#云端" class="headerlink" title="云端"></a>云端</h2><p>通过服务端提供的接口发送数据，将数据存储在服务器，这种方式与文件io类似，不过更加复杂，会受到网络状态与服务器状态影响，当手机使用移动数据流量上网的时候还必须限制大数据量的通信</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://developer.android.com/guide/topics/data/data-storage.html#pref" target="_blank" rel="noopener">数据存储</a></li>
+<li><a href="http://blog.iderzheng.com/understand-sharedpreferences-in-android-api/" target="_blank" rel="noopener">了解Android API中的SharedPreferences</a></li>
+<li><a href="http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2013/0923/1557.html" target="_blank" rel="noopener">android中的文件操作详解以及内部存储和外部存储</a></li>
+<li><a href="http://blog.csdn.net/u012702547/article/details/50269639" target="_blank" rel="noopener">彻底理解android中的内部存储与外部存储</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>注解</title>
+    <url>/2020/08/12/%E6%B3%A8%E8%A7%A3/</url>
+    <content><![CDATA[<p>作者：凌寒天下独自舞<br>链接：<a href="https://www.jianshu.com/p/e2757e4b5455" target="_blank" rel="noopener">https://www.jianshu.com/p/e2757e4b5455</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<a id="more"></a>
+
+<h1 id="定义注解"><a href="#定义注解" class="headerlink" title="定义注解"></a>定义注解</h1><p>Kotlin使用<code>annotation class</code>关键字(就像使用<code>enum class</code>定义枚举类一样)，定义注解非常简单，Kotlin 甚至不允许为注解定义注解体，也就是说，注解后面不能有花括号。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义一个简单的注解</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">MyClass</span></span></span><br></pre></td></tr></table></figure>
+
+<p>定义了该注解之后，就可以在程序的任何地方使用该注解。使用注解的语法非常类似于使用 <code>public</code>、 <code>final</code>这样的修饰符，通常可用于修饰程序中的类、方法、属性、接口等定义。通常会把注解放在所有修饰符之前。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//使用自Test 修饰类定义</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo1</span> </span>&#123;</span><br><span class="line">    <span class="comment">//使用自Test 注解修饰属性</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">var</span> name: String = <span class="string">""</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用自Test 注解修饰方法 </span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">info</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果要用注解来修饰主构造器，就像前面所介绍的，程序必须为主构造器添加<code>constructor</code>关键字。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="meta">@Test</span> <span class="keyword">constructor</span></span>(<span class="keyword">var</span> name : String, <span class="keyword">var</span> pass: String) &#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="注解的属性和构造器"><a href="#注解的属性和构造器" class="headerlink" title="注解的属性和构造器"></a>注解的属性和构造器</h2><p>注解还可以带属性，由于注解没有注解体，因此注解的属性只能在注解声明部分指定。实际上，相当于在注解的主构造器中指定注解的属性。</p>
+<p>由于注解与普通类不同 ，注解的属性值只能在使用时指定，并且一旦为注解的属性指定了属性值，以后就绝对不会改变其属性值，因此注解的属性只能定义为只读属性。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTag</span></span>(<span class="keyword">val</span> name: String , <span class="keyword">val</span> age : <span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>annotation class</code>定义的注解其实就相当于定义了一个注解接口，这个注解接口继承了 <code>kotlin.Annotation</code>接口。<br> 需要说明的是，注解的属性不能使用可空类型(不能在类型后添加“?”)，这是因为JVM本身不允许使用<code>null</code>作为注解的属性值。</p>
+<p>一旦在注解中定义了属性之后 ，使用该属性时就应该为其指定属性值 ，如下面代码所示</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">    <span class="comment">//使用带属性的注解时，需要为属性指定属性值 </span></span><br><span class="line">    <span class="meta">@MyTag(name=<span class="meta-string">"xx"</span>, age=6)</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">info</span><span class="params">()</span></span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也可以在定义注解的属性时使用等号(=)为其指定初始值(默认值)(就像定义类时在主构造器中为类的属性指定初始值 一样) ，注解的初始值只能是编译时常量。如果为注解的属性指定了默认值，那么在使用该注解时可以不为这些属性指定值，而是直接使用默认值。</p>
+<p>根据注解是否可以包含属性，可以把注解分为如下两类。</p>
+<blockquote>
+<ul>
+<li>标记注解: 没有定义属性的注解被称为标记注解。这种注解仅利用自身的存在与否来提供信息，如前面所介绍的@Test等注解。</li>
+<li>元数据注解: 包含属性的注解被称为元数据注解。因此它们可以接受更多的配置信息(以属性值的方式进行设置) 。 如前面所介绍的@MyTag等注解。</li>
+</ul>
+</blockquote>
+<p>与 Java类似的是，如果注解的属性名为<code>value</code>，则为<code>value</code>属性指定属性值时可省略属性名。</p>
+<p>Kotlin使用 vararg修饰需要指定多个值的属性(相当于数组类型的属性）,也可以不带属性名。</p>
+<p>如果将一个注解作为另一个注解的属性值，那么在使用注解时不需要以<code>@</code>作为前缀。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//定义带 value 属性的注解</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTag</span></span>(<span class="keyword">val</span> value: String)</span><br><span class="line"></span><br><span class="line"><span class="comment">//该注解的 target 属性的类型是 MyTag</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">showTag</span></span>(<span class="keyword">val</span> message:String,<span class="keyword">val</span> tag:MyTag)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@showTag(message = <span class="meta-string">"SS"</span>,tag = MyTag(<span class="meta-string">"ZZZ"</span>)</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo1</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如果需要将一个类作为注解的属性，请使用 Kotlin 类( KClass)， Kotlin 编译器会自动将 其转换为 Java类，以便 Java代码能够正常看到该注解和参数 。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// tag1 的类型是 KClass&lt;*&gt;，这是星号投影用法，相当于 Java 的原始类型</span></span><br><span class="line"><span class="comment">// tag2 的类型是 KClass&lt;out Any&gt;，这是使用处协变的用法</span></span><br><span class="line"><span class="comment">//可传入 KClass&lt;Int&gt;、 KClass&lt;String〉等，只要尖括号里的类型是 Any 的子类即可</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">DrawTag</span></span>(<span class="keyword">val</span> tag1:KClass&lt;*&gt;,<span class="keyword">val</span> tag2:KClass&lt;<span class="keyword">out</span> Any&gt;)</span><br><span class="line"></span><br><span class="line"><span class="meta">@DrawTag(tag1 = String::class,tag2 = Int::class)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo1</span></span></span><br></pre></td></tr></table></figure>
+
+<h1 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h1><p>Kotlin 在<code>kotlin.annotation</code>包下提供了4个<code>Meta</code>注解(元注解)，这4个元注解都用于修饰其他的注解定义。</p>
+<h2 id="使用-Retention"><a href="#使用-Retention" class="headerlink" title="使用@ Retention"></a>使用@ Retention</h2><p>@Retention只能修饰注解定义，用于指定被修饰的注解可以保留多长时间。<code>@Retention</code>元注解包含一个 <code>AnnotationRetention</code>类型的<code>value</code>属性，所以使用<code>@Retention</code>时必须为该<code>value</code>属性指定值。<br> <code>value</code>属性的值只能是如下 3 个 。</p>
+<blockquote>
+<ul>
+<li><code>AnnotationRetention.SOURCE</code>: 注解只保留在源代码中，编译器直接丢弃这种注解 。</li>
+<li><code>AnnotationRetention.BINARY</code>: 编译器将把注解记录在 class 文件中 。当运行该字节码<br> 文件时， JVM 不可获取注解信息。</li>
+<li><code>AnnotationRetention.RUNTIME</code>: 编译器将把注解记录在 class文件中。当运行该字节<br> 码文件时， JVM也可获取注解信息，程序可以通过反射获取该注解信息。这是默认值。</li>
+</ul>
+</blockquote>
+<p>如果要通过反射获取注解信息，就需要使用<code>value</code>属性值为<code>AnnotationRetention.RUNTIME</code><br> 的<code>@Retention</code>(或省略该元注解)。使用<code>@Retention</code>元注解可采用如下代码为<code>value</code>指定值。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//下面定义的 Testable 注解保留到运行时</span></span><br><span class="line"><span class="meta">@Retention(value = AnnotationRetention.RUNTIME)</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-Target"><a href="#使用-Target" class="headerlink" title="使用@Target"></a>使用@Target</h2><p><code>@Target</code>也只能修饰注解定义，用于指定被修饰的注解能修饰哪些程序单元。<code>@Target</code>元注解包含一个类型为 <code>AnnotationTarget</code>数组的<code>allowedTargets</code>属性，该属性的值只能是如下几个值组成的数组。</p>
+<blockquote>
+<ul>
+<li><code>Annotation Target.CLASS</code>: 指定该策略的注解只能修饰类。</li>
+<li><code>AnnotationTarget.ANNOTATION_CLASS</code>:指定该策略的注解只能修饰注解。</li>
+<li><code>AnnotationTarget.TYPE_PARAMETER</code>:指定该策略的注解只能修饰泛型形参(目前暂时还不支持)。</li>
+<li><code>AnnotationTarget.PROPERTY</code>:指定该策略的注解只能修饰属性。</li>
+<li><code>nnotationTarget.FIELD</code>: 指定该策略的注解只能修饰字段(包括属性的幕后字段)。</li>
+<li><code>AnnotationTarget.LOCAL_VARIABLE</code>:指定该策略的注解只能修饰局部变量。</li>
+<li><code>nnotationTarget.VALUE_PARAMETER</code>:指 定该策略的注解只能修饰函数或构造器的形参。</li>
+<li><code>AnnotationTarget.CONSTRUCTOR</code>: 指定该策略的注解只能修饰构造器。</li>
+<li><code>AnnotationTarget.FUNCTION</code>: 指定该策略的注解只能修饰函数和方法(不包含构造器)。</li>
+<li><code>AnnotationTarget.PROPERTY_GETTER</code>:指 定该策略的注解只能修饰属性的getter 方法。</li>
+<li><code>AnnotationTarget. PROPERTY_SETTER</code>:指 定该策略的注解只能修饰属性的setter 方法。</li>
+<li><code>Annotation Target.TYPE</code>: 指定该策略的注解只能修饰类型。</li>
+<li><code>AnnotationTarget.EXPRESSION</code>: 指定该策略的注解只能修饰各种表达式。</li>
+<li><code>AnnotationTarget.FILE</code>: 指定该策略的注解只能修饰文件。</li>
+<li><code>AnnotationTarget.TYPEALIAS</code>:指定该策略的注解只能修饰类型别名。</li>
+</ul>
+</blockquote>
+<p>与使用<code>@Retention</code>类似的是，使用<code>@Target</code>也可以直接在括号里指定<code>value</code>值，而无须使用<code>name=value</code>的形式。如下代码指定<code>@ActionListenerFor</code>注解只能修饰属性。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//指定@ActionListenerFor注解只能修饰属性</span></span><br><span class="line"><span class="meta">@Target(allowedTargets = AnnotationTarget.PROPERTY)</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">ActionListenerFor</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-MustBeDocumented"><a href="#使用-MustBeDocumented" class="headerlink" title="使用@MustBeDocumented"></a>使用@MustBeDocumented</h2><p>使用<code>@MustBeDocumented</code>元注解修饰的注解将被文档工具提取到API文档中，如果定义注解类时使用了<code>@MustBeDocumented</code>修饰，则所有使用该元注解修饰的程序元素的API文档中将会包含该注解说明 。<br> 下面代码定义了一个<code>@Testable</code>注解，程序使用<code>@MustBeDocumented</code>修饰该注解，所以<code>@Testable</code>注解将被文档工具所提取。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//指定@ActionListenerFor注解只能修饰属性</span></span><br><span class="line"><span class="meta">@Retention(value = AnnotationRetention.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(AnnotationTarget.FUNCTION)</span></span><br><span class="line"><span class="comment">//定义@Testable 注解将被文档工具所提取</span></span><br><span class="line"><span class="meta">@MustBeDocumented</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">Testable</span></span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码指定了文档工具生成 API 文档时将提取@Testable的使用信息。下面代码定义了一个 MyTest类，该类中的<code>info()</code>方法使用了<code>@Testable</code>修饰。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">   <span class="comment">//使用自Testable修饰info()方法</span></span><br><span class="line">   <span class="meta">@Testable</span></span><br><span class="line">   <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">info</span><span class="params">()</span></span> &#123;</span><br><span class="line">       println(<span class="string">"info"</span>)</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用-Repeatable标记可重复注解"><a href="#使用-Repeatable标记可重复注解" class="headerlink" title="使用@Repeatable标记可重复注解"></a>使用@Repeatable标记可重复注解</h2><p>Kotlin允许使用多个相同的注解来修饰同一个程序单元，这种注解称为可重复注解 。<br> 开发可重复注解需要使用<code>@Repeatable</code>修饰，下面通过示例来介绍如何开发可重复注解。首先定义一个<code>@FkTag</code>注解。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//指定@ActionListenerFor注解只能修饰属性</span></span><br><span class="line"><span class="meta">@Retention(value = AnnotationRetention.SOURCE)</span></span><br><span class="line"><span class="meta">@Target(AnnotationTarget.CLASS)</span></span><br><span class="line"><span class="meta">@Repeatable</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">FkTag</span></span>(<span class="keyword">val</span> name:String=<span class="string">"kotlin"</span>,<span class="keyword">val</span> age:<span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上面定义了<code>@FkTag</code>注解，该注解包含两个属性。程序还使用了<code>@Repeatable</code> 来修饰该注解，这意味着它是一个可重复注解，因此可直接使用多个<code>@FkTag</code>注解修饰目标程序单元。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FkTag(name = <span class="meta-string">"xq"</span>,age = 24)</span></span><br><span class="line"><span class="meta">@FkTag(age = 4)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">info</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"info"</span>)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要说明的是，由于在Java 8 之前JVM 并不支持可重复注解，Kotlin 也没有办法突破该限制，因此可重复注解的<code>@Retention</code>策略只能指定为<code>AnnotationRetention.SOURCE</code>，这意味着可重复注解只能被 Kotlin 编译器读取，接下来 Kotlin 编译器会直接丢弃该注解信息。</p>
+<h1 id="使用注解"><a href="#使用注解" class="headerlink" title="使用注解"></a>使用注解</h1><h2 id="提取注解信息"><a href="#提取注解信息" class="headerlink" title="提取注解信息"></a>提取注解信息</h2><p>使用注解修饰类、方法、属性等成员之后，这些注解不会自己生效，必须由开发者提供相应的工具来提取并处理注解信息。<br> Kotlin使用<code>kotlin.Annotation</code>接口来代表程序元素前面的注解，该接口是所有注解的父接口。Kotlin 在<code>kotlin.reflect</code>包下新增了<code>KAnnotatedElement</code>接口，该接口代表程序中可以接受注解的程序元素。该接口主要有如下几个实现类。</p>
+<blockquote>
+<ul>
+<li>KCallable: 代表可执行的程序实体，如函数和属性。</li>
+<li>KClass:代表 Kotlin 的类、接口等类型。</li>
+<li>KParameter: 代表函数和属性的参数。</li>
+</ul>
+</blockquote>
+<p>在kotlin.reflect包下主要包含一些实现反射功能的工具类，该包所提供的反射API包含了读取运行时注解的能力。只有当定义注解时使用了<code>@Retention(AnnotationRetention.RUNTIME)</code>修饰，该注解才会保留到程序运行时，JVM 才会在装载* .class 文件时读取保存在 class 文件中的注解。</p>
+<p><code>KAnnotatedElement</code>接口是所有程序元素(如 <code>KClass</code>、<code>KCallable</code>、<code>KParameter</code>)的父接口， 所以程序通过反射获取了某个程序单元对应的<code>KAnnotatedElement</code>对象(如 <code>KClass</code>、<code>KCallable</code>、<code>KParameter</code>)之后，程序就可以调用该对象的如下属性和方法来访问注解信息。</p>
+<blockquote>
+<ul>
+<li><code>annotations: List&lt;Annotation&gt;</code>: 该属性返回该程序单元上所有的注解。</li>
+<li><code>&lt;T: Annotation&gt; findAnnotation(): T?</code>: 根据注解类型返回该程序单元上特定类型的注解。如果该类型的注解不存在，则该方法返回<code>null</code>。</li>
+</ul>
+</blockquote>
+<p>下面代码片段用于获取 Test类中修饰 info()方法的所有注解，井将这些注解打印出来。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//指定@ActionListenerFor注解只能修饰属性</span></span><br><span class="line"><span class="meta">@Retention(value = AnnotationRetention.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(AnnotationTarget.FUNCTION)</span></span><br><span class="line"><span class="comment">//定义@Testable 注解将被文档工具所提取</span></span><br><span class="line"><span class="meta">@MustBeDocumented</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">Testable</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">    <span class="comment">//使用自Testable修饰info()方法</span></span><br><span class="line">    <span class="meta">@Testable</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">info</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"info"</span>)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> aArray = MyTest::info.annotations</span><br><span class="line">    <span class="comment">//遍历所有注解</span></span><br><span class="line">    <span class="keyword">for</span> (an <span class="keyword">in</span> aArray)&#123;</span><br><span class="line">        println(an)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果需要获取某个注解里的元数据，则可以将注解转型成所需的注解类型，然后通过注解对象的属性来访问这些元数据。代码如下 :</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//指定@ActionListenerFor注解只能修饰属性</span></span><br><span class="line"><span class="meta">@Retention(value = AnnotationRetention.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(AnnotationTarget.FUNCTION)</span></span><br><span class="line"><span class="comment">//定义@Testable 注解将被文档工具所提取</span></span><br><span class="line"><span class="meta">@MustBeDocumented</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">Testable</span></span>(<span class="keyword">val</span> name:String=<span class="string">"xq"</span>,<span class="keyword">val</span> age:<span class="built_in">Int</span> =<span class="number">24</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyTest</span> </span>&#123;</span><br><span class="line">    <span class="comment">//使用自Testable修饰info()方法</span></span><br><span class="line">    <span class="meta">@Testable(name = <span class="meta-string">"sq"</span>,age = 23)</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">info</span><span class="params">()</span></span> &#123;</span><br><span class="line">        println(<span class="string">"info"</span>)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> aArray = MyTest::info.annotations</span><br><span class="line">    <span class="comment">//遍历所有注解</span></span><br><span class="line">    <span class="keyword">for</span> (an <span class="keyword">in</span> aArray)&#123;</span><br><span class="line">        println(an)</span><br><span class="line">        <span class="keyword">if</span>(an <span class="keyword">is</span> Testable)&#123;</span><br><span class="line">            println(an.name)</span><br><span class="line">            println(an.age)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面分别介绍两个使用注解的例子。第 一个例子中的@Testable 注解没有任何属性，它仅是一个标记注解，其作用是标记哪些方法需要测试。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Retention(AnnotationRetention.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(AnnotationTarget.FUNCTION)</span></span><br><span class="line"><span class="comment">//定义一个标记注解，不包含任何属性</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">Testable</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">//使用@ Testable 注解指定该方法是需要测试的</span></span><br><span class="line">    <span class="meta">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m1</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m2</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用@ Testable 注解指定该方法是需要测试的</span></span><br><span class="line">    <span class="meta">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m3</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m4</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用@ Testable 注解指定该方法是需要测试的</span></span><br><span class="line">    <span class="meta">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m5</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m6</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用@ Testable 注解指定该方法是需要测试的</span></span><br><span class="line">    <span class="meta">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m7</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m8</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正如前面所提到的，仅仅使用注解来标记程序元素对程序是不会有任何影响的，这也是注解的一条重要原则。为了让程序中的这些注解起作用，接下来必须为这些注解提供一个注解处理工具。</p>
+<p>下面的注解处理工具会分析目标类，如果目标类中的方法使用了<code>@Testable</code>注解修饰，则通过反射来运行该测试方法。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Retention(AnnotationRetention.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(AnnotationTarget.FUNCTION)</span></span><br><span class="line"><span class="comment">//定义一个标记注解，不包含任何属性</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">Testable</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="comment">//使用@ Testable 注解指定该方法是需要测试的</span></span><br><span class="line">    <span class="meta">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m1</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m2</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用@ Testable 注解指定该方法是需要测试的</span></span><br><span class="line">    <span class="meta">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m3</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> RuntimeException (<span class="string">"参数出错了! "</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m4</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用@ Testable 注解指定该方法是需要测试的</span></span><br><span class="line">    <span class="meta">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m5</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m6</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用@ Testable 注解指定该方法是需要测试的</span></span><br><span class="line">    <span class="meta">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m7</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> RuntimeException (<span class="string">"程序业务出现异常! "</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">m8</span><span class="params">()</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;<span class="keyword">reified</span> T : Any&gt;</span> <span class="title">processTestable</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span>  passed =<span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> failed = <span class="number">0</span></span><br><span class="line">    <span class="keyword">val</span> target = T::<span class="class"><span class="keyword">class</span>.<span class="title">createInstance</span></span>()</span><br><span class="line">    <span class="comment">//遍历 T 对应的类里的所有方法</span></span><br><span class="line">    <span class="keyword">for</span> (m <span class="keyword">in</span> T::<span class="class"><span class="keyword">class</span>.<span class="title">functions</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//如果该方法使用了@ Testable 修饰</span></span><br><span class="line">        <span class="keyword">if</span> (m.findAnnotation&lt;Testable&gt;() != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                <span class="comment">//调用 m方法</span></span><br><span class="line">                m.call(target)</span><br><span class="line">                <span class="comment">//测试成功， passed 计数器加 1</span></span><br><span class="line">                passed++</span><br><span class="line">            &#125;<span class="keyword">catch</span> (ex:Exception)&#123;</span><br><span class="line">                println (<span class="string">"方法"</span>+ m +<span class="string">"运行失败，异常:"</span> + ex.cause)</span><br><span class="line">                <span class="comment">//测试出现异常， failed 计数器加 1</span></span><br><span class="line">                failed++</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//统计测试结果</span></span><br><span class="line">    println (<span class="string">"共运行了:"</span>+ (passed + failed) +<span class="string">"个方法，其中:\n"</span>+<span class="string">"失败了:"</span>+ failed +<span class="string">"个，\n"</span> +<span class="string">"成功了:"</span>+ passed +<span class="string">"个!"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="comment">//处理 MyTest 类</span></span><br><span class="line">    <span class="comment">//运行结果：方法fun test10.Test.m3(): kotlin.Unit运行失败，异常:java.lang.RuntimeException: 参数出错了! </span></span><br><span class="line">    <span class="comment">//方法fun test10.Test.m7(): kotlin.Unit运行失败，异常:java.lang.RuntimeException: 程序业务出现异常! </span></span><br><span class="line">    <span class="comment">//共运行了:4个方法，其中:</span></span><br><span class="line">    <span class="comment">//失败了:2个，</span></span><br><span class="line">    <span class="comment">//成功了:2个!</span></span><br><span class="line">    processTestable&lt;Test&gt;()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面程序定义了 一个<code>&lt;reifiedT: Any&gt; processTestable()</code>函数， 该函数可接收一个泛型参数， 分析该泛型参数所代表的类，并运行该目标类中使用<code>@Testable</code>修饰的方法。</p>
+<p>前面介绍的只是一个标记注解，程序通过判断该注解存在与否来决定是否运行指定方法。下面程序通过使用注解来简化事件编程。在传统的事件编程中总是需要通过<code>addActionListener()</code>方法来为事件源绑定事件监听器，本示例则通过<code>@ActionListenerFor</code>来为程序中的按钮绑定事件监听器。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> test10</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.awt.event.ActionEvent</span><br><span class="line"><span class="keyword">import</span> java.awt.event.ActionListener</span><br><span class="line"><span class="keyword">import</span> javax.swing.JButton</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame</span><br><span class="line"><span class="keyword">import</span> javax.swing.JOptionPane</span><br><span class="line"><span class="keyword">import</span> javax.swing.JPanel</span><br><span class="line"><span class="keyword">import</span> javax.swing.WindowConstants.EXIT_ON_CLOSE</span><br><span class="line"><span class="keyword">import</span> kotlin.reflect.KClass</span><br><span class="line"></span><br><span class="line"><span class="comment">//指定该注解只能修饰属性</span></span><br><span class="line"><span class="meta">@Target(AnnotationTarget.PROPERTY)</span></span><br><span class="line"><span class="meta">@Retention(AnnotationRetention.RUNTIME)</span></span><br><span class="line"><span class="comment">//定义一个属性，用于设置元数据</span></span><br><span class="line"><span class="comment">//该 listener 属性用于保存监听器实现类</span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">ActionListenerFor</span></span>(<span class="keyword">val</span> listener: KClass&lt;<span class="keyword">out</span> ActionListener&gt;)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AnnotationTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> mainWin = JFrame(<span class="string">"使用注解绑定事件监听器"</span>)</span><br><span class="line">    <span class="comment">//使用注解为 ok 按钮绑定事件监听器</span></span><br><span class="line">    <span class="meta">@ActionListenerFor(listener = OkListener::class)</span></span><br><span class="line">    <span class="keyword">val</span> ok = JButton(<span class="string">"确定"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//使用注解为 cancel 按钮绑定事件监听器</span></span><br><span class="line">    <span class="meta">@ActionListenerFor(listener = CancelListener::class)</span></span><br><span class="line">    <span class="keyword">val</span> cancel = JButton(<span class="string">"取消"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">init</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="comment">//初始化界面的方法</span></span><br><span class="line">        <span class="keyword">val</span> jp = JPanel()</span><br><span class="line">        jp.add(ok)</span><br><span class="line">        jp.add(cancel)</span><br><span class="line">        mainWin.add(jp)</span><br><span class="line">        processAnnotations(<span class="keyword">this</span>)</span><br><span class="line">        mainWin.defaultCloseOperation = EXIT_ON_CLOSE</span><br><span class="line">        mainWin.pack()</span><br><span class="line">        mainWin.isVisible = <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义 ok 按钮的事件监听器实现类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OkListener</span> : <span class="type">ActionListener &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">actionPerformed</span><span class="params">(e: <span class="type">ActionEvent</span>?)</span></span> &#123;</span><br><span class="line">        JOptionPane.showMessageDialog(<span class="literal">null</span>, <span class="string">"单击了确认按钮"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义cancel按钮的事件监听器实现类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CancelListener</span> : <span class="type">ActionListener &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">actionPerformed</span><span class="params">(e: <span class="type">ActionEvent</span>?)</span></span> &#123;</span><br><span class="line">        JOptionPane.showMessageDialog(<span class="literal">null</span>, <span class="string">"单击了取消按钮"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    AnnotationTest().<span class="keyword">init</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//处理注解的方法，其中 obj 是包含注解的对象</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">processAnnotations</span><span class="params">(obj: <span class="type">Any</span>)</span></span> &#123;</span><br><span class="line">    <span class="comment">//获取 obj 对象的类</span></span><br><span class="line">    <span class="keyword">val</span> cl = obj::<span class="class"><span class="keyword">class</span></span></span><br><span class="line">    <span class="comment">//获取指定 obj对象的所有成员，并遍历每个成员</span></span><br><span class="line">    <span class="keyword">for</span> (prop <span class="keyword">in</span> cl.memberProperties) &#123;</span><br><span class="line">        <span class="comment">//获取该成员上 ActionListenerFor 类型的注解</span></span><br><span class="line">        <span class="keyword">val</span> a = prop.findAnnotation&lt;ActionListenerFor&gt;()</span><br><span class="line">        <span class="comment">//获取属性 prop 的值</span></span><br><span class="line">        <span class="keyword">val</span> fObj = prop.call(obj)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//如果 fObj 是 AbstractButton的实例，且 a 不为 null</span></span><br><span class="line">        <span class="keyword">if</span> (a != <span class="literal">null</span> &amp;&amp; fObj != <span class="literal">null</span> &amp;&amp; fObj <span class="keyword">is</span> AbstractButton) &#123;</span><br><span class="line">            <span class="comment">//获取 a 注解的 listener 属性值〈它是一个监听器类〉</span></span><br><span class="line">            <span class="keyword">val</span> listenerClazz = a.listener</span><br><span class="line">            <span class="comment">//使用反射来创建 listener 类的对象</span></span><br><span class="line">            <span class="keyword">val</span> al = listenerClazz.createInstance()</span><br><span class="line">            <span class="comment">//为 fObj 按钮添加事件监听器</span></span><br><span class="line">            fObj.addActionListener(al)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码定义了两个 JButton 按钮，并使用<code>@ActionListenerFor</code>注解为这两个按钮绑定了事件监听器。使用<code>@ActionListenerFor</code>注解时传入了<code>listener</code>元数据，该元数据用于设定每个按钮的监听器实现类。</p>
+<p>正如前面所提到的，如果仅在程序中使用注解是不会起任何作用的，必须使用注解处理工具来处理程序中的注解。 上面代码使用了<code>processAnnotations()</code>函数来处理注解，该处理器分析目标对象中的所有属性，如果在属性前使用了<code>@ActionListenerFor</code>修饰，则取出该注解中的listener元数据，并根据该元数据来绑定事件监听器。</p>
+<h1 id="Java-注解与-Kotlin-的兼容性"><a href="#Java-注解与-Kotlin-的兼容性" class="headerlink" title="Java 注解与 Kotlin 的兼容性"></a>Java 注解与 Kotlin 的兼容性</h1><p>Java 注解与 Kotlin 完全兼容，只是在使用时略加注意即可。</p>
+<h2 id="指定注解的作用目标"><a href="#指定注解的作用目标" class="headerlink" title="指定注解的作用目标"></a>指定注解的作用目标</h2><p>根据前面的介绍我们知道， Kotlin程序往往比较简洁， Kotlin程序的一个程序单元有时候会变成Java的多个程序单元。比如:</p>
+<blockquote>
+<ul>
+<li>带属性声明的主构造器会变成 Java 的成员变量定义、 <code>getter</code>方法、 <code>setter</code>方法(如果是读写属性)、构造器参数 。</li>
+<li>属性会变成 Java 的成员变量定义、 <code>getter</code>方法、<code>setter</code>方法(如果是读写属性) 。</li>
+</ul>
+</blockquote>
+<p>这样就产生了一个问题: 有时候我们只想用注解修饰特定的程序单元，比如只希望用注解修饰属性对应的幕后字段，或者只希望用注解修饰属性对应的<code>getter</code>方法，那该怎么办呢?</p>
+<p>此时就需要为注解指定作用目标，语法格式如下:</p>
+<blockquote>
+<p>@目标 :注解(注解属性值)</p>
+</blockquote>
+<p>如果在同 一个目标上要指定多个注解，则需要将多个注解放在方括号中，并用空格隔开，语法格式如下:</p>
+<blockquote>
+<p>@目标 : [注解 1 (注解属性值)注解 2 (注解属性值)， . . . ]</p>
+</blockquote>
+<p>从上面的语法格式不难看出，为注解指定作用目标，其实就是在@符号和注解之间添加目标名和冒号。 Kotlin支持的目标包含如下几个。</p>
+<blockquote>
+<ul>
+<li><code>file</code>: 指定注解对文件本身起作用 。</li>
+<li><code>property</code>: 指定注解对整个属性起作用(这种目标的注解对 Java 不可见，因为 Java 并没有真正的属性) 。</li>
+<li><code>field</code>: 指定注解对属性的幕后字段起作用。</li>
+<li><code>get</code>: 指定注解对属性的 getter方法起作用。</li>
+<li><code>se</code>t: 指定注解对属性的 setter方法起作用 。</li>
+<li><code>receiver</code>: 指定注解对扩展方法或扩展属性的接收者起作用 。</li>
+<li><code>param</code>: 指定注解对构造器的参数起作用。</li>
+<li><code>setparam</code>: 指定注解对 setter方法的参数起作用。</li>
+<li><code>delegate</code>: 指定注解对委托属性存储其委托实例的字段起作用。</li>
+</ul>
+</blockquote>
+<p>下面先看一个简单的例子，程序指定注解只对属性的 <code>getter</code>方法起作用。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTag</span></span></span><br><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">FkTag</span></span>(<span class="keyword">val</span> info: String)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Item</span> </span>&#123;</span><br><span class="line">    <span class="comment">//指定注解只对 getter 方法起作用</span></span><br><span class="line">    <span class="comment">//对 getter 方法应用了两个注解: MyTag、 FkTag</span></span><br><span class="line">    <span class="meta">@get:</span>[MyTag FkTag(info = <span class="string">"补充信息"</span>)]</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">"kotlin"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//获取Item类对应的Java类 (Class对象)</span></span><br><span class="line">    <span class="keyword">val</span> clazz = Item::<span class="class"><span class="keyword">class</span>.<span class="title">java</span></span></span><br><span class="line">    <span class="comment">//遍历 clazz 类所包含的全部方法</span></span><br><span class="line">    <span class="keyword">for</span> (mtd <span class="keyword">in</span> clazz.declaredMethods) &#123;</span><br><span class="line">        println(<span class="string">"一方法<span class="subst">$&#123;mtd&#125;</span>上的注解如下一"</span>)</span><br><span class="line">        <span class="comment">//遍历该方法上直接声明的所有注解</span></span><br><span class="line">        <span class="keyword">for</span> (an <span class="keyword">in</span> mtd.declaredAnnotations) &#123;</span><br><span class="line">            println(an)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//遍历 clazz 类所包含的全部成员变量</span></span><br><span class="line">    <span class="keyword">for</span> (f <span class="keyword">in</span> clazz.declaredFields) &#123;</span><br><span class="line">        println(<span class="string">"一属性<span class="subst">$&#123;f&#125;</span>上的注解如下一"</span>)</span><br><span class="line">        <span class="comment">//遍历该成员变盘上直接声明的所有注解</span></span><br><span class="line">        <span class="keyword">for</span> (an <span class="keyword">in</span> f.declaredAnnotations) &#123;</span><br><span class="line">            println(an)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面代码指定<code>name</code>属性的<code>getter</code>方法应用了两个注解，其实就是在原来的注解用法前增加`@get:部分，与原来不指定目标的注解区别并不大。</p>
+<p>程序后面的<code>main()</code>函数主要就是分析 Item 类中各方法、成员变量的注解 。 由于要分析成员变量上的注解，因此<code>main()</code>函数使用了 Java 的反射 API (由于 Kotlin 并不支持单独 定义成员变量，因此 Kotlin 的反射 API 不支持直接操作成员变量），通过该<code>main()</code>的运行可以看到程序中添加的两个注解只作用于属性的<code>getter</code>方法上 。</p>
+<p>如果要指定注解作用于整个文件本身，则必须将注解放在 package 语句(如果有 package语句)之前，或者所有导包语句之前(如果没有package 语句) 。代码如下 :</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//指定自 FileTag 注解作用于整个文件</span></span><br><span class="line"><span class="meta">@file: FileTag</span> (<span class="string">"yeeku"</span>) </span><br><span class="line"><span class="keyword">package</span> org.crazyit.demo</span><br></pre></td></tr></table></figure>
+
+<p>如果要指定注解作用于扩展方法或扩展属性的接收者，则使用带<code>receiver:</code>的注解修饰整个扩展方法或扩展属性即可。例如如下代码:</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 指定@MyTag 注解作用于扩展方法的接收者(String) </span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> @receiver:MyTag String.<span class="title">fun</span><span class="params">()</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用Java注解"><a href="#使用Java注解" class="headerlink" title="使用Java注解"></a>使用Java注解</h2><p>Kotlin完全兼容Java注解，因此可以直接在 Kotlin程序中使用Java注解。<br> 需要说明的是，Java注解的成员变量 (相当于 Kotlin 注解的属性，后文统称为“属性”） 是没有顺序的，因此只能通过属性名来设置属性值 CKotlin注解的属性还可通过位置来设置属性值) 。</p>
+<p>对比如下两个注解。 下面先定义一个 Java注解。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> JavaTag &#123;</span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面再定义一个 Kotlin注解。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">annotation</span> <span class="class"><span class="keyword">class</span> <span class="title">KotlinTag</span></span>(<span class="keyword">val</span> name:String,<span class="keyword">val</span> age:<span class="built_in">Int</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上面两个注解基本相同，它们都包含了<code>name</code>和<code>age</code>两个属性 。接下来在程序中使用这两个注解就可看到它们的区别 。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="comment">//Kotlin 注解可通过位置来指定属性值</span></span><br><span class="line"><span class="comment">//第一个值传给 name 属性，第二个值传给 age 属性</span></span><br><span class="line"><span class="meta">@KotlinTag(<span class="meta-string">"kotlin"</span>, 4)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span> </span>&#123;</span><br><span class="line">    <span class="comment">//Kotlin 注解也可通过属性名来指定属性值</span></span><br><span class="line">    <span class="meta">@KotlinTag(name = <span class="meta-string">"xq"</span>, age = 24)</span></span><br><span class="line">    <span class="comment">//Java注解只能通过属性名来指定属性值</span></span><br><span class="line">    <span class="meta">@JavaTag(name = <span class="meta-string">"xy"</span>, age = 22)</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Kotlin 注解既支持使用位置来指定属性值(第一个值传给第一个属性，第二个值传给第二个属性，依此类推），也支持使用属性名来指定属性值(这是传统 Java注解的使用方式〉;而 Java注解只能通过属性名来指定属性值 。</p>
+<p>如果 Java 注解中的<code>value</code>属性是数组类型，那么它会变成 Kotlin 注解的<code>vararg</code>属性，因此直接为它传入多个属性值即可 。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> JavaTag &#123;</span><br><span class="line">    String[] value();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>数组类型的<code>value</code>属性会变成 Kotlin 注解的<code>vararg</code>属性，因此可以在 Kotlin 程序中按如下方式使用该注解 。</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="meta">@JavaTag(<span class="meta-string">"kotlin"</span>, <span class="meta-string">"java"</span>)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span></span></span><br></pre></td></tr></table></figure>
+
+<p>但如果其他名称的属性是数组类型，那么在 Kotlin 中使用该注解时必须显式使用<code>arrayOf()</code>函数来构建数组。例如如下 Java注解。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> JavaTag &#123;</span><br><span class="line">    String[] infos();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面注解的<code>infos</code>属性是数组类型，因此在 Kotlin 中使用该注解时必须显式使用<code>arrayOf()</code>函数来构建数组。例如如下代码:</p>
+<figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="meta">@JavaTag(infos=arrayOf(<span class="meta-string">"kotlin"</span>, <span class="meta-string">"java"</span>)</span>)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Book</span></span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>「转」静态方法与普通方法区别</title>
+    <url>/2020/08/12/%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E6%99%AE%E9%80%9A%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>9点区别</p>
+<a id="more"></a>
+
+<ul>
+<li>静态的内存空间是固定的，相对来说更省资源。</li>
+<li>创实例的创一个实例就要开辟一个新内存，耗费资源 静态方法属于类所有，类实例化前即可使用。因为非静态方法可以访问类中的任何成员，静态方法只能访问类中的静态成员</li>
+<li>静态方法在类实例化前就可以使用，而类中的非静态变量必须在实例化之后才能分配内存。</li>
+<li>static内部只能出现static变量和其他static方法!而且static方法中还不能使用this等关键字，因为它属于整个类。</li>
+<li>静态方法效率上要比实例化高，静态方法的缺点是不自动进行销毁，而实例化的则可以做销毁。</li>
+<li>静态方法和静态变量创建后始终使用同一块内存，而使用实例的方式会创建多个内存。</li>
+<li>主要区别：静态方法在创建对象前就可以使用了，非静态方法必须通过new出来的对象调用。</li>
+<li>静态方法可以通过 类名::方法名直接调用。普通方法需要创建一个实例，也就是new一个对象，然后通过 对象名-&gt;方法名的方式来调用 静态类只能包含静态成员，否则会抛出编译错误；然而非静态类既可以包含非静态成员也可以包含静态成员 。</li>
+<li>静态类是不能实例化,之所以不能实例化,是因为静态类会导致C#编译器将该类同时标记为abstract和sealed,并且编译器不会在类型中 生成一个实例的构造函数，从而导致静态类不能实例化；非静态类可以，并且静态成员的访问只能通过类来进行访问，因为静态成员是属于类的。</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>chrome反注册</title>
     <url>/2020/04/24/chrome%E5%8F%8D%E6%B3%A8%E5%86%8C/</url>
     <content><![CDATA[<p>Windows 下 Chrome 反向注册（reg文件）</p>
@@ -358,9 +784,10 @@
   <entry>
     <title>TCP和UDP详解</title>
     <url>/2020/04/08/TCP%E5%92%8CUDP%E8%AF%A6%E8%A7%A3/</url>
-    <content><![CDATA[<p><img src="/images/pictures/TCP%E5%92%8CUDP%E8%AF%A6%E8%A7%A3/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" alt="success"></p>
+    <content><![CDATA[<p>从计算机网络体系结构角度解析TCP和UDP</p>
 <a id="more"></a>
 
+<p><img src="/images/pictures/TCP%E5%92%8CUDP%E8%AF%A6%E8%A7%A3/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" alt="success"></p>
 <p><img src="/images/pictures/TCP%E5%92%8CUDP%E8%AF%A6%E8%A7%A3/%E7%BD%91%E7%BB%9C%E5%B1%82.png" alt="success"></p>
 <h2 id="传输层提供的服务"><a href="#传输层提供的服务" class="headerlink" title="传输层提供的服务"></a>传输层提供的服务</h2><h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><p>传输层为运行在不同主机上的<strong>进程</strong>之间提供逻辑通信（网络层提供了主机之间的通信，即使网络层之间的通信时不可靠的，（分组丢失、混乱、重复），传输层同样也能为应用程序提供可靠的服务）。</p>
 <p>传输层与应用层存在于主机的协议栈中，而不是路由器的通信子网中。（其实只要理解了传输层在是不同主机上的进程之间进行通信，就都好理解了。）</p>

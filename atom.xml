@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-31T06:40:30.014Z</updated>
+  <updated>2020-08-13T19:21:46.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,96 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>「转」单例模式DCL</title>
+    <link href="http://yoursite.com/2020/08/13/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8FDCL/"/>
+    <id>http://yoursite.com/2020/08/13/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8FDCL/</id>
+    <published>2020-08-13T10:15:50.000Z</published>
+    <updated>2020-08-13T19:21:46.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原文连接：&lt;a href=&quot;https://www.cnblogs.com/xz816111/p/8470048.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Java中的双重检查锁（double checked locking）&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;作者：&lt;a href=&quot;https://home.cnblogs.com/u/xz816111/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Decouple&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>「转」APP启动方式:冷启动和热启动</title>
+    <link href="http://yoursite.com/2020/08/13/APP%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F-%E5%86%B7%E5%90%AF%E5%8A%A8%E5%92%8C%E7%83%AD%E5%90%AF%E5%8A%A8/"/>
+    <id>http://yoursite.com/2020/08/13/APP%E5%90%AF%E5%8A%A8%E6%96%B9%E5%BC%8F-%E5%86%B7%E5%90%AF%E5%8A%A8%E5%92%8C%E7%83%AD%E5%90%AF%E5%8A%A8/</id>
+    <published>2020-08-13T06:12:12.000Z</published>
+    <updated>2020-08-13T14:39:58.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作者：王伟desire&lt;br&gt;链接：&lt;a href=&quot;https://www.jianshu.com/p/8ba3d576f16a&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.jianshu.com/p/8ba3d576f16a&lt;/a&gt;&lt;br&gt;来源：简书&lt;br&gt;著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>「转」Android各存储方式对比</title>
+    <link href="http://yoursite.com/2020/08/12/Android%E5%90%84%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94/"/>
+    <id>http://yoursite.com/2020/08/12/Android%E5%90%84%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94/</id>
+    <published>2020-08-12T06:35:23.000Z</published>
+    <updated>2020-08-13T14:14:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作者：篱开罗&lt;br&gt;链接：&lt;a href=&quot;https://www.jianshu.com/p/d9dde3f59be5&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.jianshu.com/p/d9dde3f59be5&lt;/a&gt;&lt;br&gt;来源：简书&lt;br&gt;著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>注解</title>
+    <link href="http://yoursite.com/2020/08/12/%E6%B3%A8%E8%A7%A3/"/>
+    <id>http://yoursite.com/2020/08/12/%E6%B3%A8%E8%A7%A3/</id>
+    <published>2020-08-12T04:33:20.000Z</published>
+    <updated>2020-08-12T13:40:44.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作者：凌寒天下独自舞&lt;br&gt;链接：&lt;a href=&quot;https://www.jianshu.com/p/e2757e4b5455&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.jianshu.com/p/e2757e4b5455&lt;/a&gt;&lt;br&gt;来源：简书&lt;br&gt;著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>「转」静态方法与普通方法区别</title>
+    <link href="http://yoursite.com/2020/08/12/%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E6%99%AE%E9%80%9A%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB/"/>
+    <id>http://yoursite.com/2020/08/12/%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E6%99%AE%E9%80%9A%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB/</id>
+    <published>2020-08-12T03:20:12.000Z</published>
+    <updated>2020-08-13T14:14:10.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;9点区别&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
@@ -114,11 +204,11 @@
     <link href="http://yoursite.com/2020/04/08/TCP%E5%92%8CUDP%E8%AF%A6%E8%A7%A3/"/>
     <id>http://yoursite.com/2020/04/08/TCP%E5%92%8CUDP%E8%AF%A6%E8%A7%A3/</id>
     <published>2020-04-08T04:57:30.000Z</published>
-    <updated>2020-04-23T05:55:39.828Z</updated>
+    <updated>2020-08-13T18:22:20.000Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;/images/pictures/TCP%E5%92%8CUDP%E8%AF%A6%E8%A7%A3/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png&quot; alt=&quot;success&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;从计算机网络体系结构角度解析TCP和UDP&lt;/p&gt;
     
     </summary>
     
@@ -311,102 +401,6 @@
     
       <category term="Java类源代码" scheme="http://yoursite.com/categories/Java%E7%B1%BB%E6%BA%90%E4%BB%A3%E7%A0%81/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>形象描述实现临界区互斥的基本方法</title>
-    <link href="http://yoursite.com/2020/03/23/%E5%BD%A2%E8%B1%A1%E6%8F%8F%E8%BF%B0%E5%AE%9E%E7%8E%B0%E4%B8%B4%E7%95%8C%E5%8C%BA%E4%BA%92%E6%96%A5%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2020/03/23/%E5%BD%A2%E8%B1%A1%E6%8F%8F%E8%BF%B0%E5%AE%9E%E7%8E%B0%E4%B8%B4%E7%95%8C%E5%8C%BA%E4%BA%92%E6%96%A5%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95/</id>
-    <published>2020-03-22T16:26:48.000Z</published>
-    <updated>2020-03-25T15:47:05.780Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;用四个例子形象说明实现临界区互斥的基本方法&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="操作系统" scheme="http://yoursite.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>深入理解 JVM</title>
-    <link href="http://yoursite.com/2020/03/14/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM/"/>
-    <id>http://yoursite.com/2020/03/14/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JVM/</id>
-    <published>2020-03-14T15:27:32.000Z</published>
-    <updated>2020-03-25T15:47:25.631Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文是《深入理解 JVM 》一书的笔记，将对书中知识做出提炼与总结。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java面试题</title>
-    <link href="http://yoursite.com/2020/03/14/Java%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    <id>http://yoursite.com/2020/03/14/Java%E9%9D%A2%E8%AF%95%E9%A2%98/</id>
-    <published>2020-03-14T04:00:00.000Z</published>
-    <updated>2020-03-14T06:24:38.186Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;作者：Zz_maker&lt;br&gt;&lt;a href=&quot;https://www.cnblogs.com/Zz-maker/p/11193930.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.cnblogs.com/Zz-maker/p/11193930.html&lt;/a&gt;&lt;br&gt;包含的模块：&lt;/p&gt;
-&lt;p&gt;本文分为十九个模块，分别是：Java 基础、容器、多线程、反射、对象拷贝、Java Web 、异常、网络、设计模式、Spring/Spring MVC、Spring Boot/Spring Cloud、Hibernate、MyBatis、RabbitMQ、Kafka、Zookeeper、MySQL、Redis、JVM&lt;/p&gt;
-&lt;p&gt;共包含 208 道面试题，本文的宗旨是为读者朋友们整理一份详实而又权威的面试清单，下面一起进入主题吧。&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式</title>
-    <link href="http://yoursite.com/2020/03/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2020/03/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</id>
-    <published>2020-03-06T14:26:47.000Z</published>
-    <updated>2020-03-25T15:47:42.466Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文是《大话数据结构》一书的总结笔记，将不断完善。&lt;/p&gt;
-&lt;p&gt;感谢我的大学C++老师，推荐给我的《大话…》系列书籍，寓教于乐，深入浅出。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="设计模式" scheme="http://yoursite.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>如何在github上为开源项目贡献</title>
-    <link href="http://yoursite.com/2020/03/03/%E5%A6%82%E4%BD%95%E5%9C%A8github%E4%B8%8A%E4%B8%BA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E8%B4%A1%E7%8C%AE/"/>
-    <id>http://yoursite.com/2020/03/03/%E5%A6%82%E4%BD%95%E5%9C%A8github%E4%B8%8A%E4%B8%BA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E8%B4%A1%E7%8C%AE/</id>
-    <published>2020-03-03T07:07:56.000Z</published>
-    <updated>2020-03-05T02:31:37.531Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;以&lt;a href=&quot;https://github.com/tensorflow/tensorflow&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;tensorflow&lt;/a&gt;为例子介绍如何在&lt;a href=&quot;https://github.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;github&lt;/a&gt;上为一个开源项目做出贡献，进行多人协作编程&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="GitHub" scheme="http://yoursite.com/categories/GitHub/"/>
-    
-    
-      <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   

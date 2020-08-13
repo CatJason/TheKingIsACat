@@ -1005,22 +1005,16 @@
       return GUEST.indexOf(item)>-1;
     });
     new Valine({
-        el:'#vcomment',
-    	enableQQ: true,
-	    boolean: true,
-	    notify: 'false',
-	    verify: 'false',
-	    appId: '',
-	    appKey: '',
-	    placeholder: '已阅留爪 (ฅ´ω`ฅ)',
-	    avatar: 'images/avatar.gif',
-	    meta: guest_info,
-	    pageSize: '10',
-	    lang: '',
-	    recordIP: '',
-	    serverURLs: '',
-	    requiredFields: ['nick','mail'], 
-	    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'jcasimeyi2Tt13dg9dBHj0eU-gzGzoHsz',
+        appKey: 'L1BdsRClxxAqsXKU01qUjtKN',
+        placeholder: '已阅留爪 (ฅ´ω`ฅ)',
+        avatar:'images/avatar.gif',
+        guest_info:guest,
+        pageSize:'10' || 10,
+        emojiCDN: '//i0.hdslb.com/bfs/emote/', 
 	    emojiMaps: {
 	      "tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
 	      "tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
@@ -1073,7 +1067,7 @@
 	      "tv_黑人问号": "45821a01f51bc867da9edbaa2e070410819a95b2.png",
 	      "tv_鼓掌": "1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png"
     }
-  });
+    });
   </script>
 
 

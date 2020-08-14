@@ -1898,7 +1898,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d9ffa4;
+  background: #cbffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2856,7 +2856,6 @@ canvas {
   color: #fff !important;
 }
 .vcontent {
-  background-color: rgba(245,255,245,0.95);
   border-radius: 2px;
 }
 .highlight {

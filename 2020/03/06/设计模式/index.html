@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Welcome to My Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="本文是《大话数据结构》一书的总结笔记，将不断完善。 感谢我的大学C++老师，推荐给我的《大话…》系列书籍，寓教于乐，深入浅出。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://yoursite.com/2020/03/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Welcome to My Blog">
+<meta property="og:description" content="本文是《大话数据结构》一书的总结笔记，将不断完善。 感谢我的大学C++老师，推荐给我的《大话…》系列书籍，寓教于乐，深入浅出。">
+<meta property="article:published_time" content="2020-03-06T14:26:47.000Z">
+<meta property="article:modified_time" content="2020-03-25T23:47:42.000Z">
+<meta property="article:author" content="Jason Wang">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/06/设计模式/"/>
+
+
+
+
+
+  <title>设计模式 | Welcome to My Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+ <div class="bg_content">
+<canvas id="canvas1"></canvas>
+<canvas id="canvas2"></canvas>
+<canvas id="canvas3"></canvas>
+</div>
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/CatJason" target="_blank" rel="noopener"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to My Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">设计模式</h1>
+        
+
+        <div class="post-meta">
+	  
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-06T22:26:47+08:00">
+                2020-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  4.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文是《大话数据结构》一书的总结笔记，将不断完善。</p>
+<p>感谢我的大学C++老师，推荐给我的《大话…》系列书籍，寓教于乐，深入浅出。</p>
+<a id="more"></a>
+
+<h2 id="代码无错便是优？"><a href="#代码无错便是优？" class="headerlink" title="代码无错便是优？"></a>代码无错便是优？</h2><p>代码规范</p>
+<p>面向对象</p>
+<p>复制VS复用</p>
+<p>业务的封装</p>
+<p>高内聚低耦合</p>
+<p>UML类图</p>
+<h2 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h2><p>Q：在实例化问题中，到底应该实例化谁，将来会不会增加实例化对象</p>
+<p>将容易变化的地方，用一个单独的类来做这个创造实例的过程，这就是工厂。</p>
+<p>工厂通过多态实例化出合适的对象，返回父类的方法实现需要的函数。</p>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>Q：如何解决算法时常变动的情况</p>
+<p>策略模式定义并封装了算法家族，让他们之间可以相互替换，此模式让算法的变化，不会影响到使用算法的客户。</p>
+<p>策略模式类，作为定义所有算法的公共接口与具体策略类的父类，并在上下文类中被调用。不同的算法被封装在具体策略类中。</p>
+<h3 id="策略模式与简单工厂模式结合"><a href="#策略模式与简单工厂模式结合" class="headerlink" title="策略模式与简单工厂模式结合"></a>策略模式与简单工厂模式结合</h3><p>Q：如何在策略模式的基础上避免在客户端判断使用哪一个算法</p>
+<p>简单工厂模式中，客户端由工厂类实例化出父类的一个具体的子类，既要知道父类，又要知道工厂类。</p>
+<p>而策略模式与简单工厂模式结合，由上下文类调用策略算法（接口）类并实例化具体的策略算法类，客户端只需要知道上下文类即可。</p>
+<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>就一个类而言，应该仅有一个引起它变化的原因。</p>
+<p>如果一个类承担的职责过多，就等于把这些职责耦合在一起，一个职责的变化可能会削弱或者抑制这个类完成其他职责的能力。这种耦合会导致脆弱的设计，当变化发生时，设计会遭受到意想不到的破坏。</p>
+<p>软件设计真正要做的许多内容，就是发现职责并把那些职责相互分离</p>
+<p>判断是否应该分离出类：多于一个动机去改变一个类，这个类就有多于一个的职责，就应该考虑类的职责分离。</p>
+<h2 id="开放-封闭原则"><a href="#开放-封闭原则" class="headerlink" title="开放-封闭原则"></a>开放-封闭原则</h2><p>软件实体（类、模块和函数等等）应允许扩展禁止修改。</p>
+<p>开放扩展，封闭修改。</p>
+<p>Q：怎样的设计才能面对需求的改变可以保持相对稳定，从而使得系统可以在第一个版本以后不断推出新的版本。</p>
+<p>无论模块是多么的“封闭”，都会存在一些无法对之封闭的变化。既然不可能完全的封闭，设计人员必须对他设计的模块应该对哪种变化封闭做出选择。他们必须先猜出最有可能发生的变化种类，然后构造抽象隔离那些变化。</p>
+<p>在我们最初编码时，假设不会发生变化。当变化发生时，我们就创建抽象来隔离以后发生的同类变化。</p>
+<p>面对需求，对程序的改动是增加新代码进行的，而不是更改现有的代码。</p>
+<p>开发人员应该仅对程序中出现频繁变化的那些部分做出抽象，不应对于应用程序中的每一个部分都刻意地进行抽象。拒绝不成熟的抽象和抽象本身同样重要。</p>
+<h2 id="依赖倒转原则"><a href="#依赖倒转原则" class="headerlink" title="依赖倒转原则"></a>依赖倒转原则</h2><ul>
+<li>高层模块不应该依赖低层模块，两个都应该依赖抽象。</li>
+<li>抽象不应该依赖细节，细节应该依赖抽象。</li>
+</ul>
+<p>依赖倒转是面向对象设计的标志，面向抽象而不是面向细节编程，程序中所有依赖关系都终止于抽象类或者接口，反之则为面向过程。</p>
+<h3 id="里世代换原则-LSP"><a href="#里世代换原则-LSP" class="headerlink" title="里世代换原则(LSP)"></a>里世代换原则(LSP)</h3><p>子类型必须能够替换掉他们的父类型。</p>
+<p>一个软件实体如果使用的是一个父类的话，那么一定适用与其子类，而且它察觉不出父类对象与子类对象的区别，在软件中，如果把父类替换成它的子类，程序行为没有变化。</p>
+<h2 id="装饰模式"><a href="#装饰模式" class="headerlink" title="装饰模式"></a>装饰模式</h2><p>装饰类是为已有功能动态的添加更多功能的一种方式，当系统需要新的功能的时候，是向旧的类中添加新的代码，这些装饰的代码通常装饰了原有类的核心职责或主要行为，在主类中加入了新的字段，新的方法和新的逻辑，从而增加了主类的复杂度。这些新加入的东西仅仅是为了满足一些只在某种特定情况下才会执行的特殊行为的需要。而装饰模式却提供了一个非常好的解决方案，他把每个装饰类的功能放在单独的类中，并让这个类包装他所要装饰的对象，因此，在执行特殊行为时，客户代码就可以在运行时，根据需要有选择地、按顺序地选择装饰功能包装对象了。</p>
+<p>动态地给一些对象添加一些额外的职责，就增加功能来说，装饰模式比生成子类更为灵活。</p>
+<ul>
+<li>接口对象类，给这些对象动态的添加职责。</li>
+<li>具体的对象类，这个对象本身可以具有一些职责。</li>
+<li>抽象装饰类，继承于对象接口类，以达到从外部扩展对象接口类的目的。</li>
+<li>具体的装饰对象类，给对象接口类添加职责。</li>
+</ul>
+<p>装饰模式利用抽象装饰类中的装饰函数来对对象进行包装，这样每个对象的实现就和如何使用这个对象分开了，每个装饰对象只关心自己的功能，不需要关心如何被添加到对象链当中。</p>
+<p>如果只有一个具体的对象类，而没有抽象的接口对象类，那么抽象装饰类可以改成具体的对象类的子类。如果只有一个具体的装饰对象类，那么就没有必要建立一个单独的抽象装饰类，可以把二者的责任合并成一个类。</p>
+<p>装饰模式的优点：把类中的装饰功能从类中搬移除去，这样可以简化原有的类。有效的把类的核心功能和装饰功能区分开了。而且可以去除相关类中重复的装饰逻辑。</p>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>为其他对象提供一种代理以控制这个对象的访问</p>
+<ul>
+<li>抽象实体类，定义了真实实体类和代理类的共用接口，这样就在任何使用真实实体的地方都可以使用代理。</li>
+<li>真实实体类，定义了代理类所代表的真实实体。</li>
+<li>代理类，继承于抽象实体类，保存一个引用使得代理可以访问真实实体类，并提供一个与实体类（抽象实体类和真实实体类的接口也相同，故这里是实体类）的接口相同的接口，这样代理就可以用来代替实体。</li>
+</ul>
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>定义一个用来创建对象的接口，让子类用来决定实例化哪一个类。工厂方法使一个类的实例化延伸到其子类。</p>
+<ul>
+<li>抽象产品接口类，定义工厂方法所创建的对象。</li>
+<li>工厂方法类，该方法返回一个产品类类型对象</li>
+<li>具体产品类，继承抽象产品接口类，实现了产品接口类的接口</li>
+<li>具体重唱方法类，重定义工厂方法以返回一个工厂方法实例</li>
+</ul>
+<h3 id="简单工厂模式VS工厂方法模式"><a href="#简单工厂模式VS工厂方法模式" class="headerlink" title="简单工厂模式VS工厂方法模式"></a>简单工厂模式VS工厂方法模式</h3><p>简单工厂模式的最大优点在于工厂类中包含的了必要的逻辑判断，根据客户端的选择，动态的实例化相关的类，对于客户端来说，去除对具体产品的依赖。</p>
+<p>工厂方法模式实现时，客户端需要决定实例化哪一个工厂来实现类，选择判断的问题还是存在的，也就是说工厂方法把简单的内部逻辑判断移到了客户端代码来进行。你想要加功能，本来是该工厂类，而现在是改客户端。</p>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>用原型实例指定创建对象的种类，并且通过拷贝这些原型创建新的对象。</p>
+<p>原型模式其实就是从一个对象再创建另一个可定制的对象，而不需要知道任何创建的细节。</p>
+<ul>
+<li>原型类，声明一个克隆自身的接口。</li>
+<li>具体原型类，继承于原型类，实现一个克隆自身的操作。</li>
+</ul>
+<p>一般在初始化的信息不发生变化的情况下，克隆是最好的方法。这既隐藏了对象创建的细节，又对性能是大大的提高。不用重新初始化对象，而是动态地获得对象运行时的状态。</p>
+<h3 id="浅复制与深复制"><a href="#浅复制与深复制" class="headerlink" title="浅复制与深复制"></a>浅复制与深复制</h3><p><strong>浅复制</strong>：被复制的对象的所有变量都含有与原来对象相同的值，而所有的对其他对象的引用都仍然指向原来的对象。</p>
+<p><strong>深复制</strong>：把引用对象的变量指向复制过的新对象，而不是原有的被引用的对象。</p>
+<h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><p>定义一个操作中算法的骨架，而将一些步骤延迟到子类中。模板方法使子类可以不改变一个算法的结构即可定义该算法的某些特定步骤。</p>
+<ul>
+<li>抽象模板类，定义了一些抽象行为和实现一个模板方法定义了算法的逻辑骨架，逻辑的组成是一些相应的抽象操作，他们都推迟到子类中实现，具体子类将重定义模板方法中的函数以实现一个算法的步骤。</li>
+<li>模板类，继承于抽象模板类，实现抽象模板类中模板方法中的函数以完成算法中与特定子类相关的步骤。</li>
+</ul>
+<p>模板类，实现抽象模板类所定义的一个或多个抽象方法，每一个抽象模板类都可以有任意多个模板类与之对应，而每一个模板类都可以给出这些抽象方法（也就是顶级逻辑的组成步骤）的不同实现，从而使得顶级逻辑的实现各不相同。</p>
+<p>模板方法模式是通过把不变的行为搬移到超类，去除子类中的重复代码来体现他的优势，模板方法模式就是提供了一个很好的代码复用平台。当不变的和可变的行为在方法的子类实现中混合在一起的时候，不变的行为就会在子类中重复实现。通过模板方法模式把这些行为搬移到单一的地方，这样就帮助子类摆脱重复的不变行为的纠缠。</p>
+<h2 id="迪米特法则（最少知识原则）"><a href="#迪米特法则（最少知识原则）" class="headerlink" title="迪米特法则（最少知识原则）"></a>迪米特法则（最少知识原则）</h2><p>如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用。如果其中一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用。</p>
+<p>在类的结构设计上，每一个类都应当尽量降低成员的访问权限。</p>
+<p>迪米特法则其根本思想，是强调了类之间的松耦合。类之间的耦合越弱，越有利于复用，一个处在弱耦合的类被修改，不会对有关系的类造成波及。</p>
+<h2 id="外观模式"><a href="#外观模式" class="headerlink" title="外观模式"></a>外观模式</h2><p>为子系统中的一组接口提供一个一致的界面，此模式定义了一个高层接口，这一接口使得这一子系统更加容易使用。</p>
+<ul>
+<li>外观类，知道哪些子系统类负责处理请求，将客户的请求代理给适当的子系统对象。</li>
+<li>子系统类集合，实现子系统的功能，处理外观类对象指派的任务，注意子类中没有外观类的任何信息，即没有对外观类对象的引用。</li>
+</ul>
+<p>在设计的初期阶段，要有意识的将两不同的两个类分离。</p>
+<p>层与层之间建立外观外观类，为复杂的子系统提供一个简单的接口，使得耦合大大降低。</p>
+<p>子系统的重构演化越来越复杂时，调用过多的接口会使得程序响应缓慢，增加外观类可以提供一个简单的接口，减少他们之间的依赖。在维护一个遗留的大型系统时，可能这个系统已经非常难以维护和扩展了，但它包含着新系统必须依赖的重要功能，此时可以为系统开发一个外观类，来提供设计粗糙或高度复杂的遗留代码的比较清晰简单的接口，让新系统与外观类对象交互，外观类与遗留代码交互所有复杂的工作。</p>
+<h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><p>Q：如何将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<p>建造者模式下，用户只需指定需要建造的类型就可以得到它们，而具体的建造细节就不需要知道了。主要用于创建一些复杂的对象，这些对象内部构建间的建造顺序通常是稳定的，但内部对象的构建通常面临着复杂的变化。</p>
+<p>建造者模式的好处就是使得建造代码与表示代码分离，由于建造者隐藏了该产品是如何组装的，所以若需要改变一个产品的内部表示，只需要再定义一个具体的建造者就可以了。</p>
+<p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<ul>
+<li>建造者接口类，作为创建一个产品对象的各个部件指定的抽象接口。</li>
+<li>指挥者类，构建一个使用创建者接口的对象。</li>
+<li>具体建造者类，实现建造者接口类的接口，构造和装配各个部件。</li>
+<li>具体产品类</li>
+</ul>
+<p>建造设模式是在当创建复杂对象的算法应该独立于该对象的组成部分以及他们的装配方式时适用的模式。</p>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>观察者模式又叫发布-订阅模式</p>
+<p>定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。这个主题对象在状态发生变化时，会通知所有观察者对象，使它们能够自动更新自己。</p>
+<ul>
+<li>抽象主题类：把所有对观察者对象的引用保存在一个聚集里，每个主题都可以有任何数量的观察者。抽象主题提供一个接口，可以增加和删除观察者对象。</li>
+<li>抽象观察者类，为所有的具体观察者定义一个接口，在得到主题的通知时更新自己。通常包含一个更新方法。</li>
+<li>具体主题类，继承于抽象主题类，将有关状态存入具体观察者对象，在具体主题的内部状态改变时。给所有登记过的观察者发出通知。具体的主题角色通常用一个具体子类实现。</li>
+<li>具体观察者，继承于抽象观察者类，实现抽象观察者角色所要求的更新接口，以便使本身的状态与主题的状体相协调。具体观察者角色可以保存一个指向具体主题对象的引用。具体观察者角色通常用一个具体的子类实现。</li>
+</ul>
+<p>将一个系统分割成一系列相互协作的类有一个很不好的副作用，那就是需要维护相关对象间的一致性。我们不希望为了维持一致性而使各类紧密耦合，这样会给维护、扩展和重用都带来不便。观察者模式的关键对象是主题类和观察者类，一个主题类可以有任意数目的依赖它的观察者类，一旦主题类的状态发生了改变，所有的观察者类都可以得到通知，具体观察者是谁，它根本不要知道，而任何一个具体观察者不知道也不需要知道其他观察者的存在。</p>
+<p>Q：什么时候应该使用观察者模式？</p>
+<p>当一个对象的改变需要同时改变其他对象而且它不知道具体有多少对象有待改变的时候。</p>
+<p>一个抽象模式有两个方面，其中一方面依赖于令一个方面，这时用观察者模式可以将这两者封装在独立的对象中使它们各自独立地改变和复用。</p>
+<p>观察者模式所作的工作其实就是在解除耦合。让耦合的双方都依赖于抽象，而不是依赖于具体。从而使得各自的变化都不会影响另一边的变化。（是依赖倒转原则的最佳体现。）</p>
+<p>Q：抽象观察者是否可以用接口来定义？</p>
+<p>具体的观察者可能是完全不相及的类，但他们都需要根据通知者的通知来做出更新的操作，让他们实现一个相同的接口就可以实现这个想法了。</p>
+<p>Q：如何让每个控件实现一个观察者接口？</p>
+<p>没办法，这些控件早已被他们的制造商给封装了，尽管程序已经用了依赖倒转原则，但是“抽象通知者”还是依赖“抽象观察者”，也就是说，万一没有了抽象观察者这样的接口，我这通知功能就完不成了。另外就是每个具体观察者，不一定调用的是同一种更新方法。</p>
+<h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><p>通知者和观察者之间互相不知道，由客户端来决定通知谁。</p>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><h2 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h2><h2 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h2><h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h2 id="职责链模式"><a href="#职责链模式" class="headerlink" title="职责链模式"></a>职责链模式</h2><h2 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h2><h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><h2 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h2><h2 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h2>
+      
+    </div>
+    
+    
+    
+    <div>
+    
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+
+  <p><span>本文标题:</span>设计模式</a></p>
+  <p><span>文章作者:</span>Jason Wang</a></p>
+  <p><span>发布时间:</span>2020年03月06日 - 22:26:47</p>
+  <p><span>最后更新:</span>2020年03月26日 - 07:47:42</p>
+  <p><span>原始链接:</span><a href="/2020/03/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="设计模式">https://catjason.github.io/2020/03/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/03/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://www.npc.gov.cn/wxzl/gongbao/1990-09/07/content_1479238.htm" target="_blank" title="Copyright Law of the People's Republic of China">中华人民共和国著作权法</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+
+    
+    </div>
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #000;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/03/%E5%A6%82%E4%BD%95%E5%9C%A8github%E4%B8%8A%E4%B8%BA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E8%B4%A1%E7%8C%AE/" rel="next" title="如何在github上为开源项目贡献">
+                <i class="fa fa-chevron-left"></i> 如何在github上为开源项目贡献
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/14/Java%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="prev" title="Java面试题">
+                Java面试题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<a class="jiathis_counter_style"></a>
+</div>
+
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="sidebar-photo">
+          <img src="/images/avatar.jpeg"/>
+          </div>
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jason Wang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CatJason" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jason20121221@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码无错便是优？"><span class="nav-number">1.</span> <span class="nav-text">代码无错便是优？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单工厂模式"><span class="nav-number">2.</span> <span class="nav-text">简单工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#策略模式"><span class="nav-number">3.</span> <span class="nav-text">策略模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式与简单工厂模式结合"><span class="nav-number">3.1.</span> <span class="nav-text">策略模式与简单工厂模式结合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单一职责原则"><span class="nav-number">4.</span> <span class="nav-text">单一职责原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开放-封闭原则"><span class="nav-number">5.</span> <span class="nav-text">开放-封闭原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖倒转原则"><span class="nav-number">6.</span> <span class="nav-text">依赖倒转原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#里世代换原则-LSP"><span class="nav-number">6.1.</span> <span class="nav-text">里世代换原则(LSP)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰模式"><span class="nav-number">7.</span> <span class="nav-text">装饰模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代理模式"><span class="nav-number">8.</span> <span class="nav-text">代理模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">9.</span> <span class="nav-text">工厂方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单工厂模式VS工厂方法模式"><span class="nav-number">9.1.</span> <span class="nav-text">简单工厂模式VS工厂方法模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型模式"><span class="nav-number">10.</span> <span class="nav-text">原型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浅复制与深复制"><span class="nav-number">10.1.</span> <span class="nav-text">浅复制与深复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板方法模式"><span class="nav-number">11.</span> <span class="nav-text">模板方法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迪米特法则（最少知识原则）"><span class="nav-number">12.</span> <span class="nav-text">迪米特法则（最少知识原则）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外观模式"><span class="nav-number">13.</span> <span class="nav-text">外观模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建造者模式"><span class="nav-number">14.</span> <span class="nav-text">建造者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#观察者模式"><span class="nav-number">15.</span> <span class="nav-text">观察者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件委托"><span class="nav-number">15.1.</span> <span class="nav-text">事件委托</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂模式"><span class="nav-number">16.</span> <span class="nav-text">抽象工厂模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态模式"><span class="nav-number">17.</span> <span class="nav-text">状态模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适配器模式"><span class="nav-number">18.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备忘录模式"><span class="nav-number">19.</span> <span class="nav-text">备忘录模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合模式"><span class="nav-number">20.</span> <span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器模式"><span class="nav-number">21.</span> <span class="nav-text">迭代器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例模式"><span class="nav-number">22.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桥接模式"><span class="nav-number">23.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令模式"><span class="nav-number">24.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#职责链模式"><span class="nav-number">25.</span> <span class="nav-text">职责链模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中介者模式"><span class="nav-number">26.</span> <span class="nav-text">中介者模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#享元模式"><span class="nav-number">27.</span> <span class="nav-text">享元模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释器模式"><span class="nav-number">28.</span> <span class="nav-text">解释器模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问者模式"><span class="nav-number">29.</span> <span class="nav-text">访问者模式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Wang</span>
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  views:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">85.7k</span>
+  
+</div>
+
+
+<!--
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+-->
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = '';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'jcasimeyi2Tt13dg9dBHj0eU-gzGzoHsz',
+        appKey: 'L1BdsRClxxAqsXKU01qUjtKN',
+        placeholder: '已阅留爪 (ฅ´ω`ฅ)',
+        avatar:'images/avatar.gif',
+        guest_info:guest,
+        pageSize:'10' || 10,
+        visitor: true,// 阅读量统计
+        enableQQ: true,
+        // 设置Bilibili表情包地址
+	    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+	    // 表情title和图片映射
+	    emojiMaps: {
+		"tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+		"tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+		"tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+		"tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+		"tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+		"tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+		"tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+		"tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+		"tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+		"tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+		"tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+		"tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+		"tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+		"tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+		"tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+		"tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+		"tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+		"tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+		"tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+		"tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+		"tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+		"tv_打脸": "56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+		"tv_抓狂": "fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+		"tv_抠鼻": "c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+		"tv_斜眼笑": "911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+		"tv_无奈": "ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+		"tv_晕": "5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+		"tv_流汗": "cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+		"tv_流泪": "7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+		"tv_流鼻血": "c32d39db2737f89b904ca32700d140a9241b0767.png",
+		"tv_点赞": "f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+		"tv_生气": "26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+		"tv_生病": "8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+		"tv_疑问": "0793d949b18d7be716078349c202c15ff166f314.png",
+		"tv_白眼": "c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
+		"tv_皱眉": "72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+		"tv_目瞪口呆": "0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+		"tv_睡着": "8b196675b53af58264f383c50ad0945048290b33.png",
+		"tv_笑哭": "1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+		"tv_腼腆": "89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+		"tv_色": "61822c7e9aae5da76475e7892534545336b23a6f.png",
+		"tv_调侃": "4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+		"tv_调皮": "b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+		"tv_鄙视": "6e72339f346a692a495b123174b49e4e8e781303.png",
+		"tv_闭嘴": "c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+		"tv_难过": "87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+		"tv_馋": "fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+		"tv_鬼脸": "0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+		"tv_黑人问号": "45821a01f51bc867da9edbaa2e070410819a95b2.png",
+		"tv_鼓掌": "1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png",
+	} 
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="/js/src/dynamic_bg.js"></script>
+

@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Welcome to My Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="转载自http:&#x2F;&#x2F;gityuan.com&#x2F;2019&#x2F;04&#x2F;06&#x2F;android-anr&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="彻底理解Android应用无响应机制">
+<meta property="og:url" content="http://yoursite.com/2020/03/31/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3Android%E5%BA%94%E7%94%A8%E6%97%A0%E5%93%8D%E5%BA%94%E6%9C%BA%E5%88%B6/index.html">
+<meta property="og:site_name" content="Welcome to My Blog">
+<meta property="og:description" content="转载自http:&#x2F;&#x2F;gityuan.com&#x2F;2019&#x2F;04&#x2F;06&#x2F;android-anr&#x2F;">
+<meta property="og:image" content="http://gityuan.com/images/android-anr/service_anr.jpg">
+<meta property="og:image" content="http://gityuan.com/images/android-anr/broadcast_anr.jpg">
+<meta property="og:image" content="http://gityuan.com/images/android-anr/broadcast_anr_2.jpg">
+<meta property="og:image" content="http://gityuan.com/images/android-anr/provider_anr.jpg">
+<meta property="og:image" content="http://gityuan.com/images/android-anr/input_anr.jpg">
+<meta property="og:image" content="http://gityuan.com/images/android-anr/anr_timeout.jpg">
+<meta property="og:image" content="http://gityuan.com/images/android-anr/adj.png">
+<meta property="article:published_time" content="2020-03-30T19:12:34.000Z">
+<meta property="article:modified_time" content="2020-03-31T03:15:52.000Z">
+<meta property="article:author" content="Jason Wang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://gityuan.com/images/android-anr/service_anr.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/31/彻底理解Android应用无响应机制/"/>
+
+
+
+
+
+  <title>彻底理解Android应用无响应机制 | Welcome to My Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+ <div class="bg_content">
+<canvas id="canvas1"></canvas>
+<canvas id="canvas2"></canvas>
+<canvas id="canvas3"></canvas>
+</div>
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/CatJason" target="_blank" rel="noopener"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome to My Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/31/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3Android%E5%BA%94%E7%94%A8%E6%97%A0%E5%93%8D%E5%BA%94%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">彻底理解Android应用无响应机制</h1>
+        
+
+        <div class="post-meta">
+	  
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-31T03:12:34+08:00">
+                2020-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/03/31/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3Android%E5%BA%94%E7%94%A8%E6%97%A0%E5%93%8D%E5%BA%94%E6%9C%BA%E5%88%B6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/31/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3Android%E5%BA%94%E7%94%A8%E6%97%A0%E5%93%8D%E5%BA%94%E6%9C%BA%E5%88%B6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  4.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  17
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>转载自<a href="http://gityuan.com/2019/04/06/android-anr/" target="_blank" rel="noopener">http://gityuan.com/2019/04/06/android-anr/</a></p>
+<a id="more"></a>
+
+<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>不论从事安卓应用开发，还是安卓系统研发，应该都遇到应用无响应（ANR，Application Not Responding）问题，当应用程序一段时间无法及时响应，则会弹出ANR对话框，让用户选择继续等待，还是强制关闭。</p>
+<p>绝大多数人对ANR的了解仅停留在主线程耗时或CPU繁忙会导致ANR。面试过无数的候选人，几乎没有人能真正从系统级去梳理清晰ANR的来龙去脉，比如有哪些路径会引发ANR? 有没有可能主线程不耗时也出现ANR？如何更好的调试ANR?</p>
+<p>如果没有深入研究过Android Framework的源代码，是难以形成对ANR有一个全面、正确的理解。研究系统源码以及工作实践后提炼而来，以图文并茂的方式跟大家讲解，相信定能帮忙大家加深对ANR的理解。</p>
+<h3 id="ANR触发机制"><a href="#ANR触发机制" class="headerlink" title="ANR触发机制"></a>ANR触发机制</h3><p>对于知识学习的过程，要知其然知其所以然，才能做到庖丁解牛般游刃有余。要深入理解ANR，就需要从根上去找寻答案，那就是ANR是如何触发的？</p>
+<p>ANR是一套监控Android应用响应是否及时的机制，可以把发生ANR比作是引爆炸弹，那么整个流程包含三部分组成：</p>
+<ol>
+<li>埋定时炸弹：中控系统(system_server进程)启动倒计时，在规定时间内如果目标(应用进程)没有干完所有的活，则中控系统会定向炸毁(杀进程)目标。</li>
+<li>拆炸弹：在规定的时间内干完工地的所有活，并及时向中控系统报告完成，请求解除定时炸弹，则幸免于难。</li>
+<li>引爆炸弹：中控系统立即封装现场，抓取快照，搜集目标执行慢的罪证(traces)，便于后续的案件侦破(调试分析)，最后是炸毁目标。</li>
+</ol>
+<p>常见的ANR有service、broadcast、provider以及input，更多细节详见理解Android ANR的触发原理，<a href="http://gityuan.com/2016/07/02/android-anr，接下来本文以图文形式分别讲解。" target="_blank" rel="noopener">http://gityuan.com/2016/07/02/android-anr，接下来本文以图文形式分别讲解。</a></p>
+<h4 id="service超时机制"><a href="#service超时机制" class="headerlink" title="service超时机制"></a>service超时机制</h4><p>下面来看看埋炸弹与拆炸弹在整个服务启动(startService)过程所处的环节。</p>
+<p><img src="http://gityuan.com/images/android-anr/service_anr.jpg" alt="service_anr"></p>
+<p>图解1：</p>
+<ol>
+<li>客户端(App进程)向中控系统(system_server进程)发起启动服务的请求</li>
+<li>中控系统派出一名空闲的通信员(binder_1线程)接收该请求，紧接着向组件管家(ActivityManager线程)发送消息，埋下定时炸弹</li>
+<li>通讯员1号(binder_1)通知工地(service所在进程)的通信员准备开始干活</li>
+<li>通讯员3号(binder_3)收到任务后转交给包工头(main主线程)，加入包工头的任务队列(MessageQueue)</li>
+<li>包工头经过一番努力干完活(完成service启动的生命周期)，然后等待SharedPreferences(简称SP)的持久化；</li>
+<li>包工头在SP执行完成后，立刻向中控系统汇报工作已完成</li>
+<li>中控系统的通讯员2号(binder_2)收到包工头的完工汇报后，立刻拆除炸弹。如果在炸弹倒计时结束前拆除炸弹则相安无事，否则会引发爆炸(触发ANR)</li>
+</ol>
+<p>更多细节详见startService启动过程分析，<a href="http://gityuan.com/2016/03/06/start-service" target="_blank" rel="noopener">http://gityuan.com/2016/03/06/start-service</a></p>
+<h4 id="broadcast超时机制"><a href="#broadcast超时机制" class="headerlink" title="broadcast超时机制"></a>broadcast超时机制</h4><p>broadcast跟service超时机制大抵相同，对于静态注册的广播在超时检测过程需要检测SP，如下图所示。</p>
+<p><img src="http://gityuan.com/images/android-anr/broadcast_anr.jpg" alt="broadcast_anr"></p>
+<p>图解2：</p>
+<ol>
+<li>客户端(App进程)向中控系统(system_server进程)发起发送广播的请求</li>
+<li>中控系统派出一名空闲的通信员(binder_1)接收该请求转交给组件管家(ActivityManager线程)</li>
+<li>组件管家执行任务(processNextBroadcast方法)的过程埋下定时炸弹</li>
+<li>组件管家通知工地(receiver所在进程)的通信员准备开始干活</li>
+<li>通讯员3号(binder_3)收到任务后转交给包工头(main主线程)，加入包工头的任务队列(MessageQueue)</li>
+<li>包工头经过一番努力干完活(完成receiver启动的生命周期)，发现当前进程还有SP正在执行写入文件的操作，便将向中控系统汇报的任务交给SP工人(queued-work-looper线程)</li>
+<li>SP工人历经艰辛终于完成SP数据的持久化工作，便可以向中控系统汇报工作完成</li>
+<li>中控系统的通讯员2号(binder_2)收到包工头的完工汇报后，立刻拆除炸弹。如果在倒计时结束前拆除炸弹则相安无事，否则会引发爆炸(触发ANR)</li>
+</ol>
+<p>（说明：SP从8.0开始采用名叫“queued-work-looper”的handler线程，在老版本采用newSingleThreadExecutor创建的单线程的线程池）</p>
+<p>如果是动态广播，或者静态广播没有正在执行持久化操作的SP任务，则不需要经过“queued-work-looper”线程中转，而是直接向中控系统汇报，流程更为简单，如下图所示：</p>
+<p><img src="http://gityuan.com/images/android-anr/broadcast_anr_2.jpg" alt="broadcast_anr_2"></p>
+<p>可见，只有XML静态注册的广播超时检测过程会考虑是否有SP尚未完成，动态广播并不受其影响。SP的apply将修改的数据项更新到内存，然后再异步同步数据到磁盘文件，因此很多地方会推荐在主线程调用采用apply方式，避免阻塞主线程，但静态广播超时检测过程需要SP全部持久化到磁盘，如果过度使用apply会增大应用ANR的概率，更多细节详见<a href="http://gityuan.com/2017/06/18/SharedPreferences" target="_blank" rel="noopener">http://gityuan.com/2017/06/18/SharedPreferences</a></p>
+<p>Google这样设计的初衷是针对静态广播的场景下，保障进程被杀之前一定能完成SP的数据持久化。因为在向中控系统汇报广播接收者工作执行完成前，该进程的优先级为Foreground级别，高优先级下进程不但不会被杀，而且能分配到更多的CPU时间片，加速完成SP持久化。</p>
+<p>更多细节详见Android Broadcast广播机制分析，<a href="http://gityuan.com/2016/06/04/broadcast-receiver" target="_blank" rel="noopener">http://gityuan.com/2016/06/04/broadcast-receiver</a></p>
+<h4 id="provider超时机制"><a href="#provider超时机制" class="headerlink" title="provider超时机制"></a>provider超时机制</h4><p>provider的超时是在provider进程首次启动的时候才会检测，当provider进程已启动的场景，再次请求provider并不会触发provider超时。</p>
+<p><img src="http://gityuan.com/images/android-anr/provider_anr.jpg" alt="provider_anr"></p>
+<p>图解3：</p>
+<ol>
+<li>客户端(App进程)向中控系统(system_server进程)发起获取内容提供者的请求</li>
+<li>中控系统派出一名空闲的通信员(binder_1)接收该请求，检测到内容提供者尚未启动，则先通过zygote孵化新进程</li>
+<li>新孵化的provider进程向中控系统注册自己的存在</li>
+<li>中控系统的通信员2号接收到该信息后，向组件管家(ActivityManager线程)发送消息，埋下炸弹</li>
+<li>通信员2号通知工地(provider进程)的通信员准备开始干活</li>
+<li>通讯员4号(binder_4)收到任务后转交给包工头(main主线程)，加入包工头的任务队列(MessageQueue)</li>
+<li>包工头经过一番努力干完活(完成provider的安装工作)后向中控系统汇报工作已完成</li>
+<li>中控系统的通讯员3号(binder_3)收到包工头的完工汇报后，立刻拆除炸弹。如果在倒计时结束前拆除炸弹则相安无事，否则会引发爆炸(触发ANR)</li>
+</ol>
+<p>更多细节详见理解ContentProvider原理，<a href="http://gityuan.com/2016/07/30/content-provider" target="_blank" rel="noopener">http://gityuan.com/2016/07/30/content-provider</a></p>
+<h4 id="input超时机制"><a href="#input超时机制" class="headerlink" title="input超时机制"></a>input超时机制</h4><p>input的超时检测机制跟service、broadcast、provider截然不同，为了更好的理解input过程先来介绍两个重要线程的相关工作：</p>
+<ul>
+<li>InputReader线程负责通过EventHub(监听目录/dev/input)读取输入事件，一旦监听到输入事件则放入到InputDispatcher的mInBoundQueue队列，并通知其处理该事件；</li>
+<li>InputDispatcher线程负责将接收到的输入事件分发给目标应用窗口，分发过程使用到3个事件队列：<ul>
+<li>mInBoundQueue用于记录InputReader发送过来的输入事件；</li>
+<li>outBoundQueue用于记录即将分发给目标应用窗口的输入事件；</li>
+<li>waitQueue用于记录已分发给目标应用，且应用尚未处理完成的输入事件；</li>
+</ul>
+</li>
+</ul>
+<p>input的超时机制并非时间到了一定就会爆炸，而是处理后续上报事件的过程才会去检测是否该爆炸，所以更像是扫雷的过程，具体如下图所示。</p>
+<p><img src="http://gityuan.com/images/android-anr/input_anr.jpg" alt="input_anr"></p>
+<p>图解4：</p>
+<ol>
+<li>InputReader线程通过EventHub监听底层上报的输入事件，一旦收到输入事件则将其放至mInBoundQueue队列，并唤醒InputDispatcher线程</li>
+<li>InputDispatcher开始分发输入事件，设置埋雷的起点时间。先检测是否有正在处理的事件(mPendingEvent)，如果没有则取出mInBoundQueue队头的事件，并将其赋值给mPendingEvent，且重置ANR的timeout；否则不会从mInBoundQueue中取出事件，也不会重置timeout。然后检查窗口是否就绪(checkWindowReadyForMoreInputLocked)，满足以下任一情况，则会进入扫雷状态(检测前一个正在处理的事件是否超时)，终止本轮事件分发，否则继续执行步骤3。<ul>
+<li>对于按键类型的输入事件，则outboundQueue或者waitQueue不为空，</li>
+<li>对于非按键的输入事件，则waitQueue不为空，且等待队头时间超时500ms</li>
+</ul>
+</li>
+<li>当应用窗口准备就绪，则将mPendingEvent转移到outBoundQueue队列</li>
+<li>当outBoundQueue不为空，且应用管道对端连接状态正常，则将数据从outboundQueue中取出事件，放入waitQueue队列</li>
+<li>InputDispatcher通过socket告知目标应用所在进程可以准备开始干活</li>
+<li>App在初始化时默认已创建跟中控系统双向通信的socketpair，此时App的包工头(main线程)收到输入事件后，会层层转发到目标窗口来处理</li>
+<li>包工头完成工作后，会通过socket向中控系统汇报工作完成，则中控系统会将该事件从waitQueue队列中移除。</li>
+</ol>
+<p>input超时机制为什么是扫雷，而非定时爆炸呢？是由于对于input来说即便某次事件执行时间超过timeout时长，只要用户后续在没有再生成输入事件，则不会触发ANR。 这里的扫雷是指当前输入系统中正在处理着某个耗时事件的前提下，后续的每一次input事件都会检测前一个正在处理的事件是否超时（进入扫雷状态），检测当前的时间距离上次输入事件分发时间点是否超过timeout时长。如果前一个输入事件，则会重置ANR的timeout，从而不会爆炸。</p>
+<p>更多细节详见Input系统-ANR原理分析，<a href="http://gityuan.com/2017/01/01/input-anr" target="_blank" rel="noopener">http://gityuan.com/2017/01/01/input-anr</a></p>
+<h3 id="ANR超时阈值"><a href="#ANR超时阈值" class="headerlink" title="ANR超时阈值"></a>ANR超时阈值</h3><p>不同组件的超时阈值各有不同，关于service、broadcast、contentprovider以及input的超时阈值如下表：</p>
+<p><img src="http://gityuan.com/images/android-anr/anr_timeout.jpg" alt="anr_timeout"></p>
+<h4 id="前台与后台服务的区别"><a href="#前台与后台服务的区别" class="headerlink" title="前台与后台服务的区别"></a>前台与后台服务的区别</h4><p>系统对前台服务启动的超时为20s，而后台服务超时为200s，那么系统是如何区别前台还是后台服务呢？来看看ActiveServices的核心逻辑：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ComponentName <span class="title">startServiceLocked</span><span class="params">(...)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">boolean</span> callerFg;</span><br><span class="line">    <span class="keyword">if</span> (caller != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">final</span> ProcessRecord callerApp = mAm.getRecordForAppLocked(caller);</span><br><span class="line">        callerFg = callerApp.setSchedGroup != ProcessList.SCHED_GROUP_BACKGROUND;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        callerFg = <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    ComponentName cmp = startServiceInnerLocked(smap, service, r, callerFg, addToStarting);</span><br><span class="line">    <span class="keyword">return</span> cmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在startService过程根据发起方进程callerApp所属的进程调度组来决定被启动的服务是属于前台还是后台。当发起方进程不等于ProcessList.SCHED_GROUP_BACKGROUND(后台进程组)则认为是前台服务，否则为后台服务，并标记在ServiceRecord的成员变量createdFromFg。</p>
+<p>什么进程属于SCHED_GROUP_BACKGROUND调度组呢？进程调度组大体可分为TOP、前台、后台，进程优先级（Adj）和进程调度组（SCHED_GROUP）算法较为复杂，其对应关系可粗略理解为Adj等于0的进程属于Top进程组，Adj等于100或者200的进程属于前台进程组，Adj大于200的进程属于后台进程组。关于Adj的含义见下表，简单来说就是Adj&gt;200的进程对用户来说基本是无感知，主要是做一些后台工作，故后台服务拥有更长的超时阈值，同时后台服务属于后台进程调度组，相比前台服务属于前台进程调度组，分配更少的CPU时间片。</p>
+<p><img src="http://gityuan.com/images/android-anr/adj.png" alt="adj"></p>
+<p>关于细节详见解读Android进程优先级ADJ算法，<a href="http://gityuan.com/2018/05/19/android-process-adj" target="_blank" rel="noopener">http://gityuan.com/2018/05/19/android-process-adj</a></p>
+<p><code>前台服务准确来说，是指由处于前台进程调度组的进程发起的服务</code>。这跟常说的fg-service服务有所不同，fg-service是指挂有前台通知的服务。</p>
+<h4 id="前台与后台广播超时"><a href="#前台与后台广播超时" class="headerlink" title="前台与后台广播超时"></a>前台与后台广播超时</h4><p>前台广播超时为10s，后台广播超时为60s，那么如何区分前台和后台广播呢？来看看AMS的核心逻辑：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BroadcastQueue <span class="title">broadcastQueueForIntent</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">boolean</span> isFg = (intent.getFlags() &amp; Intent.FLAG_RECEIVER_FOREGROUND) != <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> (isFg) ? mFgBroadcastQueue : mBgBroadcastQueue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">mFgBroadcastQueue = <span class="keyword">new</span> BroadcastQueue(<span class="keyword">this</span>, mHandler,</span><br><span class="line">        <span class="string">"foreground"</span>, BROADCAST_FG_TIMEOUT, <span class="keyword">false</span>);</span><br><span class="line">mBgBroadcastQueue = <span class="keyword">new</span> BroadcastQueue(<span class="keyword">this</span>, mHandler,</span><br><span class="line">        <span class="string">"background"</span>, BROADCAST_BG_TIMEOUT, <span class="keyword">true</span>);</span><br></pre></td></tr></table></figure>
+
+<p>根据发送广播sendBroadcast(Intent intent)中的intent的flags是否包含FLAG_RECEIVER_FOREGROUND来决定把该广播是放入前台广播队列或者后台广播队列，前台广播队列的超时为10s，后台广播队列的超时为60s，默认情况下广播是放入后台广播队列，除非指明加上FLAG_RECEIVER_FOREGROUND标识。</p>
+<p>后台广播比前台广播拥有更长的超时阈值，同时在广播分发过程遇到后台service的启动(mDelayBehindServices)会延迟分发广播，等待service的完成，因为等待service而导致的广播ANR会被忽略掉；后台广播属于后台进程调度组，而前台广播属于前台进程调度组。简而言之，后台广播更不容易发生ANR，同时执行的速度也会更慢。</p>
+<p>另外，只有串行处理的广播才有超时机制，因为接收者是串行处理的，前一个receiver处理慢，会影响后一个receiver；并行广播通过一个循环一次性向所有的receiver分发广播事件，所以不存在彼此影响的问题，则没有广播超时。</p>
+<p><code>前台广播准确来说，是指位于前台广播队列的广播</code>。</p>
+<h4 id="前台与后台ANR"><a href="#前台与后台ANR" class="headerlink" title="前台与后台ANR"></a>前台与后台ANR</h4><p>除了前台服务，前台广播，还有前台ANR可能会让你云里雾里的，来看看其中核心逻辑：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title">appNotResponding</span><span class="params">(...)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">synchronized</span> (mService) &#123;</span><br><span class="line">        isSilentANR = !showBackground &amp;&amp; !isInterestingForBackgroundTraces(app);</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    File tracesFile = ActivityManagerService.dumpStackTraces(</span><br><span class="line">            <span class="keyword">true</span>, firstPids,</span><br><span class="line">            (isSilentANR) ? <span class="keyword">null</span> : processCpuTracker,</span><br><span class="line">            (isSilentANR) ? <span class="keyword">null</span> : lastPids,</span><br><span class="line">            nativePids);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">synchronized</span> (mService) &#123;</span><br><span class="line">        <span class="keyword">if</span> (isSilentANR) &#123;</span><br><span class="line">            app.kill(<span class="string">"bg anr"</span>, <span class="keyword">true</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        <span class="comment">//弹出ANR选择的对话框</span></span><br><span class="line">        Message msg = Message.obtain();</span><br><span class="line">        msg.what = ActivityManagerService.SHOW_NOT_RESPONDING_UI_MSG;</span><br><span class="line">        msg.obj = <span class="keyword">new</span> AppNotRespondingDialog.Data(app, activity, aboveSystem);</span><br><span class="line">        mService.mUiHandler.sendMessage(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>决定是前台或者后台ANR取决于该应用发生ANR时对用户是否可感知，比如拥有当前前台可见的activity的进程，或者拥有前台通知的fg-service的进程，这些是用户可感知的场景，发生ANR对用户体验影响比较大，故需要弹框让用户决定是否退出还是等待，如果直接杀掉这类应用会给用户造成莫名其妙的闪退。</p>
+<p>后台ANR相比前台ANR，只抓取发生无响应进程的trace，也不会收集CPU信息，并且会在后台直接杀掉该无响应的进程，不会弹框提示用户。</p>
+<p><code>前台ANR准确来说，是指对用户可感知的进程发生的ANR</code>。</p>
+<h3 id="ANR爆炸现场"><a href="#ANR爆炸现场" class="headerlink" title="ANR爆炸现场"></a>ANR爆炸现场</h3><p>对于service、broadcast、provider、input发生ANR后，中控系统会马上去抓取现场的信息，用于调试分析。收集的信息包括如下：</p>
+<ul>
+<li>将am_anr信息输出到EventLog，也就是说ANR触发的时间点最接近的就是EventLog中输出的am_anr信息</li>
+<li>收集以下重要进程的各个线程调用栈trace信息，保存在data/anr/traces.txt文件<ul>
+<li>当前发生ANR的进程，system_server进程以及所有persistent进程</li>
+<li>audioserver, cameraserver, mediaserver, surfaceflinger等重要的native进程</li>
+<li>CPU使用率排名前5的进程</li>
+</ul>
+</li>
+<li>将发生ANR的reason以及CPU使用情况信息输出到main log</li>
+<li>将traces文件和CPU使用情况信息保存到dropbox，即data/system/dropbox目录</li>
+<li>对用户可感知的进程则弹出ANR对话框告知用户，对用户不可感知的进程发生ANR则直接杀掉</li>
+</ul>
+<p>整个ANR信息收集过程比较耗时，其中抓取进程的trace信息，每抓取一个等待200ms，可见persistent越多，等待时间越长。关于抓取trace命令，对于Java进程可通过在adb shell环境下执行kill -3 [pid]可抓取相应pid的调用栈；对于Native进程在adb shell环境下执行debuggerd -b [pid]可抓取相应pid的调用栈。对于ANR问题发生后的蛛丝马迹(trace)在traces.txt和dropbox目录中保存记录。更多细节详见理解Android ANR的信息收集过程，<a href="http://gityuan.com/2016/12/02/app-not-response。" target="_blank" rel="noopener">http://gityuan.com/2016/12/02/app-not-response。</a></p>
+<p>有了现场信息，可以调试分析，先定位发生ANR时间点，然后查看trace信息，接着分析是否有耗时的message、binder调用，锁的竞争，CPU资源的抢占，以及结合具体场景的上下文来分析，调试手段就需要针对前面说到的message、binder、锁等资源从系统角度细化更多debug信息，这里不再展开，后续再以ANR案例来讲解。</p>
+<p>作为应用开发者应让主线程尽量只做UI相关的操作，避免耗时操作，比如过度复杂的UI绘制，网络操作，文件IO操作；避免主线程跟工作线程发生锁的竞争，减少系统耗时binder的调用，谨慎使用sharePreference，注意主线程执行provider query操作。简而言之，尽可能减少主线程的负载，让其空闲待命，以期可随时响应用户的操作。</p>
+<h4 id="回答"><a href="#回答" class="headerlink" title="回答"></a>回答</h4><p>最后，来回答文章开头的提问，有哪些路径会引发ANR? 答应是从埋下定时炸弹到拆炸弹之间的任何一个或多个路径执行慢都会导致ANR（以service为例），可以是service的生命周期的回调方法(比如onStartCommand)执行慢，可以是主线程的消息队列存在其他耗时消息让service回调方法迟迟得不到执行，可以是SP操作执行慢，可以是system_server进程的binder线程繁忙而导致没有及时收到拆炸弹的指令。另外ActivityManager线程也可能阻塞，出现的现象就是前台服务执行时间有可能超过10s，但并不会出现ANR。</p>
+<p>发生ANR时从trace来看主线程却处于空闲状态或者停留在非耗时代码的原因有哪些？可以是抓取trace过于耗时而错过现场，可以是主线程消息队列堆积大量消息而最后抓取快照一刻只是瞬时状态，可以是广播的“queued-work-looper”一直在处理SP操作。</p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+    
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+
+  <p><span>本文标题:</span>彻底理解Android应用无响应机制</a></p>
+  <p><span>文章作者:</span>Jason Wang</a></p>
+  <p><span>发布时间:</span>2020年03月31日 - 03:12:34</p>
+  <p><span>最后更新:</span>2020年03月31日 - 11:15:52</p>
+  <p><span>原始链接:</span><a href="/2020/03/31/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3Android%E5%BA%94%E7%94%A8%E6%97%A0%E5%93%8D%E5%BA%94%E6%9C%BA%E5%88%B6/" title="彻底理解Android应用无响应机制">https://catjason.github.io/2020/03/31/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3Android%E5%BA%94%E7%94%A8%E6%97%A0%E5%93%8D%E5%BA%94%E6%9C%BA%E5%88%B6/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/03/31/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3Android%E5%BA%94%E7%94%A8%E6%97%A0%E5%93%8D%E5%BA%94%E6%9C%BA%E5%88%B6/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://www.npc.gov.cn/wxzl/gongbao/1990-09/07/content_1479238.htm" target="_blank" title="Copyright Law of the People's Republic of China">中华人民共和国著作权法</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+
+    
+    </div>
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #000;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/31/Android%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90%E5%91%BD%E4%BB%A4/" rel="next" title="Android内存分析命令">
+                <i class="fa fa-chevron-left"></i> Android内存分析命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/31/java%E4%B8%AD%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8%EF%BC%88%E5%BC%BA%E3%80%81%E5%BC%B1%E3%80%81%E8%BD%AF%E3%80%81%E8%99%9A%EF%BC%89%E5%92%8CGC%E7%9A%84%E5%85%B3%E7%B3%BB/" rel="prev" title="java中的四种引用（强、弱、软、虚）和GC的关系">
+                java中的四种引用（强、弱、软、虚）和GC的关系 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<a class="jiathis_counter_style"></a>
+</div>
+
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="sidebar-photo">
+          <img src="/images/avatar.jpeg"/>
+          </div>
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jason Wang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CatJason" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jason20121221@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ANR触发机制"><span class="nav-number">2.</span> <span class="nav-text">ANR触发机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#service超时机制"><span class="nav-number">2.1.</span> <span class="nav-text">service超时机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#broadcast超时机制"><span class="nav-number">2.2.</span> <span class="nav-text">broadcast超时机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#provider超时机制"><span class="nav-number">2.3.</span> <span class="nav-text">provider超时机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#input超时机制"><span class="nav-number">2.4.</span> <span class="nav-text">input超时机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ANR超时阈值"><span class="nav-number">3.</span> <span class="nav-text">ANR超时阈值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前台与后台服务的区别"><span class="nav-number">3.1.</span> <span class="nav-text">前台与后台服务的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前台与后台广播超时"><span class="nav-number">3.2.</span> <span class="nav-text">前台与后台广播超时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前台与后台ANR"><span class="nav-number">3.3.</span> <span class="nav-text">前台与后台ANR</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ANR爆炸现场"><span class="nav-number">4.</span> <span class="nav-text">ANR爆炸现场</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#回答"><span class="nav-number">4.1.</span> <span class="nav-text">回答</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Wang</span>
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  views:<span id="busuanzi_value_site_uv"></span>
+</span>
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">85.7k</span>
+  
+</div>
+
+
+<!--
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+-->
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = '';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'jcasimeyi2Tt13dg9dBHj0eU-gzGzoHsz',
+        appKey: 'L1BdsRClxxAqsXKU01qUjtKN',
+        placeholder: '已阅留爪 (ฅ´ω`ฅ)',
+        avatar:'images/avatar.gif',
+        guest_info:guest,
+        pageSize:'10' || 10,
+        visitor: true,// 阅读量统计
+        enableQQ: true,
+        // 设置Bilibili表情包地址
+	    emojiCDN: '//i0.hdslb.com/bfs/emote/', 
+	    // 表情title和图片映射
+	    emojiMaps: {
+		"tv_doge": "6ea59c827c414b4a2955fe79e0f6fd3dcd515e24.png",
+		"tv_亲亲": "a8111ad55953ef5e3be3327ef94eb4a39d535d06.png",
+		"tv_偷笑": "bb690d4107620f1c15cff29509db529a73aee261.png",
+		"tv_再见": "180129b8ea851044ce71caf55cc8ce44bd4a4fc8.png",
+		"tv_冷漠": "b9cbc755c2b3ee43be07ca13de84e5b699a3f101.png",
+		"tv_发怒": "34ba3cd204d5b05fec70ce08fa9fa0dd612409ff.png",
+		"tv_发财": "34db290afd2963723c6eb3c4560667db7253a21a.png",
+		"tv_可爱": "9e55fd9b500ac4b96613539f1ce2f9499e314ed9.png",
+		"tv_吐血": "09dd16a7aa59b77baa1155d47484409624470c77.png",
+		"tv_呆": "fe1179ebaa191569b0d31cecafe7a2cd1c951c9d.png",
+		"tv_呕吐": "9f996894a39e282ccf5e66856af49483f81870f3.png",
+		"tv_困": "241ee304e44c0af029adceb294399391e4737ef2.png",
+		"tv_坏笑": "1f0b87f731a671079842116e0991c91c2c88645a.png",
+		"tv_大佬": "093c1e2c490161aca397afc45573c877cdead616.png",
+		"tv_大哭": "23269aeb35f99daee28dda129676f6e9ea87934f.png",
+		"tv_委屈": "d04dba7b5465779e9755d2ab6f0a897b9b33bb77.png",
+		"tv_害羞": "a37683fb5642fa3ddfc7f4e5525fd13e42a2bdb1.png",
+		"tv_尴尬": "7cfa62dafc59798a3d3fb262d421eeeff166cfa4.png",
+		"tv_微笑": "70dc5c7b56f93eb61bddba11e28fb1d18fddcd4c.png",
+		"tv_思考": "90cf159733e558137ed20aa04d09964436f618a1.png",
+		"tv_惊吓": "0d15c7e2ee58e935adc6a7193ee042388adc22af.png",
+		"tv_打脸": "56ab10b624063e966bfcb76ea5dc4794d87dfd47.png",
+		"tv_抓狂": "fe31c08edad661d63762b04e17b8d5ae3c71a757.png",
+		"tv_抠鼻": "c666f55e88d471e51bbd9fab9bb308110824a6eb.png",
+		"tv_斜眼笑": "911f987aa8bc1bee12d52aafe62bc41ef4474e6c.png",
+		"tv_无奈": "ea8ed89ee9878f2fece2dda0ea8a5dbfe21b5751.png",
+		"tv_晕": "5443c22b4d07fb1907ccc610c8e6db254f2461b7.png",
+		"tv_流汗": "cead1c351ab8d79e9f369605beb90148db0fbed3.png",
+		"tv_流泪": "7e71cde7858f0cd50d74b0264aa26db612a8a167.png",
+		"tv_流鼻血": "c32d39db2737f89b904ca32700d140a9241b0767.png",
+		"tv_点赞": "f85c354995bd99e28fc76c869bfe42ba6438eff4.png",
+		"tv_生气": "26702dcafdab5e8225b43ffd23c94ac1ff932654.png",
+		"tv_生病": "8b0ec90e6b86771092a498c54f09fc94621c1900.png",
+		"tv_疑问": "0793d949b18d7be716078349c202c15ff166f314.png",
+		"tv_白眼": "c1d59f439e379ee50eef488bcb5e5378e5044ea4.png",
+		"tv_皱眉": "72ccad6679fea0d14cce648b4d818e09b8ffea2d.png",
+		"tv_目瞪口呆": "0b8cb81a68de5d5365212c99375e7ace3e7891b7.png",
+		"tv_睡着": "8b196675b53af58264f383c50ad0945048290b33.png",
+		"tv_笑哭": "1abc628f6d4f4caf9d0e7800878f4697abbc8273.png",
+		"tv_腼腆": "89712c0d4af73e67f89e35cbc518420380a7f6f4.png",
+		"tv_色": "61822c7e9aae5da76475e7892534545336b23a6f.png",
+		"tv_调侃": "4bc022533ef31544ca0d72c12c808cf4a1cce3e3.png",
+		"tv_调皮": "b9c41de8e82dd7a8515ae5e3cb63e898bf245186.png",
+		"tv_鄙视": "6e72339f346a692a495b123174b49e4e8e781303.png",
+		"tv_闭嘴": "c9e990da7f6e93975e25fd8b70e2e290aa4086ef.png",
+		"tv_难过": "87f46748d3f142ebc6586ff58860d0e2fc8263ba.png",
+		"tv_馋": "fc7e829b845c43c623c8b490ee3602b7f0e76a31.png",
+		"tv_鬼脸": "0ffbbddf8a94d124ca2f54b360bbc04feb6bbfea.png",
+		"tv_黑人问号": "45821a01f51bc867da9edbaa2e070410819a95b2.png",
+		"tv_鼓掌": "1d21793f96ef4e6f48b23e53e3b9e42da833a0f6.png",
+	} 
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+    <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="/js/src/dynamic_bg.js"></script>
+

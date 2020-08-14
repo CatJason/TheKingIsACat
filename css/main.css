@@ -1898,7 +1898,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c49159;
+  background: #d9ffa4;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2845,9 +2845,7 @@ canvas {
   border-radius: 2px;
 }
 .vnick {
-  background-color: rgba(245,255,245,0.9);
   border-radius: 2px;
-  color: #000;
 }
 .vat {
   color: #fff !important;

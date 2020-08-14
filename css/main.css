@@ -188,8 +188,8 @@ body {
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 14px;
   line-height: 2;
-  color: #555;
-  background: #000;
+  color: #000;
+  background: #fff;
 }
 @media (max-width: 767px) {
   body {
@@ -977,7 +977,7 @@ pre .javascript .function {
   display: block;
   width: 22px;
   height: 2px;
-  background: #555;
+  background: #000;
   border-radius: 1px;
 }
 .btn-bar+.btn-bar {
@@ -1898,7 +1898,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff638a;
+  background: #cb6eff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2478,7 +2478,7 @@ pre .javascript .function {
   color: #fff;
 }
 .category-all-page .category-list-count {
-  color: $white;
+  color: #fff;
 }
 .category-all-page .category-list-count:before {
   display: inline;

@@ -90,10 +90,14 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Welcome to My Blog">
-<meta property="og:url" content="http://yoursite.com/categories/LeedCode/index.html">
+<meta name="description" content="《Android组件化架构》 本文将对《Android组件化架构》中组件间转跳章节做知识点提炼，重点解析路由转跳和原理。 将不局限于书中ARouter等常见路由，待搜集其他资料后再做补充完善。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android组件化架构：路由转跳">
+<meta property="og:url" content="http://yoursite.com/2020/08/18/Android%E7%BB%84%E4%BB%B6%E5%8C%96%E6%9E%B6%E6%9E%84%EF%BC%9A%E8%B7%AF%E7%94%B1%E8%BD%AC%E8%B7%B3/index.html">
 <meta property="og:site_name" content="Welcome to My Blog">
+<meta property="og:description" content="《Android组件化架构》 本文将对《Android组件化架构》中组件间转跳章节做知识点提炼，重点解析路由转跳和原理。 将不局限于书中ARouter等常见路由，待搜集其他资料后再做补充完善。">
+<meta property="article:published_time" content="2020-08-17T17:47:17.000Z">
+<meta property="article:modified_time" content="2020-08-17T18:18:52.265Z">
 <meta property="article:author" content="Jason Wang">
 <meta name="twitter:card" content="summary">
 
@@ -125,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/LeedCode/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/08/18/Android组件化架构：路由转跳/"/>
 
 
 
 
 
-  <title>Category: LeedCode | Welcome to My Blog</title>
+  <title>Android组件化架构：路由转跳 | Welcome to My Blog</title>
   
 
 
@@ -155,7 +159,7 @@
 <canvas id="canvas3"></canvas>
 </div>
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/CatJason" target="_blank" rel="noopener"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
@@ -284,83 +288,281 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>LeedCode<small>Category</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/18/Android%E7%BB%84%E4%BB%B6%E5%8C%96%E6%9E%B6%E6%9E%84%EF%BC%9A%E8%B7%AF%E7%94%B1%E8%BD%AC%E8%B7%B3/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome to My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/03/23/%E5%AF%BB%E6%89%BE%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/" itemprop="url">
-              
-                <span itemprop="name">寻找两个有序数组的中位数</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Android组件化架构：路由转跳</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-23T22:34:02+08:00"
-              content="2020-03-23" >
-          03-23
-        </time>
-      </div>
+        <div class="post-meta">
+	  
 
-    </header>
-  </article>
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-18T01:47:17+08:00">
+                2020-08-18
+              </time>
+            
 
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/18/Android%E7%BB%84%E4%BB%B6%E5%8C%96%E6%9E%B6%E6%9E%84%EF%BC%9A%E8%B7%AF%E7%94%B1%E8%BD%AC%E8%B7%B3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/18/Android%E7%BB%84%E4%BB%B6%E5%8C%96%E6%9E%B6%E6%9E%84%EF%BC%9A%E8%B7%AF%E7%94%B1%E8%BD%AC%E8%B7%B3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  241
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>《Android组件化架构》</p>
+<p>本文将对《Android组件化架构》中组件间转跳章节做知识点提炼，重点解析路由转跳和原理。</p>
+<p>将不局限于书中ARouter等常见路由，待搜集其他资料后再做补充完善。</p>
+<a id="more"></a>
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/21/n-abc/" itemprop="url">
-              
-                <span itemprop="name">abc排列组合</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-21T15:04:13+08:00"
-              content="2018-05-21" >
-          05-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+<h2 id="什么是路由？"><a href="#什么是路由？" class="headerlink" title="什么是路由？"></a>什么是路由？</h2><p><strong>路由</strong>（计算机网络中）：路由器从一个接口上收到数据包，根据数据路由包的目的地址进行定向并转发到另一个接口的过程。</p>
+<p><strong>路由器</strong>（计算机网络中）：路由器用于连接多个逻辑的分开的网络。</p>
+<p>知识迁移到Android</p>
+<p><strong>路由</strong>：从一个module向另一个module定向转发数据。</p>
+<p><strong>Router</strong>：连接各个module中页面转跳的中转站。可以拦截不安全的转跳或者设定一些特定的拦截服务。</p>
+<h2 id="原生转跳和路由转跳的差异"><a href="#原生转跳和路由转跳的差异" class="headerlink" title="原生转跳和路由转跳的差异"></a>原生转跳和路由转跳的差异</h2><p>参考文献</p>
+<p>《Android组件化架构》————————————————————–中国公信出版社-苍王-2018</p>
 
       
     </div>
+    
+    
+    
+    <div>
+    
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
 
+  <p><span>本文标题:</span>Android组件化架构：路由转跳</a></p>
+  <p><span>文章作者:</span>Jason Wang</a></p>
+  <p><span>发布时间:</span>2020年08月18日 - 01:47:17</p>
+  <p><span>最后更新:</span>2020年08月18日 - 02:18:52</p>
+  <p><span>原始链接:</span><a href="/2020/08/18/Android%E7%BB%84%E4%BB%B6%E5%8C%96%E6%9E%B6%E6%9E%84%EF%BC%9A%E8%B7%AF%E7%94%B1%E8%BD%AC%E8%B7%B3/" title="Android组件化架构：路由转跳">https://catjason.github.io/2020/08/18/Android%E7%BB%84%E4%BB%B6%E5%8C%96%E6%9E%B6%E6%9E%84%EF%BC%9A%E8%B7%AF%E7%94%B1%E8%BD%AC%E8%B7%B3/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2020/08/18/Android%E7%BB%84%E4%BB%B6%E5%8C%96%E6%9E%B6%E6%9E%84%EF%BC%9A%E8%B7%AF%E7%94%B1%E8%BD%AC%E8%B7%B3/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://www.npc.gov.cn/wxzl/gongbao/1990-09/07/content_1479238.htm" target="_blank" title="Copyright Law of the People's Republic of China">中华人民共和国著作权法</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+
+    
+    </div>
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #000;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/14/My-First-Blog/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<a class="jiathis_counter_style"></a>
+</div>
+
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -368,6 +570,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
         
@@ -389,8 +598,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="sidebar-photo">
           <img src="/images/avatar.jpeg"/>
@@ -477,6 +695,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是路由？"><span class="nav-number">1.</span> <span class="nav-text">什么是路由？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原生转跳和路由转跳的差异"><span class="nav-number">2.</span> <span class="nav-text">原生转跳和路由转跳的差异</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -629,6 +863,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

@@ -261,7 +261,7 @@
   </entry>
   <entry>
     <title>注解</title>
-    <url>/2020/08/12/%E6%B3%A8%E8%A7%A3/</url>
+    <url>/2020/08/12/%E5%A4%87%E7%94%A8/%E6%B3%A8%E8%A7%A3/</url>
     <content><![CDATA[<p>作者：凌寒天下独自舞<br>链接：<a href="https://www.jianshu.com/p/e2757e4b5455" target="_blank" rel="noopener">https://www.jianshu.com/p/e2757e4b5455</a><br>来源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 <a id="more"></a>
 
@@ -451,7 +451,7 @@
   </entry>
   <entry>
     <title>「转」静态方法与普通方法区别</title>
-    <url>/2020/08/12/%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E6%99%AE%E9%80%9A%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB/</url>
+    <url>/2020/08/12/%E5%A4%87%E7%94%A8/%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E6%99%AE%E9%80%9A%E6%96%B9%E6%B3%95%E5%8C%BA%E5%88%AB/</url>
     <content><![CDATA[<p>9点区别</p>
 <a id="more"></a>
 
@@ -483,7 +483,7 @@
   </entry>
   <entry>
     <title>LeetCode常用Java语言API与API用法</title>
-    <url>/2020/04/20/LeetCode%E5%B8%B8%E7%94%A8Java%E8%AF%AD%E8%A8%80API%E4%B8%8EAPI%E7%94%A8%E6%B3%95/</url>
+    <url>/2020/04/20/%E5%A4%87%E7%94%A8/LeetCode%E5%B8%B8%E7%94%A8Java%E8%AF%AD%E8%A8%80API%E4%B8%8EAPI%E7%94%A8%E6%B3%95/</url>
     <content><![CDATA[<p>对leetcode刷题中常用的Java语言API进行总结，穿插一些经典的写法。</p>
 <a id="more"></a>
 
@@ -949,7 +949,7 @@
   </entry>
   <entry>
     <title>POM 标签大全详解</title>
-    <url>/2020/04/05/POM-%E6%A0%87%E7%AD%BE%E5%A4%A7%E5%85%A8%E8%AF%A6%E8%A7%A3/</url>
+    <url>/2020/04/05/%E5%A4%87%E7%94%A8/POM-%E6%A0%87%E7%AD%BE%E5%A4%A7%E5%85%A8%E8%AF%A6%E8%A7%A3/</url>
     <content><![CDATA[<p>POM 标签大全详解</p>
 <a id="more"></a>
 
@@ -959,7 +959,7 @@
   </entry>
   <entry>
     <title>java中的四种引用（强、弱、软、虚）和GC的关系</title>
-    <url>/2020/03/31/java%E4%B8%AD%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8%EF%BC%88%E5%BC%BA%E3%80%81%E5%BC%B1%E3%80%81%E8%BD%AF%E3%80%81%E8%99%9A%EF%BC%89%E5%92%8CGC%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
+    <url>/2020/03/31/%E5%A4%87%E7%94%A8/java%E4%B8%AD%E7%9A%84%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8%EF%BC%88%E5%BC%BA%E3%80%81%E5%BC%B1%E3%80%81%E8%BD%AF%E3%80%81%E8%99%9A%EF%BC%89%E5%92%8CGC%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
     <content><![CDATA[<p>转自：<a href="https://blog.csdn.net/qq_35580883/article/details/78698509" target="_blank" rel="noopener">https://blog.csdn.net/qq_35580883/article/details/78698509</a></p>
 <a id="more"></a>
 
@@ -1174,7 +1174,7 @@
   </entry>
   <entry>
     <title>Android内存分析命令</title>
-    <url>/2020/03/31/Android%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90%E5%91%BD%E4%BB%A4/</url>
+    <url>/2020/03/31/%E5%A4%87%E7%94%A8/Android%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="常用的内存调优分析命令"><a href="#常用的内存调优分析命令" class="headerlink" title="常用的内存调优分析命令"></a>常用的内存调优分析命令</h2><ol>
 <li>dumpsys meminfo</li>
 <li>procrank</li>
@@ -1252,7 +1252,7 @@
   </entry>
   <entry>
     <title>Semaphore类源码探究</title>
-    <url>/2020/03/23/Semaphore%E7%B1%BB%E6%BA%90%E7%A0%81%E6%8E%A2%E7%A9%B6/</url>
+    <url>/2020/03/23/%E5%A4%87%E7%94%A8/Semaphore%E7%B1%BB%E6%BA%90%E7%A0%81%E6%8E%A2%E7%A9%B6/</url>
     <content><![CDATA[<p>对java中Semaphore类的源码进行探究</p>
 <a id="more"></a>
 
@@ -1267,7 +1267,7 @@
   </entry>
   <entry>
     <title>AtomicInteger类源码探究</title>
-    <url>/2020/03/23/AtomicInteger%E7%B1%BB%E6%BA%90%E7%A0%81%E6%8E%A2%E7%A9%B6/</url>
+    <url>/2020/03/23/%E5%A4%87%E7%94%A8/AtomicInteger%E7%B1%BB%E6%BA%90%E7%A0%81%E6%8E%A2%E7%A9%B6/</url>
     <content><![CDATA[<p>对AtomicInteger类源码进行探究</p>
 <a id="more"></a>
 
@@ -2186,7 +2186,7 @@
   </entry>
   <entry>
     <title>如何在github上为开源项目贡献</title>
-    <url>/2020/03/03/%E5%A6%82%E4%BD%95%E5%9C%A8github%E4%B8%8A%E4%B8%BA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E8%B4%A1%E7%8C%AE/</url>
+    <url>/2020/03/03/%E5%A4%87%E7%94%A8/%E5%A6%82%E4%BD%95%E5%9C%A8github%E4%B8%8A%E4%B8%BA%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E8%B4%A1%E7%8C%AE/</url>
     <content><![CDATA[<p>以<a href="https://github.com/tensorflow/tensorflow" target="_blank" rel="noopener">tensorflow</a>为例子介绍如何在<a href="https://github.com/" target="_blank" rel="noopener">github</a>上为一个开源项目做出贡献，进行多人协作编程</p>
 <a id="more"></a>
 
@@ -2316,7 +2316,7 @@
   </entry>
   <entry>
     <title>abc排列组合</title>
-    <url>/2018/05/21/n-abc/</url>
+    <url>/2018/05/21/%E5%A4%87%E7%94%A8/n-abc/</url>
     <content><![CDATA[<h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><p>输出所有由a,b,c组成的长度为n的字符串，并输出个数</p>
 <h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><blockquote>
 <p>2</p>
@@ -2336,7 +2336,7 @@
   </entry>
   <entry>
     <title>landern启动失败</title>
-    <url>/2018/05/03/landern/</url>
+    <url>/2018/05/03/%E5%A4%87%E7%94%A8/landern/</url>
     <content><![CDATA[<p>Linux – Lantern 无法启动</p>
 <p>安装了Lantern之后，不能启动起来，一闪而过，命令行里启动，包如下错误：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/.lantern/bin/lantern: error <span class="keyword">while</span> loading shared libraries: libappindicator3.so.1: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
@@ -2349,7 +2349,7 @@
   </entry>
   <entry>
     <title>如何把内容上传区块链</title>
-    <url>/2018/04/28/%E5%8C%BA%E5%9D%97%E9%93%BE/</url>
+    <url>/2018/04/28/%E5%A4%87%E7%94%A8/%E5%8C%BA%E5%9D%97%E9%93%BE/</url>
     <content><![CDATA[<h2 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h2><p>公有链是一个完全松散自治的P2P网络，加之区块链本身的设计要求了如果要修改数据，必须要51%的算力支持，因此要删除和篡改是一件几乎不可能的事情。这里是手把手教你怎么把信息保持在以太坊区块链上，永远无法删除。</p>
 <a id="more"></a>
 
@@ -2376,7 +2376,7 @@
   </entry>
   <entry>
     <title>Install p7zip</title>
-    <url>/2018/04/20/install-p7zip/</url>
+    <url>/2018/04/20/%E5%A4%87%E7%94%A8/install-p7zip/</url>
     <content><![CDATA[<p>P7zip is another name for 7z in Linux.</p>
 <h3 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo apt-get install p7zip-rar</span><br></pre></td></tr></table></figure>
 
@@ -2387,7 +2387,7 @@
   </entry>
   <entry>
     <title>hexo博客图片问题</title>
-    <url>/2018/04/15/picture/</url>
+    <url>/2018/04/15/%E5%A4%87%E7%94%A8/picture/</url>
     <content><![CDATA[<p>如何在hexo博文中插入图片</p>
 <a id="more"></a>
 
@@ -2419,7 +2419,7 @@
   </entry>
   <entry>
     <title>Avatar Bug in Theme Next</title>
-    <url>/2018/04/06/Avatar-Bug-in-Theme-Next/</url>
+    <url>/2018/04/06/%E5%A4%87%E7%94%A8/Avatar-Bug-in-Theme-Next/</url>
     <content><![CDATA[<h3 id="Why-can’t-the-avatar-be-a-rectangle"><a href="#Why-can’t-the-avatar-be-a-rectangle" class="headerlink" title="Why can’t the avatar be a rectangle?"></a>Why can’t the avatar be a rectangle?</h3><p>When I add a head portrait to my blog (edit the theme configuration file, modify the field “Avatar”),but it doesn’s work.Then I google the bug.<br>Unfortunately,it seems that few people have the same problem like me.<br>So,modifying the source code is another way to make my blog has an avatar.<br>Why can’t the avatar be a rectangle?</p>
 <a id="more"></a>
 

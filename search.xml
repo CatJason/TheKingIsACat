@@ -23,6 +23,132 @@
 ]]></content>
   </entry>
   <entry>
+    <title>Android通知栏</title>
+    <url>/2021/02/03/Android%E9%80%9A%E7%9F%A5%E6%A0%8F/</url>
+    <content><![CDATA[<p>Android 通知栏</p>
+<a id="more"></a>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   * 消息通知栏</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> context</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   *      上下文</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> cl</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   *      需要跳转的Activity</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> tittle</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   *      通知栏标题</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> content</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   *      通知栏内容</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> i</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   *      通知的标识符</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">showMessage</span><span class="params">(Context context, Class cl, String tittle, String content,<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      Intent intent = <span class="keyword">new</span> Intent(context, cl);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      PendingIntent pendingIntent = PendingIntent.getActivity(context, <span class="number">0</span>, intent, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      String id = context.getPackageName();<span class="comment">//频道的ID。每个包必须是唯一的</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">//渠道名字</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      String name = context.getString(R.string.app_name);<span class="comment">//频道的用户可见名称</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="comment">//创建一个通知管理器</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      Notification notification = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">          NotificationChannel mChannel = <span class="keyword">new</span> NotificationChannel(id,name,NotificationManager.IMPORTANCE_LOW);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">          notificationManager.createNotificationChannel(mChannel);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">          notification = <span class="keyword">new</span> Notification.Builder(context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  .setChannelId(id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  .setContentTitle(tittle)<span class="comment">//设置通知标题</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  .setContentText(content)<span class="comment">//设置通知内容</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  .setSmallIcon(R.mipmap.icon4)<span class="comment">//设置小图标</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  .setLargeIcon(BitmapFactory.decodeResource</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          (context.getResources(), R.mipmap.icon4))<span class="comment">//设置大图标</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  .setContentIntent(pendingIntent)<span class="comment">//打开消息跳转到这儿</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  .setAutoCancel(<span class="keyword">false</span>)<span class="comment">// 将AutoCancel设为true后，当你点击通知栏的notification后，它会自动被取消消失</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  .setOngoing(<span class="keyword">true</span>)<span class="comment">//将Ongoing设为true 那么notification将不能滑动删除</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  <span class="comment">// 从Android4.1开始，可以通过以下方法，设置notification的优先级，优先级越高的，通知排的越靠前，优先级低的，不会在手机最顶部的状态栏显示图标</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  <span class="comment">//.setPriority(NotificationCompat.PRIORITY_MAX)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  <span class="comment">// Notification.DEFAULT_ALL：铃声、闪光、震动均系统默认。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  <span class="comment">// Notification.DEFAULT_SOUND：系统默认铃声。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  <span class="comment">// Notification.DEFAULT_VIBRATE：系统默认震动。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  <span class="comment">// Notification.DEFAULT_LIGHTS：系统默认闪光。</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  .setDefaults(Notification.DEFAULT_ALL)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  .setVisibility(Notification.VISIBILITY_PUBLIC)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  .build();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">          NotificationCompat.Builder notificationBuilder =</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                  <span class="keyword">new</span> NotificationCompat.Builder(context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          .setContentTitle(tittle)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          .setContentText(content)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          .setSmallIcon(R.mipmap.icon4)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          .setLargeIcon(BitmapFactory.decodeResource</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                                  (context.getResources(), R.mipmap.icon4))<span class="comment">//设置大图标</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          .setVibrate(vibrate)<span class="comment">//震动</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          .setContentIntent(pendingIntent)<span class="comment">//打开消息跳转到这儿</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          .setAutoCancel(<span class="keyword">false</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          .setOngoing(<span class="keyword">true</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          <span class="comment">//.setPriority(NotificationCompat.PRIORITY_MAX)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          .setVisibility(Notification.VISIBILITY_PUBLIC)<span class="comment">//在锁屏上的显示</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          .setOngoing(<span class="keyword">true</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                          .setChannel(id);<span class="comment">//无效</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">          notification = notificationBuilder.build();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      notificationManager.notify(i, notification);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   * 删除消息通知栏</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> context</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   *      上下文</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> i</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   *      通知的标识符</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">(Context context,<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      NotificationManager notificationManager = (NotificationManager)     </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      context.getSystemService(NOTIFICATION_SERVICE);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      notificationManager.cancel(i);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>KMP算法求next数组中的递推思想</title>
+    <url>/2020/10/05/KMP%E7%AE%97%E6%B3%95%E6%B1%82next%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%92%E6%8E%A8%E6%80%9D%E6%83%B3/</url>
+    <content><![CDATA[<p>next 数组中的值代表着在字串每一处匹配失败时对应的指针应该移动的位置</p>
+<a id="more"></a>
+
+<h1 id="KMP-算法求-next-数组中的递推思想"><a href="#KMP-算法求-next-数组中的递推思想" class="headerlink" title="KMP 算法求 next 数组中的递推思想"></a>KMP 算法求 next 数组中的递推思想</h1><h2 id="简单的模式匹配算法寻找公共前缀"><a href="#简单的模式匹配算法寻找公共前缀" class="headerlink" title="简单的模式匹配算法寻找公共前缀"></a>简单的模式匹配算法寻找公共前缀</h2><p>模式串/主串：abaabcac</p>
+<p>子串：abaabcac                                                        </p>
+<p> 用 <strong>i</strong> 指针做 S1 的访问指针</p>
+<p>用 <strong>j</strong> 指针做 S2 的访问指针</p>
+<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>主串 S1：#abaabcac</p>
+<p>子串 S2：##abaabcac (#为万能匹配符号)</p>
+<h2 id="构成递推的（最重要但最容易被忽视的）条件"><a href="#构成递推的（最重要但最容易被忽视的）条件" class="headerlink" title="构成递推的（最重要但最容易被忽视的）条件"></a>构成递推的（最重要但最容易被忽视的）条件</h2><p><strong>字串在 i = n 时匹配失败，n 前面 n-1 个字符比需都匹配成功</strong></p>
+<p>用下划线表示指针 i 指向的位置，加粗表示匹配失败的位置</p>
+<table>
+<thead>
+<tr>
+<th align="center">匹配失败时指针数值</th>
+<th align="center">匹配失败位置</th>
+<th align="center">达成所需前提条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">i = 0</td>
+<td align="center"><strong><u>#</u></strong></td>
+<td align="center">/</td>
+</tr>
+<tr>
+<td align="center">i = 1</td>
+<td align="center">#<u><strong>a</strong></u></td>
+<td align="center">需要 i = 0 处匹配成功</td>
+</tr>
+<tr>
+<td align="center">i = 2</td>
+<td align="center">#a<u><strong>b</strong></u></td>
+<td align="center">需要 i = 1 处匹配成功</td>
+</tr>
+<tr>
+<td align="center">i = 3</td>
+<td align="center">#ab<u><strong>a</strong></u></td>
+<td align="center">需要 i = 2 处匹配成功</td>
+</tr>
+<tr>
+<td align="center">i = 4</td>
+<td align="center">#aba<strong><u>a</u></strong></td>
+<td align="center">需要 i = 3 处匹配成功</td>
+</tr>
+<tr>
+<td align="center">i = 5</td>
+<td align="center">#abaa<u><strong>b</strong></u></td>
+<td align="center">需要 i = 4 处匹配成功</td>
+</tr>
+<tr>
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+</tbody></table>
+<h2 id="寻找递推规律"><a href="#寻找递推规律" class="headerlink" title="寻找递推规律"></a>寻找递推规律</h2><h3 id="任意位置匹配成功时"><a href="#任意位置匹配成功时" class="headerlink" title="任意位置匹配成功时"></a>任意位置匹配成功时</h3><p>只需将 指针 i 与指针 j 均向后移动一个位置即可</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">i++;</span><br><span class="line">j++:</span><br></pre></td></tr></table></figure>
+
+<h3 id="在主串任意位置匹配失败时"><a href="#在主串任意位置匹配失败时" class="headerlink" title="在主串任意位置匹配失败时"></a>在主串任意位置匹配失败时</h3><p>在某一处失败时，</p>
+<ul>
+<li><p>模式串在 <strong>i = 0</strong> 处与待搜索文本中的某个字符匹配</p>
+<p>必然匹配成功，不需要前提条件，<strong>next[0] =  0</strong></p>
+</li>
+<li><p>模式串在 <strong>i = 1</strong> 处与待搜索文本中的某个字符匹配失败</p>
+<p>#<u><strong>a</strong></u>baabcac</p>
+<p>分析模式串结构</p>
+<p>S1：#<strong><u>a</u></strong>baabcac</p>
+<p>S2：#<strong><u>#</u></strong>abaabcac</p>
+<p>由于 i = 0 必然匹配成功，想要在 i = 1 处继续重新开始匹配，直接开始匹配不需要前提条件，不需要额外的指针操作，对应 <strong>next[1] = 0</strong></p>
+</li>
+<li><p>模式串在 <strong>i = 2</strong> 处与待搜索文本中的某个字符匹配失败</p>
+<p>#<u><strong>a</strong></u>baabcac</p>
+<p>分析模式串结构</p>
+<p>S1: #<u>a</u>baabcac</p>
+<p>S2: #<u>#</u>abaabcac</p>
+<p>想要在 i = 2 处继续重新开始匹配，需要满足 i = 1 处匹配成功的前提条件，需要将指针 j 指针向前移动一位至 # </p>
+<p>构造出 i = 1 处匹配成功</p>
+<p>对应 <strong>next[2] = 0 + 1 = 1</strong></p>
+</li>
+<li><p>模式串在 <strong>i = 3</strong> 处与待搜索文本中的某个字符匹配失败</p>
+<p>#<u><strong>a</strong></u>baabcac</p>
+<p>想要在 i = 2 处继续重新开始匹配，需要满足 i = 1 处匹配成功的前提条件，需要再将指针 j 指针向前移动一位至 # </p>
+<p>S: a<u>b</u>aabcac</p>
+<p>T:  #<u>#</u>abaabcac</p>
+<p>构造出 i = 1 处匹配成功</p>
+<p>对应 <strong>next[2] = 0 + 1 = 1</strong></p>
+</li>
+<li><p>在 <strong>i = 3</strong> 处匹配失败</p>
+<p>S: #ab<u><strong>a</strong></u>abcac</p>
+<p>T: ##a<u><strong>b</strong></u>aabcac</p>
+<p>想要在 i = 2 处继续重新开始匹配，需要满足 i = 1 处匹配成功的前提条件，需要先将指针 j 指针向前移动一位至 # </p>
+<p>S: a<u>b</u>aabcac</p>
+<p>T:  #<u>#</u>abaabcac</p>
+<p>构造出 i = 1 处匹配成功</p>
+<p>对应 <strong>next[2] = 0 + 1 = 1</strong></p>
+</li>
+<li><p>在 <strong>i = 4</strong> 处匹配失败</p>
+<p>S: a<u><strong>b</strong></u>aabcac</p>
+<p>T: #<u><strong>a</strong></u>baabcac</p>
+<p>想要在 i = 2 处继续重新开始匹配，需要满足 i = 1 处匹配成功的前提条件，需要先将指针 j 指针向前移动一位至 # </p>
+<p>S: a<u>b</u>aabcac</p>
+<p>T:  #<u>#</u>abaabcac</p>
+<p>构造出 i = 1 处匹配成功</p>
+<p>对应 <strong>next[2] = 0 + 1 = 1</strong></p>
+</li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+  </entry>
+  <entry>
     <title>「转」单例模式DCL</title>
     <url>/2020/08/13/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8FDCL/</url>
     <content><![CDATA[<p>原文连接：<a href="https://www.cnblogs.com/xz816111/p/8470048.html" target="_blank" rel="noopener">Java中的双重检查锁（double checked locking）</a></p>

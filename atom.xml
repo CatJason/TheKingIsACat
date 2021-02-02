@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-31T14:40:30.000Z</updated>
+  <updated>2021-02-02T16:55:50.979Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android通知栏</title>
+    <link href="http://yoursite.com/2021/02/03/Android%E9%80%9A%E7%9F%A5%E6%A0%8F/"/>
+    <id>http://yoursite.com/2021/02/03/Android%E9%80%9A%E7%9F%A5%E6%A0%8F/</id>
+    <published>2021-02-02T16:54:57.000Z</published>
+    <updated>2021-02-02T16:55:50.979Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Android 通知栏&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>KMP算法求next数组中的递推思想</title>
+    <link href="http://yoursite.com/2020/10/05/KMP%E7%AE%97%E6%B3%95%E6%B1%82next%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%92%E6%8E%A8%E6%80%9D%E6%83%B3/"/>
+    <id>http://yoursite.com/2020/10/05/KMP%E7%AE%97%E6%B3%95%E6%B1%82next%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E9%80%92%E6%8E%A8%E6%80%9D%E6%83%B3/</id>
+    <published>2020-10-05T11:20:33.000Z</published>
+    <updated>2020-10-05T12:55:22.931Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;next 数组中的值代表着在字串每一处匹配失败时对应的指针应该移动的位置&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="http://yoursite.com/categories/Algorithm/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
